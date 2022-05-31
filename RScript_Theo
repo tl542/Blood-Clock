@@ -1,0 +1,36 @@
+#!/usr/bin/env Rscript
+
+
+
+# Load in the RData
+data <- load("/mnt/data1/EXTEND/Methylation/QC/EXTEND_batch1_2_merged/EXTEND_batches_1_2_normalised_together.rdat")
+
+
+# Transpose + Cast the DNA methylation data into DF
+# Transpose the pheno data into DF
+DNAm <- t(betas)
+DNAm_df <- as.data.frame(DNAm)
+pheno_df <- as.data.frame(pheno)
+
+
+# Combine DNAm df with phenotypic Sex variable
+new_df <- cbind(DNAm_df, pheno_df[,c("Sex","Age")])
+colnames(new_df)[809499] <- "Sex"
+colnames(new_df)[809500] <- "Age"
+
+
+# Train/Test split on the original DNAm df
+set.seed(123)
+n <- nrow(new_df)
+trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
+train <- new_df[trainIndex,]
+test <- new_df[-trainIndex,]
+
+
+# Look at Age distribution on training data: Table + Hist
+table(train$Age)
+hist(train$Age, xlab="Age", main="Age distribution on training set")
+
+
+
+
