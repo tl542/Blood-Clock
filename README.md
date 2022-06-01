@@ -5,7 +5,7 @@ EXTEND is a research biobank funded by the National Institute for Health Researc
 For each participant, blood samples (either fasted or non-fasted) were collected through venipuncture; these were subsequently centrifuged to separate plasma and serum, and samples were aliquoted and frozen at -80°C.
 The EZ-96 DNA Methylation-Gold kit (Zymo Research; Cat No# D5007) was used for treating 500 ng of DNA from each sample with sodium bisulfite.
 DNAm data were generated using the Illumina EPIC DNA methylation array.
-After stringent QC the EXTEND DNAm dataset consisted of data for 809,498 DNAm sites profiled in 1,234 samples (52% female; age range = 19-80 years; median age = 57 years; SD=11.68 years).
+After stringent QC the EXTEND DNAm dataset consisted of data for 809,498 DNAm sites profiled in 1,234 samples (52% female; age range = 19-80 years; median age = 57 years; SD=11.68 years). <br/|>br/> 
 QC steps:
 Raw data were used, prior to any QC or normalisation, and processed using the wateRmelon (Pidsley et al., 2013) package.
 Our stringent QC pipeline included the following steps:
