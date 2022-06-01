@@ -46,7 +46,6 @@ dim(test1)
 table(train1$Age)
 
 
-
 # Two-sample t-test on Training data from original set
 t.test(train$Age ~ train$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
 
@@ -63,6 +62,6 @@ test2 <- new_df2[-trainIndex,]
 dim(train2)
 dim(test2)
 
-# Two-sample t-test on Training data from restricted set (less than 65)
+# Two-sample t-test on Training data from restricted set
 t.test(train2$Age ~ train2$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
 
