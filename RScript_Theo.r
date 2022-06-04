@@ -57,3 +57,25 @@ t.test(train$Age ~ train$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
 # Two-sample t-test on Training data from restricted set
 t.test(train1$Age ~ train1$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
 
+
+# Two-sample t-test on original set
+t.test(new_df$Age ~ new_df$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
+
+
+# Two-sample t-test on restricted set
+t.test(new_df1$Age ~ new_df1$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
+
+
+# Use 3-fold cross validation to estimate the "best" lambda parameter
+alpha <- 0.5
+cv_fit_train <- cv.glmnet(as.matrix(train1[,-809499]), train1$Age, nfolds=3, alpha=alpha, family="gaussian")  
+best_lambda <- cv_fit_train$lambda.min
+
+
+# Extract all the necessary probes for probes clock
+corr = 0.6
+rmse = 3.6
+while (RMSE < 3.6 & cor > 0.6){
+
+
+
