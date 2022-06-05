@@ -94,6 +94,7 @@ t.test(new_df2$Age ~ new_df2$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FA
 # Use 3-fold cross validation to estimate the "best" lambda parameter
 # i.e. that gives lowest mean MSE
 train1 <- train1[,-809499]
+test1 <- test1[,-809499]
 alpha <- 0.5
 cv_fit_train <- cv.glmnet(as.matrix(train1), train1$Age, nfolds=3, alpha=alpha, family="gaussian")  
 best_lambda <- cv_fit_train$lambda.min
@@ -108,7 +109,7 @@ corr = 0
 rmse = 0
 while (RMSE < 3.6 & cor > 0.6){
     fit_train <- glmnet(as.matrix(train1), train1$Age, alpha=0.5, nlambda=10)
-    pred_test <- predict(fit_train, as.matrix(train1),s=best_lambda)
+    pred_test <- predict(fit_train, as.matrix(test1),s=best_lambda)
     coefs <- coef(fit_train, s=best_lambda)
     coefs_nz <- coefs[which(coefs != 0),]
     coefs_nz_df <- as.data.frame(coefs_nz)
