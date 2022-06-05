@@ -34,6 +34,14 @@ table(new_df$Age)
 table(train$Age)
 
 
+# Two-sample t-test on Training data from original set
+t.test(train$Age ~ train$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
+
+# Two-sample t-test on original set
+t.test(new_df$Age ~ new_df$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
+
+
+
 # Restrict the original dataset down to samples aged less than 70 (1009)
 new_df1 <- new_df[new_df$Age >= 40 & new_df$Age <= 70,]
 # Train/Test split on the restricted data
@@ -50,20 +58,33 @@ dim(test1)
 table(new_df1$Age)
 table(train1$Age)
 
-
-# Two-sample t-test on Training data from original set
-t.test(train$Age ~ train$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
-
 # Two-sample t-test on Training data from restricted set
 t.test(train1$Age ~ train1$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
 
 
-# Two-sample t-test on original set
-t.test(new_df$Age ~ new_df$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
-
-
 # Two-sample t-test on restricted set
 t.test(new_df1$Age ~ new_df1$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
+
+
+
+# Restrict the original dataset down to samples aged less than 65 (868)
+new_df2 <- new_df[new_df$Age >= 40 & new_df$Age <= 65,]
+# Train/Test split on the restricted data
+# Training size: 608 and Test Size: 260
+set.seed(123)
+n <- nrow(new_df2)
+trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
+train2 <- new_df2[trainIndex,]
+test2 <- new_df2[-trainIndex,]
+dim(train2)
+dim(test2)
+
+
+# Two-sample t-test on Training data from restricted set
+t.test(train2$Age ~ train2$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
+
+# Two-sample t-test on restricted set
+t.test(new_df2$Age ~ new_df2$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
 
 
 # Use 3-fold cross validation to estimate the "best" lambda parameter
@@ -73,9 +94,9 @@ best_lambda <- cv_fit_train$lambda.min
 
 
 # Extract all the necessary probes for probes clock
-corr = 0.6
-rmse = 3.6
-while (RMSE < 3.6 & cor > 0.6){
+#corr = 0.6
+#rmse = 3.6
+#while (RMSE < 3.6 & cor > 0.6){
 
 
 
