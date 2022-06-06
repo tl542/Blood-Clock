@@ -113,8 +113,8 @@ best_lambda <- cv_fit_train$lambda.min
     #RMSE <- rmse(test$Age, pred_test)
     #corr <- cor(test$Age, pred_test)
     #if (RMSE > 3.6 | corr < 0.6){
-         stop = TRUE
-         break
+        # stop = TRUE
+        # break
      }
     #if (stop){break}
     #coefs <- coef(fit_train, s=best_lambda)
