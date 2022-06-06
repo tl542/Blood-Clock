@@ -101,26 +101,31 @@ best_lambda <- cv_fit_train$lambda.min
 
 
 # Extract all the necessary probes for probes clock
-library(glmnet)
-l <- list()
-l_rmse <- list()
-l_cor <- list()
-corr = 0
-rmse = 0
-while (RMSE < 3.6 & cor > 0.6){
-    fit_train <- glmnet(as.matrix(train1), train1$Age, alpha=0.5, nlambda=10)
-    pred_test <- predict(fit_train, as.matrix(test1),s=best_lambda)
-    coefs <- coef(fit_train, s=best_lambda)
-    coefs_nz <- coefs[which(coefs != 0),]
-    coefs_nz_df <- as.data.frame(coefs_nz)
-    l <- as.data.frame(cbind(l, list(row_names(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)])))
-    RMSE <- rmse(test$Age, pred_test)
-    corr <- cor(test$Age, pred_test)
-    l_rmse <- as.data.frame(rbind(l_rmse,RMSE))
-    l_corr <- as.data.frame(rbind(l_cor, corr))
-    ix <- which(colnames(train1) %in% rownames(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)])
-    train1 <- train1[,-ix]
+#library(glmnet)
+#l_probes <- list()
+#l_rmse <- list()
+#l_cor <- list()
+#corr = 1
+#RMSE = 0
+#while (RMSE < 3.6 & corr > 0.6){
+    #fit_train <- glmnet(as.matrix(train1), train1$Age, alpha=0.5, nlambda=10)
+    #pred_test <- predict(fit_train, as.matrix(test1),s=best_lambda)
+    #RMSE <- rmse(test$Age, pred_test)
+    #corr <- cor(test$Age, pred_test)
+    #if (RMSE > 3.6 | corr < 0.6){
+         stop = TRUE
+         break
+     }
+    #if (stop){break}
+    #coefs <- coef(fit_train, s=best_lambda)
+    #coefs_nz <- coefs[which(coefs != 0),]
+    #coefs_nz_df <- as.data.frame(coefs_nz)
+    #l <- as.data.frame(cbind(l, list(row_names(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)])))
+    #l_rmse <- as.data.frame(rbind(l_rmse,RMSE))
+    #l_corr <- as.data.frame(rbind(l_cor, corr))
+    #ix <- which(colnames(train1) %in% rownames(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)])
+    #train1 <- train1[,-ix]
      
-} 
+#} 
 
 
