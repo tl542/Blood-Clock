@@ -93,6 +93,7 @@ t.test(new_df2$Age ~ new_df2$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FA
 
 # Use 3-fold cross validation to estimate the "best" lambda parameter
 # i.e. that gives lowest mean MSE
+library(glmnet)
 train1 <- train1[,-809499]
 test1 <- test1[,-809499]
 alpha <- 0.5
@@ -101,7 +102,6 @@ best_lambda <- cv_fit_train$lambda.min
 
 
 # Extract all the necessary probes for probes clock
-#library(glmnet)
 #l_probes <- list()
 #l_rmse <- list()
 #l_cor <- list()
