@@ -63,3 +63,6 @@ t.test(train1$Age ~ train1$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALS
 
 # Two-sample t-test on restricted set
 t.test(new_df1$Age ~ new_df1$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
+
+
+
