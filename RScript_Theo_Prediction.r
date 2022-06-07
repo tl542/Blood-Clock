@@ -21,11 +21,12 @@ best_lambda <- cv_fit_train$lambda.min
 #l_cor <- list()
 #corr = 1
 #RMSE = 0
+#stop = FALSE
 #while (RMSE < 3.6 & corr > 0.6){
     #fit_train <- glmnet(as.matrix(train1), train1$Age, alpha=0.5, nlambda=10)
     #pred_test <- predict(fit_train, as.matrix(test1),s=best_lambda)
-    #RMSE <- rmse(test$Age, pred_test)
-    #corr <- cor(test$Age, pred_test)
+    #RMSE <- rmse(test1$Age, pred_test)
+    #corr <- cor(test1$Age, pred_test)
     #if (RMSE > 3.6 | corr < 0.6){
         #stop = TRUE
         #break
@@ -34,9 +35,9 @@ best_lambda <- cv_fit_train$lambda.min
     #coefs <- coef(fit_train, s=best_lambda)
     #coefs_nz <- coefs[which(coefs != 0),]
     #coefs_nz_df <- as.data.frame(coefs_nz)
-    #l <- as.data.frame(cbind(l, list(row_names(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)])))
-    #l_rmse <- as.data.frame(rbind(l_rmse,RMSE))
-    #l_corr <- as.data.frame(rbind(l_cor, corr))
+    #l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)]))
+    #l_rmse <- as.data.frame(c(l_rmse,RMSE)) 
+    #l_corr <- as.data.frame(c(l_cor, corr))
     #ix <- which(colnames(train1) %in% rownames(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)])
     #train1 <- train1[,-ix]
     #test1 <- test1[,-ix]
