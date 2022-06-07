@@ -45,7 +45,7 @@ t.test(new_df$Age ~ new_df$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALS
 # Restrict the original dataset down to samples aged less than 70 (1009)
 new_df1 <- new_df[new_df$Age >= 40 & new_df$Age <= 70,]
 # Train/Test split on the restricted data
-# Training size: 864 and Test Size: 145
+# Training size: 706 and Test Size: 303
 set.seed(123)
 n <- nrow(new_df1)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
