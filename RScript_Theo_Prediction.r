@@ -36,8 +36,8 @@ best_lambda <- cv_fit_train$lambda.min
     #coefs_nz <- coefs[which(coefs != 0),]
     #coefs_nz_df <- as.data.frame(coefs_nz)
     #l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)]))
-    #l_rmse <- as.data.frame(c(l_rmse,RMSE)) 
-    #l_corr <- as.data.frame(c(l_cor, corr))
+    #l_rmse <- c(l_rmse,RMSE) 
+    #l_corr <- c(l_cor, corr)
     #ix <- which(colnames(train1) %in% rownames(coefs_nz_df)[2:(nrow(coefs_nz_df)-1)])
     #train1 <- train1[,-ix]
     #test1 <- test1[,-ix]
