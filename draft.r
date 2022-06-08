@@ -35,7 +35,9 @@ while (RMSE < 3.6 & corr > 0.6){
     }
     if (stop){break}
     n <- n + 1
-    plot(test$Age, pred_test, xlab="Chronological Age (years)", ylab="Predicted Age (years)", main = paste("Iteration", n))
+    plot(test$Age, pred_test, xlab="Chronological Age (years)", ylab="Predicted Age (years)", main = paste("Fitted Model", n))
+    text(45,80, paste("RMSE =", RMSE))
+    text(45,75, paste("r =", corr))
     dev.copy(png, "plotpool.png")
     dev.off()
     coefs <- coef(fit_train, s=best_lambda)
