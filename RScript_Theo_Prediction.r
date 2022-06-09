@@ -16,6 +16,7 @@ best_lambda <- cv_fit_train$lambda.min
 
 
 # Extract all the necessary probes for probes clock
+library(ggplot2)
 library(Metrics)
 l_probes <- list()
 l_probes_coef <- list()
@@ -33,9 +34,10 @@ while (RMSE < 4.5 & corr > 0.6){
     corr <- cor(test1$Age, pred_test)
     l_rmse <- c(l_rmse,RMSE)
     l_cor <- c(l_cor, corr)
-    plot(test1$Age, pred_test, xlab="Chronological Age (years)", ylab="Predicted Age (years)", main = paste("Model", n))
+    plt <- plot(test1$Age, pred_test, xlab="Chronological Age (years)", ylab="Predicted Age (years)", main = paste("Model", n))
     text(45,75, paste("RMSE =", round(RMSE,2)))
     text(45,70, paste("r =", round(corr,2)))
+    ggsave(file=paste("Plot", n), plt)    
     coefs <- coef(fit_train, s=best_lambda)
     coefs_nz <- coefs[which(coefs != 0),]
     coefs_nz_df <- as.data.frame(coefs_nz)
