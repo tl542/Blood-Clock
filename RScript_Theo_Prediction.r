@@ -16,7 +16,6 @@ best_lambda <- cv_fit_train$lambda.min
 
 
 # Extract all the necessary probes for probes clock
-library(ggplot2)
 library(Metrics)
 l_probes <- list()
 l_probes_coef <- list()
