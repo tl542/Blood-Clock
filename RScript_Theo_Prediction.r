@@ -25,7 +25,7 @@ corr <-  1
 RMSE <- 0
 stop <- FALSE
 n <- 0
-while (corr > 0.6){
+while (corr >= 0.6){
     n <- n + 1 
     fit_train <- glmnet(as.matrix(train1[,-ncol(train1)]), train1$Age, alpha=0.5, nlambda=10)
     pred_test <- predict(fit_train, as.matrix(test1[,-ncol(test1)]),s=best_lambda)
