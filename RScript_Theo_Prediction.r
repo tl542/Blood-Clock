@@ -56,18 +56,18 @@ while (corr >= 0.6){
 
 l_cor_unlist <- unlist(l_cor)
 n_models <- unlist(list(1:n))
-plot(n_models, l_cor_unlist, pch=19)
-text(n_models, l_cor_unlist, paste("c =", l_cor_unlist), pos=1)
+plot(n_models, l_cor_unlist, pch=19, xlab="Model", ylab="Correlation")
+text(n_models, l_cor_unlist, paste("", round(l_cor_unlist,2)), pos=1)
 dev.copy(pdf, "cor_plot.pdf")
 dev.off()
 
 len_probes <- list()
-for (i in l_probes){
+for (i in 1:length(l_probes)){
     len_probes <- c(len_probes, length(l_probes[[i]]))
 }
 len_probes_unlist <- unlist(len_probes)
-plot(n_models, len_probes_unlist, pch=19)
-text(n_models, len_probes_unlist, paste("n =", len_probes_unlist), pos=1)
+plot(n_models, len_probes_unlist, pch=19, xlab="Model", ylab="Number of Probes")
+text(n_models, len_probes_unlist, paste("", len_probes_unlist), pos=1)
 dev.copy(pdf, "probes_plot.pdf")
 dev.off()
 
