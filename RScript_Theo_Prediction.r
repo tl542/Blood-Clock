@@ -96,6 +96,10 @@ write.table(l_cor_nprobes_df, "nprobes+cor_per_model.txt", row.names=T, col.name
 
 
 #Save all the probes with their respective beta coefficient
+for (i in 1:length(l_probes_coef)){
+    l_probes_coef[[i]] <- l_probes_coef[[i]][-1]
+}
+
 l_probes_coef_unlist <- unlist(l_probes_coef)
 l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
 colnames(l_probes_coef_unlist_df) <- "Coef"
@@ -103,9 +107,7 @@ l_probes_unlist <- unlist(l_probes)
 l_probes_unlist_df <- as.data.frame(l_probes_unlist)
 colnames(l_probes_unlist_df) <- "Probes"
 
-df_new <- [l_probes_coef_unlist_df$coef <= 30,]
-df_new <- as.data.frame(df_new)
-df_final <- cbind(l_probes_unlist_df, df_new)
+df_final <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
 write.table(df_final, "probes_coef.txt", row.names=T, col.names=T, quote=F)
 
 
