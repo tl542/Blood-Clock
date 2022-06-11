@@ -57,7 +57,7 @@ while (corr >= 0.6){
 }
 
 
-# Plot correlation change across the models making through the loop (n=105)
+# Plot (+Save) change in correlation across the models making through the loop (n=105)
 l_cor_unlist <- unlist(l_cor)
 n_models <- unlist(list(1:n))
 plot(n_models, l_cor_unlist, pch=19, xlab="Model (n=105)", ylab="Correlation")
@@ -65,7 +65,7 @@ plot(n_models, l_cor_unlist, pch=19, xlab="Model (n=105)", ylab="Correlation")
 dev.copy(pdf, "cor_per_model(plot).pdf")
 dev.off()
 
-# Plot number of weighted probes across the models making through the loop (n=105)
+# Plot (+Save) change in number of weighted probes across the models making through the loop (n=105)
 len_probes <- list()
 for (i in 1:length(l_probes)){
     len_probes <- c(len_probes, length(l_probes[[i]]))
@@ -76,6 +76,10 @@ plot(n_models, len_probes_unlist, pch=19, xlab="Model (n=105)", ylab="Number of 
 dev.copy(pdf, "nb_probes_per_model(plot).pdf")
 dev.off()
 
+# Plot (+Save) correlation against number of weighted probes
+plot(l_cor_nprobes_df$nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="nProbes", ylab="Correlation")
+dev.copy(pdf, "cor_nb_probes_per_model(plot).pdf")
+dev.off()
 
 # Save correlation + number of probes for each of the 105 models (with cor >= 0.6 on test data)
 l_cor_df <- as.data.frame(l_cor_unlist)
