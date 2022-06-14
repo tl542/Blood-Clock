@@ -1,0 +1,88 @@
+
+R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> 
+> #!/usr/bin/env Rscript
+> source("RScript_Theo_Explanatory.r")
+> 
+> 
+> 
+> 
+> # Use 3-fold cross validation to estimate the "best" lambda parameter
+> # i.e. that gives lowest mean MSE
+> library(glmnet) 
+Loading required package: Matrix
+Loading required package: foreach
+Loaded glmnet 2.0-18
+
+> train1 <- train1[,-809499]
+> test1 <- test1[,-809499]
+> alpha <- 0.5
+> cv_fit_train <- cv.glmnet(as.matrix(train1[,-ncol(train1)]), train1$Age, nfolds=3, alpha=alpha, family="gaussian")
+> best_lambda <- cv_fit_train$lambda.min
+> 
+> 
+> # Extract all the necessary probes for probes clock
+> library(Metrics)
+
+Attaching package: ‘Metrics’
+
+The following object is masked from ‘package:glmnet’:
+
+    auc
+
+> l_probes <- list()
+> l_rmse <- list()
+> l_cor <- list()
+> corr <-  1
+> RMSE <- 0
+> stop <- FALSE
+> n <- 0
+> while (RMSE < 3.6 & corr > 0.6){
++     fit_train <- glmnet(as.matrix(train1[,-ncol(train1)]), train1$Age, alpha=0.5, nlambda=10)
++     pred_test <- predict(fit_train, as.matrix(test1[,-ncol(test1)]),s=best_lambda)
++     RMSE <- rmse(test1$Age, pred_test)
++     corr <- cor(test1$Age, pred_test)
++     if (RMSE > 3.6 | corr < 0.6){
++         stop = TRUE
++         break
++     }
++     if (stop){break}
++     n <- n + 1 
++     plot(test1$Age, pred_test, xlab="Chronological Age (years)", ylab="Predicted Age (years)", main = paste("Iteration", n)) 
++     dev.copy(png, "rplot.png")
++     dev.off()
++     coefs <- coef(fit_train, s=best_lambda)
++     coefs_nz <- coefs[which(coefs != 0),]
++     coefs_nz_df <- as.data.frame(coefs_nz)
++     l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
++     l_rmse <- c(l_rmse,RMSE) 
++     l_corr <- c(l_cor, corr)
++     ix <- which(colnames(train1) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
++     train1 <- train1[,-ix]
++     test1 <- test1[,-ix]
++     
++ }
+> 
+> 
+> proc.time()
+    user   system  elapsed 
+2041.514  316.469 2358.075 
