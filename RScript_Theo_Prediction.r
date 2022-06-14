@@ -57,40 +57,43 @@ while (corr >= 0.6){
 }
 
 
-# Plot (+Save) change in correlation across the models making through the loop (n=105)
+# Save correlation + number of probes for each of the 105 models (with cor >= 0.6 on test data)
 l_cor_unlist <- unlist(l_cor)
-n_models <- unlist(list(1:n))
-plot(n_models, l_cor_unlist, pch=19, xlab="Model (n=105)", ylab="Correlation")
-#text(n_models, l_cor_unlist, paste("", round(l_cor_unlist,2)), pos=1)
-dev.copy(pdf, "cor_per_model(plot).pdf")
-dev.off()
-
-# Plot (+Save) change in number of weighted probes across the models making through the loop (n=105)
 len_probes <- list()
 for (i in 1:length(l_probes)){
     len_probes <- c(len_probes, length(l_probes[[i]]))
 }
 len_probes_unlist <- unlist(len_probes)
-plot(n_models, len_probes_unlist, pch=19, xlab="Model (n=105)", ylab="Number of Probes")
-#text(n_models, len_probes_unlist, paste("", len_probes_unlist), pos=1)
-dev.copy(pdf, "nb_probes_per_model(plot).pdf")
-dev.off()
-
-# Save correlation + number of probes for each of the 105 models (with cor >= 0.6 on test data)
 l_cor_df <- as.data.frame(l_cor_unlist)
 colnames(l_cor_df) <- "Correlation"
 len_probes_df <- as.data.frame(len_probes_unlist)
 colnames(len_probes_df) <- "nProbes"
-l_cor_nprobes_df <- cbind(len_probes_df, l_cor_df)
+l_cor_nprobes_df <- cbind(l_cor_df,len_probes_df)
+l_cor_nprobes_df$Cum_nProbes <- cumsum(l_cor_nprobes_df$nProbes)
 for (i in 1:nrow(l_cor_nprobes_df)){
     rownames(l_cor_nprobes_df)[i] <- paste("Model", i)
 }
-write.table(l_cor_nprobes_df, "nprobes+cor_per_model.txt", row.names=T, col.names=T, quote=F)
+write.table(l_cor_nprobes_df, "nprobes+ cum_nprobes+cor_per_model.txt", row.names=T, col.names=T, quote=F)
+
+
+n_models <- unlist(list(1:n))
+
+# Plot (+Save) change in correlation across the models making through the loop (n=105)
+plot(n_models, l_cor_nprobes_df$Correlation, pch=19, xlab="Model (n=105)", ylab="Correlation")
+#text(n_models, l_cor_unlist, paste("", round(l_cor_unlist,2)), pos=1)
+dev.copy(pdf, "cor_per_model(plot).pdf")
+dev.off()
+
+# Plot (+Save) change in number of weighted probes across the models making through the loop (n=105)
+plot(n_models, l_cor_nprobes_df$Cum_nProbes, pch=19, xlab="Model (n=105)", ylab="Cumulative number of Probes")
+#text(n_models, len_probes_unlist, paste("", len_probes_unlist), pos=1)
+dev.copy(pdf, "cumnb_probes_models(plot).pdf")
+dev.off()
 
 
 # Plot (+Save) correlation against number of weighted probes
-plot(l_cor_nprobes_df$nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="nProbes", ylab="Correlation")
-dev.copy(pdf, "cor_nb_probes_per_model(plot).pdf")
+plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation")
+dev.copy(pdf, "cor_cumnb_probes_models(plot).pdf")
 dev.off()
 
 
