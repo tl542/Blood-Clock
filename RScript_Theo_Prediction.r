@@ -11,7 +11,7 @@ library(glmnet)
 train1 <- train1[,-809499]
 test1 <- test1[,-809499]
 alpha <- 0.5
-cv_fit_train <- cv.glmnet(as.matrix(train1[,-ncol(train1)]), train1$Age, nfolds=3, alpha=alpha, family="gaussian")
+cv_fit_train <- cv.glmnet(as.matrix(train1[,-ncol(train1)]), train1$Age, nfolds=10, alpha=alpha, family="gaussian")
 best_lambda <- cv_fit_train$lambda.min
 
 
