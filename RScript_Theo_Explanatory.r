@@ -54,7 +54,7 @@ test1 <- new_df1[-trainIndex,]
 dim(train1)
 dim(test1)
 
-# Age distribution on original set + training data from restricted set: Table
+# Age distribution on restricted set + training data from restricted set: Table
 table(new_df1$Age)
 table(train1$Age)
 
