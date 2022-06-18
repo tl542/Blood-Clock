@@ -31,9 +31,9 @@ while (corr >= 0.6){
     n <- n + 1 
     fit_train <- glmnet(as.matrix(train1[,-ncol(train1)]), train1$Age, alpha=0.5, nlambda=10)
     pred_test <- predict(fit_train, as.matrix(test1[,-ncol(test1)]),s=best_lambda)
-    #RMSE <- rmse(test1$Age, pred_test)
+    RMSE <- rmse(test1$Age, pred_test)
     corr <- cor(test1$Age, pred_test)
-    #l_rmse <- c(l_rmse,RMSE)
+    l_rmse <- c(l_rmse,RMSE)
     l_cor <- c(l_cor, corr)
     #plot(test1$Age, pred_test, xlab="Chronological Age (years)", ylab="Predicted Age (years)", main = paste("Model", n))
     #text(45,75, paste("RMSE =", round(RMSE,2)))
@@ -54,6 +54,14 @@ while (corr >= 0.6){
     }
     if (stop){break}
     
+}
+
+#Save RMSE for each of the models (with cor >= 0.6 on test data
+l_rmse_unlist <- unlist(l_rmse)
+l_rmse_df <- as.data.frame(l_rmse)
+colnames(l_rmse_df) <- "RMSE"
+for (i in 1:nrow(l_rmse_df)){
+    rownames(l_rmse_df)[i] <- paste("Model", i)
 }
 
 
