@@ -65,7 +65,7 @@ for (i in 1:nrow(l_rmse_df)){
 }
 
 
-# Save correlation + number of probes for each of the models (with cor >= 0.6 on test data)
+# Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.6 on test data)
 l_cor_unlist <- unlist(l_cor)
 len_probes <- list()
 for (i in 1:length(l_probes)){
