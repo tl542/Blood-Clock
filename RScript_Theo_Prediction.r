@@ -56,7 +56,7 @@ while (corr >= 0.6){
     
 }
 
-#Save RMSE for each of the models (with cor >= 0.6 on test data
+#Save RMSE for each of the models (with cor >= 0.6 on test data)
 l_rmse_unlist <- unlist(l_rmse)
 l_rmse_df <- as.data.frame(l_rmse)
 colnames(l_rmse_df) <- "RMSE"
