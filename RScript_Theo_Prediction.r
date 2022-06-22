@@ -5,7 +5,7 @@ source("RScript_Theo_Explanatory.r")
 
 
 
-# Use 3-fold cross validation to estimate the "best" lambda parameter
+# Use 10-folds cross validation to estimate the "best" lambda parameter
 # i.e. that gives lowest mean MSE
 library(glmnet) 
 train1 <- train1[,-809499]
