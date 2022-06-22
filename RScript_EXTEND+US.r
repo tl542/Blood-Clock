@@ -69,6 +69,8 @@ train2 <-train2[,new_train]
 train_all <- rbind(train1,train2)
 train_all$Age <- as.integer(train_all$Age)
 dim(train_all)
+ix <- which(colnames(test1) %in% colnames(train_all))
+test1 <- test1[,ix]
 
 
 library(glmnet)
@@ -89,7 +91,7 @@ n <- 0
 while (corr >= 0.6){
     n <- n + 1 
     fit_train <- glmnet(as.matrix(train_all[,-ncol(train_all)]), train_all$Age, alpha=0.5, nlambda=10)
-    pred_test <- predict(fit_train, as.matrix(test_all[,-ncol(test_all)]),s=best_lambda)
+    pred_test <- predict(fit_train, as.matrix(test1[,-ncol(test1)]),s=best_lambda)
     RMSE <- rmse(test1$Age, pred_test)
     corr <- cor(test1$Age, pred_test)
     l_rmse <- c(l_rmse,RMSE)
@@ -104,9 +106,9 @@ while (corr >= 0.6){
     coefs_nz_df <- as.data.frame(coefs_nz)
     l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
     l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[,"coefs_nz"]))
-    ix <- which(colnames(train1) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
+    ix <- which(colnames(train_all) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
     train_all <- train_all[,-ix]
-    test_all <- test_all[,-ix]
+    test1 <- test1[,-ix]
     if (corr < 0.6){
         stop = TRUE
         break
@@ -115,15 +117,6 @@ while (corr >= 0.6){
     
 }
 
-
-
-#Save RMSE for each of the models (with cor >= 0.6 on test data)
-l_rmse_unlist <- unlist(l_rmse)
-l_rmse_df <- as.data.frame(l_rmse)
-colnames(l_rmse_df) <- "RMSE"
-for (i in 1:nrow(l_rmse_df)){
-    rownames(l_rmse_df)[i] <- paste("Model", i)
-}
 
 
 # Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.6 on test data)
@@ -150,4 +143,13 @@ write.table(l_cor_nprobes_df, "nprobes+cum_nprobes+cor_per_model.txt", row.names
 pdf("cor_cumnb_probes_models(plot) - 1.pdf")
 plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation")
 dev.off()
+
+
+#Save RMSE for each of the models (with cor >= 0.6 on test data)
+l_rmse_unlist <- unlist(l_rmse)
+l_rmse_df <- as.data.frame(l_rmse)
+colnames(l_rmse_df) <- "RMSE"
+for (i in 1:nrow(l_rmse_df)){
+    rownames(l_rmse_df)[i] <- paste("Model", i)
+}
 
