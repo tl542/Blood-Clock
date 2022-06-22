@@ -145,4 +145,9 @@ for (i in 1:nrow(l_cor_nprobes_df)){
 write.table(l_cor_nprobes_df, "nprobes+cum_nprobes+cor_per_model.txt", row.names=T, col.names=T, quote=F)
 
 
-n_models <- unlist(list(1:n))
+
+# Plot (+Save) correlation against number of weighted probes
+pdf("cor_cumnb_probes_models(plot) - 1.pdf")
+plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation")
+dev.off()
+
