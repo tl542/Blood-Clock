@@ -41,7 +41,7 @@ load("US_Betas_Pheno.rda")
 
 DNAm_us <- t(dat)
 DNAm_df_us <- as.data.frame(DNAm_us)
-pheno_df_us <- as.data.frame(pheno_us)
+pheno_df_us <- as.data.frame(pheno)
 
 new_df_us <- cbind(DNAm_df_us, pheno_df_us[,c("nsex","confage")])
 colnames(new_df_us)[857131] <- "Sex"
