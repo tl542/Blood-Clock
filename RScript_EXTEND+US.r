@@ -144,3 +144,5 @@ for (i in 1:nrow(l_cor_nprobes_df)){
 }
 write.table(l_cor_nprobes_df, "nprobes+cum_nprobes+cor_per_model.txt", row.names=T, col.names=T, quote=F)
 
+
+n_models <- unlist(list(1:n))
