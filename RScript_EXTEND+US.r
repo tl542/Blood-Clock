@@ -135,7 +135,7 @@ l_cor_nprobes_df$Cum_nProbes <- cumsum(l_cor_nprobes_df$nProbes)
 for (i in 1:nrow(l_cor_nprobes_df)){
     rownames(l_cor_nprobes_df)[i] <- paste("Model", i)
 }
-write.table(l_cor_nprobes_df, "nprobes+cum_nprobes+cor_per_model - 1.txt", row.names=T, col.names=T, quote=F)
+write.table(l_cor_nprobes_df, "nprobes+cum_nprobes+cor_per_model (split1).txt", row.names=T, col.names=T, quote=F)
 
 
 
