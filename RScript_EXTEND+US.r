@@ -157,6 +157,7 @@ for (i in 1:nrow(l_rmse_df)){
 write.table(l_rmse_df, "RMSE (Split 1).txt", row.names=T, col.names=T, quote=F)
 
 
+#Save all the probes selected by each model
 probes_model <- data.frame()
 for (i in 1:length(l_probes)){
     l_probes_i <- unlist(l_probes[[i]])
