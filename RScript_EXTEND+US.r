@@ -155,3 +155,16 @@ for (i in 1:nrow(l_rmse_df)){
     rownames(l_rmse_df)[i] <- paste("Model", i)
 }
 write.table(l_rmse_df, "RMSE (Split 1).txt", row.names=T, col.names=T, quote=F)
+
+
+probes_model <- data.frame()
+for (i in 1:length(l_probes)){
+    l_probes_i <- unlist(l_probes[[i]])
+    l_probes_i_df <- as.data.frame(l_probes_i)
+    colnames(l_probes_i_df) <- "Selected Probes"
+    l_probes_i_df["Probes_Model"] <- paste("Model", i)
+    probes_model <- rbind(probes_model, l_probes_i_df)
+}
+write.table(probes_model, "probes_model (Split 1).txt", row.names=T, col.names=T, quote=F)
+
+
