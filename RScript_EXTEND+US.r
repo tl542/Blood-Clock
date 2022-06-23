@@ -121,13 +121,13 @@ while (corr >= 0.6){
 
 # Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.6 on test data)
 l_cor_unlist <- unlist(l_cor)
+l_cor_df <- as.data.frame(l_cor_unlist)
+colnames(l_cor_df) <- "Correlation"
 len_probes <- list()
 for (i in 1:length(l_probes)){
     len_probes <- c(len_probes, length(l_probes[[i]]))
 }
 len_probes_unlist <- unlist(len_probes)
-l_cor_df <- as.data.frame(l_cor_unlist)
-colnames(l_cor_df) <- "Correlation"
 len_probes_df <- as.data.frame(len_probes_unlist)
 colnames(len_probes_df) <- "nProbes"
 l_cor_nprobes_df <- cbind(l_cor_df,len_probes_df)
