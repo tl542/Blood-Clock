@@ -149,7 +149,7 @@ dev.off()
 
 #Save RMSE for each of the models (with cor >= 0.6 on test data)
 l_rmse_unlist <- unlist(l_rmse)
-l_rmse_df <- as.data.frame(l_rmse)
+l_rmse_df <- as.data.frame(l_rmse_unlist)
 colnames(l_rmse_df) <- "RMSE"
 for (i in 1:nrow(l_rmse_df)){
     rownames(l_rmse_df)[i] <- paste("Model", i)
