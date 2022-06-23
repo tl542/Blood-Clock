@@ -23,7 +23,7 @@ new_df1 <- new_df[new_df$Age >= 40 & new_df$Age <= 70,]
 
 
 set.seed(123)
-n <- nrow(new_df)
+n <- nrow(new_df1)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train1 <- new_df1[trainIndex,]
 test1 <- new_df1[-trainIndex,]
