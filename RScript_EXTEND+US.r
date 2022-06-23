@@ -27,13 +27,14 @@ n <- nrow(new_df1)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train1 <- new_df1[trainIndex,]
 test1 <- new_df1[-trainIndex,]
+train1 <- train1[,-809499]
+test1 <- test1[,-809499]
 dim(train1)
 dim(test1)
 
 
 
-train1 <- train1[,-809499]
-test1 <- test1[,-809499]
+
 
 
 setwd("/mnt/data1/EPICQC/UnderstandingSociety")
@@ -55,12 +56,13 @@ n <- nrow(new_df2_us)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train2 <- new_df2_us[trainIndex,]
 test2 <- new_df2_us[-trainIndex,]
+train2 <- train2[,-857131]
+test2 <- test2[,-857131]
 dim(train2)
 dim(test2)
 
 
-train2 <- train2[,-857131]
-test2 <- test2[,-857131]
+
 
 
 new_train <- intersect(colnames(train1), colnames(train2))
