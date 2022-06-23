@@ -54,7 +54,7 @@ set.seed(123)
 n <- nrow(new_df2_us)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train2 <- new_df2_us[trainIndex,]
-tets2 <- new_df2_us[-trainIndex,]
+test2 <- new_df2_us[-trainIndex,]
 dim(train2)
 dim(test2)
 
