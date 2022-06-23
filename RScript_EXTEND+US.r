@@ -137,12 +137,12 @@ l_cor_nprobes_df$Cum_nProbes <- cumsum(l_cor_nprobes_df$nProbes)
 for (i in 1:nrow(l_cor_nprobes_df)){
     rownames(l_cor_nprobes_df)[i] <- paste("Model", i)
 }
-write.table(l_cor_nprobes_df, "nprobes+cum_nprobes+cor_per_model (split1).txt", row.names=T, col.names=T, quote=F)
+write.table(l_cor_nprobes_df, "table (Split 1).txt", row.names=T, col.names=T, quote=F)
 
 
 
 # Plot (+Save) correlation against number of weighted probes
-pdf("cor_cumnb_probes_models(plot) - 1.pdf")
+pdf("Plot (Split 1).pdf")
 plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation")
 dev.off()
 
@@ -167,5 +167,22 @@ for (i in 1:length(l_probes)){
     probes_model <- rbind(probes_model, l_probes_i_df)
 }
 write.table(probes_model, "probes_model (Split 1).txt", row.names=T, col.names=T, quote=F)
+
+
+#Save all the probes with their respective beta coefficient
+for (i in 1:length(l_probes_coef)){
+    l_probes_coef[[i]] <- l_probes_coef[[i]][-1]
+}
+
+l_probes_coef_unlist <- unlist(l_probes_coef)
+l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
+colnames(l_probes_coef_unlist_df) <- "Coef"
+l_probes_unlist <- unlist(l_probes)
+l_probes_unlist_df <- as.data.frame(l_probes_unlist)
+colnames(l_probes_unlist_df) <- "Probes"
+
+df_final <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
+write.table(df_final, "probes_coef (Split 1).txt", row.names=T, col.names=T, quote=F)
+
 
 
