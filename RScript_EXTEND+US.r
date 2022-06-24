@@ -143,7 +143,7 @@ write.table(l_cor_nprobes_df, "table (Split 1).txt", row.names=T, col.names=T, q
 
 # Plot (+Save) correlation against number of weighted probes
 pdf("Plot (Split 1).pdf")
-plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation")
+plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation", main="Correlation vs (Cumulative) number of probes")
 dev.off()
 
 
