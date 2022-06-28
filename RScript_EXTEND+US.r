@@ -51,6 +51,8 @@ colnames(new_df_us)[857132] <- "Age"
 
 new_df2_us <- new_df_us[new_df_us$Age >= 40 & new_df_us$Age <= 70,]
 
+# Train/Test split on the restricted US data (753 samples)
+# Training size: 527 and Test size: 226
 set.seed(123)
 n <- nrow(new_df2_us)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
