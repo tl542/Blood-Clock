@@ -101,3 +101,7 @@ probes_0.8_horvath_s5 <- shared_horvath_0.8_s5  %>% reduce(inner_join, by='Selec
 probes_0.8_horvath_s5_df <- as.data.frame(probes_0.8_horvath_s5)
 colnames(probes_0.8_horvath_s5_df) <- "Shared_Probes"
 
+probes_summary <- data.frame(matrix(0, nrow=5, ncol=3))
+rownames(probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5")
+colnames(probes_summary) <- c("shared_mod1", "shared_0.8", "shared_0.9")
+
