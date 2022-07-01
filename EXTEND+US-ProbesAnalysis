@@ -39,16 +39,16 @@ head(probes_model5)
 
 
 # All the probes from models across train/test splits with cor >= 0.9 on test data
-pbs_model1_best <- probes_model1[1:11946,]
-pbs_model2_best <- probes_model2[1:11883,]
-pbs_model3_best <- probes_model3[1:13917,]
-pbs_model4_best <- probes_model4[1:11526,]
-pbs_model5_best <- probes_model5[1:14124,]
+probes1_0.9 <- probes_model1[1:11946,]
+probes2_0.9 <- probes_model2[1:11883,]
+probes3_0.9 <- probes_model3[1:13917,]
+probes4_0.9 <- probes_model4[1:11526,]
+probes5_0.9 <- probes_model5[1:14124,]
 
 # Shared Probes between these models across train/test splits.
 library(tidyverse)
-shared_probes <- list(pbs_model1_best["Selected_Probes"], pbs_model2_best["Selected_Probes"],
- pbs_model3_best["Selected_Probes"], pbs_model4_best["Selected_Probes"], pbs_model5_best["Selected_Probes"])
+shared_probes <- list(probes1_9["Selected_Probes"], probes2_0.9["Selected_Probes"],
+ probes3_0.9["Selected_Probes"], probes4_0.9["Selected_Probes"], probes5_0.9["Selected_Probes"])
 probes_0.9 <- shared_probes %>% reduce(inner_join, by='Selected_Probes')
 probes_0.9_df <- as.data.frame(probes_0.9)
 colnames(probes_0.9_df) <- "Shared_Probes"
