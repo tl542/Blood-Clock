@@ -121,3 +121,11 @@ probes_Mod1_df <- as.data.frame(probes_Mod1)
 colnames(probes_Mod1_df) <- "Shared_Probes"
 write.table(probes_Mod1_df, "Shared_Probes_mod1.txt", col.names=T, row.names=T, quote=F)
 
+probes_summary <- data.frame(matrix(0,nrow=3, ncol=7))
+rownames(probes_summary) <- c("nprobes_mod1", "nprobes_0.9", "nprobes_0.8")
+colnames(probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5", "n_shared_probes", "prop_shared_probes")
+probes_summary[1,] <- c("1005", "1049", "1021", "1010", "1029", "86", "0.01681658")
+probes_summary[2,] <- c("11946", "11883", "13917", "11526", "14124", "2256", "0.03558584")
+probes_summary[3,] <- c("123845", "131869", "135936", "116550", "131863", "35818", "0.05596012")
+
+
