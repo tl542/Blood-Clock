@@ -47,7 +47,7 @@ probes5_0.9 <- probes_model5[1:14124,]
 
 # Shared Probes between these models across train/test splits.
 library(tidyverse)
-shared_probes <- list(probes1_9["Selected_Probes"], probes2_0.9["Selected_Probes"],
+shared_probes <- list(probes1_0.9["Selected_Probes"], probes2_0.9["Selected_Probes"],
  probes3_0.9["Selected_Probes"], probes4_0.9["Selected_Probes"], probes5_0.9["Selected_Probes"])
 probes_0.9 <- shared_probes %>% reduce(inner_join, by='Selected_Probes')
 probes_0.9_df <- as.data.frame(probes_0.9)
