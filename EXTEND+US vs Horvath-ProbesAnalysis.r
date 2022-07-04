@@ -1,11 +1,18 @@
 #!/usr/bin/env Rscript
 
+source("/mnt/data1/EXTEND/Methylation/QC/Theo/RScript_EXTEND+US.r")
 source("/mnt/data1/EXTEND/Methylation/QC/Theo/EXTEND+US-ProbesAnalysis.r")
 
 horvath_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/CpGs Horvath Clock.txt")
 colnames(horvath_probes) <- "Selected_Probes"
 
-library(tidyverse)
+library(data.table)
+copy_horvath <- copy(horvath_probes)
+rownames(copy_horvath) <- copy_horvath$Selected_Probes
+match <- which(colnames(train_all) %in% rownames(copy_horvath))
+new_train_all <- train_all[,match]
+horvath_probes <- data.frame(colnames(new_train_all))
+colnames(horvath_probes) <- "Selected_Probes"
 
 # Shared Probes between Model 1 from Split 1 and Horvath clock
 shared_horvath_mod1_s1 <- list(pbs_model1_best["Selected_Probes"], horvath_probes["Selected_Probes"]) 
