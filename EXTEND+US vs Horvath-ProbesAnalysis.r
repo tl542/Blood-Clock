@@ -102,8 +102,8 @@ probes_0.8_horvath_s5_df <- as.data.frame(probes_0.8_horvath_s5)
 colnames(probes_0.8_horvath_s5_df) <- "Shared_Probes"
 
 n_probes_summary <- data.frame(matrix(0, nrow=5, ncol=3))
-rownames(probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5")
-colnames(probes_summary) <- c("shared_mod1", "shared_0.8", "shared_0.9")
+rownames(n_probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5")
+colnames(n_probes_summary) <- c("shared_mod1", "shared_0.8", "shared_0.9")
 n_probes_summary[1,] <- c(4, 47, 139)
 n_probes_summary[2,] <- c(3, 45, 145)
 n_probes_summary[3,] <- c(5, 49, 149)
