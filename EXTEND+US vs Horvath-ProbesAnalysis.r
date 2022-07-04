@@ -113,12 +113,12 @@ n_probes_summary[5,] <- c(7, 58, 146)
 
 prop_probes_summary <- data.frame(matrix(0, nrow=5, ncol=3))
 rownames(prop_probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5")
-colnames(prop_probes_summary) <- c("shared_mod1", "shared_0.8", "shared_0.9")
-n_probes_summary[1,] <- c(0.0029, 0.0038, 0.0011)
-n_probes_summary[2,] <- c(0.0021, 0.0036, 0.0010)
-n_probes_summary[3,] <- c(0.0036, 0.0034, 0.0010)
-n_probes_summary[4,] <- c(0.0051, 0.0034, 0.0012)
-n_probes_summary[5,] <- c(0.0050, 0.0040, 0.0011)
+colnames(prop_probes_summary) <- c("shared_mod1", "shared_0.9", "shared_0.8")
+prop_probes_summary[1,] <- c(0.0029, 0.0038, 0.0011)
+prop_probes_summary[2,] <- c(0.0021, 0.0036, 0.0010)
+prop_probes_summary[3,] <- c(0.0036, 0.0034, 0.0010)
+prop_probes_summary[4,] <- c(0.0051, 0.0034, 0.0012)
+prop_probes_summary[5,] <- c(0.0050, 0.0040, 0.0011)
 
 
 
