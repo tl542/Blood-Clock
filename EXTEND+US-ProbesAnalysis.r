@@ -121,6 +121,7 @@ probes_Mod1_df <- as.data.frame(probes_Mod1)
 colnames(probes_Mod1_df) <- "Shared_Probes"
 write.table(probes_Mod1_df, "Shared_Probes_mod1.txt", col.names=T, row.names=T, quote=F)
 
+#Record number + proportion of shared probes across train/test splits
 probes_summary <- data.frame(matrix(0,nrow=3, ncol=7))
 rownames(probes_summary) <- c("nprobes_mod1", "nprobes_0.9", "nprobes_0.8")
 colnames(probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5", "n_shared_probes", "prop_shared_probes")
