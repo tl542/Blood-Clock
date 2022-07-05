@@ -3,9 +3,11 @@
 source("/mnt/data1/EXTEND/Methylation/QC/Theo/RScript_EXTEND+US.r")
 source("/mnt/data1/EXTEND/Methylation/QC/Theo/EXTEND+US-ProbesAnalysis.r")
 
+# Get the 353 Cpgs from Horvath Clock (with Illumina 450K and Illumina 27K)
 horvath_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/CpGs Horvath Clock.txt")
 colnames(horvath_probes) <- "Selected_Probes"
 
+# Get the 333 CpGs sites where methylation was measure by the EPIC array from our study
 library(data.table)
 copy_horvath <- copy(horvath_probes)
 rownames(copy_horvath) <- copy_horvath$Selected_Probes
@@ -121,11 +123,22 @@ n_probes_summary[5,] <- c(7, 58, 146)
 prop_probes_summary <- data.frame(matrix(0, nrow=5, ncol=3))
 rownames(prop_probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5")
 colnames(prop_probes_summary) <- c("shared_mod1", "shared_0.9", "shared_0.8")
-prop_probes_summary[1,] <- c(0.0029, 0.0038, 0.0011)
-prop_probes_summary[2,] <- c(0.0021, 0.0036, 0.0010)
-prop_probes_summary[3,] <- c(0.0036, 0.0034, 0.0010)
-prop_probes_summary[4,] <- c(0.0051, 0.0034, 0.0012)
-prop_probes_summary[5,] <- c(0.0050, 0.0040, 0.0011)
+prop_probes_summary[1,] <- c(dim(probes_Mod1_horvath_s1_df)[1]/(dim(pbs_model1_best)[1]+333), dim(probes_0.9_horvath_s1_df)[1]/(dim(probes1_0.9)[1]+333),
+                             dim(probes_0.8_horvath_s1_df)[1]/(dim(probes1_0.8)[1]+333))
+
+prop_probes_summary[2,] <- c(dim(probes_Mod1_horvath_s2_df)[1]/(dim(pbs_model2_best)[1]+333), dim(probes_0.9_horvath_s2_df)[1]/(dim(probes2_0.9)[1]+333),
+                             dim(probes_0.8_horvath_s2_df)[1]/(dim(probes2_0.8)[1]+333))
+
+prop_probes_summary[3,] <- c(dim(probes_Mod1_horvath_s3_df)[1]/(dim(pbs_model3_best)[1]+333), dim(probes_0.9_horvath_s3_df)[1]/(dim(probes3_0.9)[1]+333),
+                             dim(probes_0.8_horvath_s3_df)[1]/(dim(probes3_0.8)[1]+333))
+
+prop_probes_summary[4,] <- c(dim(probes_Mod1_horvath_s4_df)[1]/(dim(pbs_model4_best)[1]+333), dim(probes_0.9_horvath_s4_df)[1]/(dim(probes4_0.9)[1]+333),
+                             dim(probes_0.8_horvath_s4_df)[1]/(dim(probes4_0.8)[1]+333))
+
+prop_probes_summary[5,] <- c(dim(probes_Mod1_horvath_s5_df)[1]/(dim(pbs_model5_best)[1]+333), dim(probes_0.9_horvath_s5_df)[1]/(dim(probes5_0.9)[1]+333),
+                             dim(probes_0.8_horvath_s5_df)[1]/(dim(probes5_0.8)[1]+333))
+
+write.table(prop_probes_summary, "shared_probes_horvath_summary(prop).txt", row.names=T, col.names=T, quote=F)
 
 
 
