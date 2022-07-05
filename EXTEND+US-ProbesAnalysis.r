@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+## First Part
 
 #Load all the selected probes in Split 1 
 probes_model1 <- read.csv("/mnt/data1/EXTEND/Methylation/QC/Theo/probes_model (Split 1).txt", sep=" ")
@@ -129,6 +130,19 @@ probes_summary[1,] <- c("1005", "1049", "1021", "1010", "1029", "86", "0.0168165
 probes_summary[2,] <- c("11946", "11883", "13917", "11526", "14124", "2256", "0.03558584")
 probes_summary[3,] <- c("123845", "131869", "135936", "116550", "131863", "35818", "0.05596012")
 write.table(probes_summary, "shared_probes_summary.txt", col.names=T, row.names=T, quote=F)
+
+
+## Second Part
+
+shared_probes_Mod1 <- data.frame(matrix(0, ncol=5, nrow=5))
+rownames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
+shared_probes_Mod1 <- c(1005, dim(
+
+shared_probes_Mod1_12 <- list(pbs_model1_best["Selected_Probes"], pbs_model2_best["Selected_Probes"])
+probes_Mod1_12 <- shared_probes_Mod1_12 %>% reduce(inner_join, by='Selected_Probes')
+probes_Mod1_12_df <- as.data.frame(probes_Mod1_12)
+colnames(probes_Mod1_12_df) <- "Shared_Probes"
 
 
 
