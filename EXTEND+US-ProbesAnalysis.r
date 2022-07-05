@@ -254,4 +254,78 @@ df2 <- as.data.frame(shared_probes_0.9_matrix_sym)
 write.table(df2, "shared_probes_2x2_0.9.txt", row.names=T, col.names=T, quote=F)
                 
                         
+# Models with cor >= 0.8
+
+
+shared_probes_0.8_12 <- list(probes1_0.8["Selected_Probes"], probes2_0.8["Selected_Probes"])
+probes_0.8_12 <- shared_probes_0.8_12 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_12_df <- as.data.frame(probes_0.8_12)
+colnames(probes_0.8_12_df) <- "Shared_Probes"
+
+shared_probes_0.8_13 <- list(probes1_0.8["Selected_Probes"], probes3_0.8["Selected_Probes"])
+probes_0.8_13 <- shared_probes_0.8_13 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_13_df <- as.data.frame(probes_0.8_13)
+colnames(probes_0.8_13_df) <- "Shared_Probes"
+
+shared_probes_0.8_14 <- list(probes1_0.8["Selected_Probes"], probes4_0.8["Selected_Probes"])
+probes_0.8_14 <- shared_probes_0.8_14 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_14_df <- as.data.frame(probes_0.8_14)
+colnames(probes_0.8_14_df) <- "Shared_Probes"
+
+shared_probes_0.8_15 <- list(probes1_0.8["Selected_Probes"], probes5_0.8["Selected_Probes"])
+probes_0.8_15 <- shared_probes_0.8_15 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_15_df <- as.data.frame(probes_0.8_15)
+colnames(probes_0.8_15_df) <- "Shared_Probes"
+
+shared_probes_0.8_23 <- list(probes2_0.8["Selected_Probes"], probes3_0.8["Selected_Probes"])
+probes_0.8_23 <- shared_probes_0.8_23 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_23_df <- as.data.frame(probes_0.8_23)
+colnames(probes_0.8_23_df) <- "Shared_Probes"
+
+shared_probes_0.8_24 <- list(probes2_0.8["Selected_Probes"], probes4_0.8["Selected_Probes"])
+probes_0.8_24 <- shared_probes_0.8_24 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_24_df <- as.data.frame(probes_0.8_24)
+colnames(probes_0.8_24_df) <- "Shared_Probes"
+
+shared_probes_0.8_25 <- list(probes2_0.8["Selected_Probes"], probes5_0.8["Selected_Probes"])
+probes_0.8_25 <- shared_probes_0.8_25 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_25_df <- as.data.frame(probes_0.8_25)
+colnames(probes_0.8_25_df) <- "Shared_Probes"
+
+shared_probes_0.8_34 <- list(probes3_0.8["Selected_Probes"], probes4_0.8["Selected_Probes"])
+probes_0.8_34 <- shared_probes_0.8_34 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_34_df <- as.data.frame(probes_0.8_34)
+colnames(probes_0.8_34_df) <- "Shared_Probes"
+
+shared_probes_0.8_35 <- list(probes3_0.8["Selected_Probes"], probes5_0.8["Selected_Probes"])
+probes_0.8_35 <- shared_probes_0.8_35 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_35_df <- as.data.frame(probes_0.8_35)
+colnames(probes_0.8_35_df) <- "Shared_Probes"
+
+shared_probes_0.8_45 <- list(probes4_0.8["Selected_Probes"], probes5_0.8["Selected_Probes"])
+probes_0.8_45 <- shared_probes_0.8_45 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.8_45_df <- as.data.frame(probes_0.8_45)
+colnames(probes_0.8_45_df) <- "Shared_Probes"
+
+shared_probes_0.8 <- data.frame(matrix(0, ncol=5, nrow=5))
+rownames(shared_probes_0.8) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(shared_probes_0.8) <- c("T1", "T2", "T3", "T4", "T5")
+shared_probes_0.8[1,1] <- dim(probes1_0.8)[1]
+shared_probes_0.8[2,2] <- dim(probes2_0.8)[1]
+shared_probes_0.8[3,3] <- dim(probes3_0.8)[1]
+shared_probes_0.8[4,4] <- dim(probes4_0.8)[1]
+shared_probes_0.8[5,5] <- dim(probes5_0.8)[1]
+shared_probes_0.8[1,2:5] <- c(dim(probes_0.8_12_df)[1], dim(probes_0.8_13_df)[1], dim(probes_0.8_14_df)[1], dim(probes_0.8_15_df)[1])
+shared_probes_0.8[2,3] <- dim(probes_0.8_23_df)[1]
+shared_probes_0.8[2,4] <- dim(probes_0.8_24_df)[1]
+shared_probes_0.8[2,5] <- dim(probes_0.8_25_df)[1]
+shared_probes_0.8[3,4] <- dim(probes_0.8_34_df)[1]
+shared_probes_0.8[3,5] <- dim(probes_0.8_35_df)[1]
+shared_probes_0.8[4,5] <- dim(probes_0.8_45_df)[1]
+                       
+shared_probes_0.8_matrix <- as.matrix(shared_probes_0.8)
+shared_probes_0.8_matrix_sym <- forceSymmetric(shared_probes_0.8_matrix)
+shared_probes_0.8_matrix_sym <- as.matrix(shared_probes_0.8_matrix_sym)
+df3 <- as.data.frame(shared_probes_0.8_matrix_sym)
+write.table(df3, "shared_probes_2x2_0.8.txt", row.names=T, col.names=T, quote=F)
 
