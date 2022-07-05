@@ -137,7 +137,15 @@ write.table(probes_summary, "shared_probes_summary.txt", col.names=T, row.names=
 shared_probes_Mod1 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
-shared_probes_Mod1[1,] <- c(1005, dim(probes_Mod1_12_df)[1], dim(probes_Mod1_13_df)[1], dim(probes_Mod1_14_df)[1], dim(probes_Mod1_15_df)[1])
+shared_probes_Mod1[1,1] <- 1005
+shared_probes_Mod1[2,2] <- 1049
+shared_probes_Mod1[3,3] <- 1021
+shared_probes_Mod1[4,4] <- 1010
+shared_probes_Mod1[5,5] <- 1029
+shared_probes_Mod1[1,] <- c(dim(probes_Mod1_12_df)[1], dim(probes_Mod1_13_df)[1], dim(probes_Mod1_14_df)[1], dim(probes_Mod1_15_df)[1])
+shared_probes[2,3] <- 
+shared_probes[2,4] <- 
+shared_probes[2,5] <- 
 
 
 shared_probes_Mod1_12 <- list(pbs_model1_best["Selected_Probes"], pbs_model2_best["Selected_Probes"])
