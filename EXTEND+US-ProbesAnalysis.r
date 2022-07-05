@@ -137,12 +137,34 @@ write.table(probes_summary, "shared_probes_summary.txt", col.names=T, row.names=
 shared_probes_Mod1 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
-shared_probes_Mod1 <- c(1005, dim(
+shared_probes_Mod1[1,] <- c(1005, dim(probes_Mod1_12_df)[1], dim(probes_Mod1_13_df)[1], dim(probes_Mod1_14_df)[1], dim(probes_Mod1_15_df)[1])
+
 
 shared_probes_Mod1_12 <- list(pbs_model1_best["Selected_Probes"], pbs_model2_best["Selected_Probes"])
 probes_Mod1_12 <- shared_probes_Mod1_12 %>% reduce(inner_join, by='Selected_Probes')
 probes_Mod1_12_df <- as.data.frame(probes_Mod1_12)
 colnames(probes_Mod1_12_df) <- "Shared_Probes"
+        
+shared_probes_Mod1_13 <- list(pbs_model1_best["Selected_Probes"], pbs_model3_best["Selected_Probes"])
+probes_Mod1_13 <- shared_probes_Mod1_13 %>% reduce(inner_join, by='Selected_Probes')
+probes_Mod1_13_df <- as.data.frame(probes_Mod1_13)
+colnames(probes_Mod1_13_df) <- "Shared_Probes"
+                       
+shared_probes_Mod1_14 <- list(pbs_model1_best["Selected_Probes"], pbs_model4_best["Selected_Probes"])
+probes_Mod1_14 <- shared_probes_Mod1_14 %>% reduce(inner_join, by='Selected_Probes')
+probes_Mod1_14_df <- as.data.frame(probes_Mod1_14)
+colnames(probes_Mod1_14_df) <- "Shared_Probes"
+
+shared_probes_Mod1_15 <- list(pbs_model1_best["Selected_Probes"], pbs_model5_best["Selected_Probes"])
+probes_Mod1_15 <- shared_probes_Mod1_15 %>% reduce(inner_join, by='Selected_Probes')
+probes_Mod1_15_df <- as.data.frame(probes_Mod1_15)
+colnames(probes_Mod1_15_df) <- "Shared_Probes"
 
 
+                        
+                    
+                        
+                       
+                        
+                        
 
