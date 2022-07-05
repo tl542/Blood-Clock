@@ -173,6 +173,8 @@ library(Matrix)
 shared_probes_Mod1_matrix_sym <- forceSymmetric(shared_probes_Mod1_matrix)
 shared_probes_Mod1_matrix_sym <- as.matrix(shared_probes_Mod1_matrix_sym)
 df1 <- as.data.frame(shared_probes_Mod1_matrix_sym)
+write.table(df1, "shared_probes_2x2_Mod1.txt", row.names=T, col.names=T, quote=F)
+
 
                     
                         
