@@ -46,14 +46,6 @@ probes3_0.9 <- probes_model3[1:13917,]
 probes4_0.9 <- probes_model4[1:11526,]
 probes5_0.9 <- probes_model5[1:14124,]
 
-# Shared Probes between these models across train/test splits.
-library(tidyverse)
-shared_probes <- list(probes1_0.9["Selected_Probes"], probes2_0.9["Selected_Probes"],
- probes3_0.9["Selected_Probes"], probes4_0.9["Selected_Probes"], probes5_0.9["Selected_Probes"])
-probes_0.9 <- shared_probes %>% reduce(inner_join, by='Selected_Probes')
-probes_0.9_df <- as.data.frame(probes_0.9)
-colnames(probes_0.9_df) <- "Shared_Probes"
-write.table(probes_0.9_df, "Shared_Probes_0.9.txt", col.names=T, row.names=T, quote=F)
 
 # All the probes from models across train/test splits with cor >= 0.8 on test data
 table1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split1) df.txt")
@@ -97,14 +89,6 @@ rownames(models5_0.8)[i] <- paste("Model", rownames(models5_0.8)[i])
 }
 probes5_0.8 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.8),]
 
-# Shared Probes between these models across train/test splits.
-shared_probes <- list(probes1_0.8["Selected_Probes"], probes2_0.8["Selected_Probes"],
- probes3_0.8["Selected_Probes"], probes4_0.8["Selected_Probes"], probes5_0.8["Selected_Probes"])
-probes_0.8 <- shared_probes %>% reduce(inner_join, by='Selected_Probes')
-probes_0.8_df <- as.data.frame(probes_0.8)
-colnames(probes_0.8_df) <- "Shared_Probes"
-write.table(probes_0.8_df, "Shared_Probes_0.8.txt", col.names=T, row.names=T, quote=F)
-
 
 
 # All the probes from Model 1 ("best" model) across train/test splits
@@ -113,24 +97,6 @@ pbs_model2_best <- probes_model2[probes_model2$Probes_Model == "Model 1",]
 pbs_model3_best <- probes_model3[probes_model3$Probes_Model == "Model 1",]
 pbs_model4_best <- probes_model4[probes_model4$Probes_Model == "Model 1",]
 pbs_model5_best <- probes_model5[probes_model5$Probes_Model == "Model 1",]
-
-# Shared Probes between these models across train/test splits.
-shared_probes <- list(pbs_model1_best["Selected_Probes"], pbs_model2_best["Selected_Probes"],
- pbs_model3_best["Selected_Probes"], pbs_model4_best["Selected_Probes"], pbs_model5_best["Selected_Probes"])
-probes_Mod1 <- shared_probes %>% reduce(inner_join, by='Selected_Probes')
-probes_Mod1_df <- as.data.frame(probes_Mod1)
-colnames(probes_Mod1_df) <- "Shared_Probes"
-write.table(probes_Mod1_df, "Shared_Probes_mod1.txt", col.names=T, row.names=T, quote=F)
-
-# Record number + proportion of shared probes across train/test splits
-probes_summary <- data.frame(matrix(0,nrow=3, ncol=7))
-rownames(probes_summary) <- c("nprobes_mod1", "nprobes_0.9", "nprobes_0.8")
-colnames(probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5", "n_shared_probes", "prop_shared_probes")
-probes_summary[1,] <- c("1005", "1049", "1021", "1010", "1029", "86", "0.01681658")
-probes_summary[2,] <- c("11946", "11883", "13917", "11526", "14124", "2256", "0.03558584")
-probes_summary[3,] <- c("123845", "131869", "135936", "116550", "131863", "35818", "0.05596012")
-write.table(probes_summary, "shared_probes_summary.txt", col.names=T, row.names=T, quote=F)
-
 
 ## Second Part
 
@@ -205,7 +171,9 @@ shared_probes_Mod1[4,5] <- dim(probes_Mod1_45_df)[1]
 shared_probes_Mod1_matrix <- as.matrix(shared_probes_Mod1)
 library(Matrix)
 shared_probes_Mod1_matrix_sym <- forceSymmetric(shared_probes_Mod1_matrix)
-                        
+shared_probes_Mod1_matrix_sym <- as.matrix(shared_probes_Mod1_matrix_sym)
+df1 <- as.data.frame(shared_probes_Mod1_matrix_sym)
+
                     
                         
                        
