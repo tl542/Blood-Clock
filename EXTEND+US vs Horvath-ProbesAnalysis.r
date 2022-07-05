@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-source("/mnt/data1/EXTEND/Methylation/QC/Theo/RScript_EXTEND+US.r")
+#source("/mnt/data1/EXTEND/Methylation/QC/Theo/RScript_EXTEND+US.r")
 source("/mnt/data1/EXTEND/Methylation/QC/Theo/EXTEND+US-ProbesAnalysis.r")
 
 # Get the 353 Cpgs from Horvath Clock (with Illumina 450K and Illumina 27K)
