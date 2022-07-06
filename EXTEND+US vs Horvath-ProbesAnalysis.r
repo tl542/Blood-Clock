@@ -162,3 +162,5 @@ prop_probes_summary[5,] <- c(dim(probes_Mod1_horvath_s5_df)[1]/dim(horvath_probe
                              dim(probes_0.8_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s5_df)[1]/dim(horvath_probes)[1])
 
 write.table(prop_probes_summary, "shared_probes_horvath_summary(prop).txt", row.names=T, col.names=T, quote=F)
+
+
