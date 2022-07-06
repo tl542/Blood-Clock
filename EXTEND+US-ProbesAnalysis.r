@@ -154,16 +154,17 @@ colnames(probes_Mod1_45_df) <- "Shared_Probes"
 shared_probes_Mod1 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
-shared_probes_Mod1[1,1] <- dim(pbs_model1_best)[1]
-shared_probes_Mod1[2,2] <- dim(pbs_model2_best)[1]
-shared_probes_Mod1[3,3] <- dim(pbs_model3_best)[1]
-shared_probes_Mod1[4,4] <- dim(pbs_model4_best)[1]
-shared_probes_Mod1[5,5] <- dim(pbs_model5_best)[1]
-shared_probes_Mod1[1,2:5] <- c(dim(probes_Mod1_12_df)[1], dim(probes_Mod1_13_df)[1], dim(probes_Mod1_14_df)[1], dim(probes_Mod1_15_df)[1])
-shared_probes_Mod1[2,3] <- dim(probes_Mod1_23_df)[1]
-shared_probes_Mod1[2,4] <- dim(probes_Mod1_24_df)[1]
-shared_probes_Mod1[2,5] <- dim(probes_Mod1_25_df)[1]
-shared_probes_Mod1[3,4] <- dim(probes_Mod1_34_df)[1]
+shared_probes_Mod1[1,1] <- dim(pbs_model1_best)[1] / dim(pbs_model1_best)[1]
+shared_probes_Mod1[2,2] <- dim(pbs_model2_best)[1] / dim(pbs_model2_best)[1]
+shared_probes_Mod1[3,3] <- dim(pbs_model3_best)[1] / dim(pbs_model3_best)[1]
+shared_probes_Mod1[4,4] <- dim(pbs_model4_best)[1] / dim(pbs_model4_best)[1]
+shared_probes_Mod1[5,5] <- dim(pbs_model5_best)[1] / dim(pbs_model5_best)[1]
+shared_probes_Mod1[1,2:5] <- c(dim(probes_Mod1_12_df)[1]/dim(pbs_model1_best)[1], dim(probes_Mod1_13_df)[1]/dim(pbs_model1_best)[1], dim(probes_Mod1_14_df)[1]/dim(pbs_model1_best)[1], 
+                               dim(probes_Mod1_15_df)[1]/dim(pbs_model1_best)[1])
+shared_probes_Mod1[2,3] <- dim(probes_Mod1_23_df)[1]/dim(pbs_model3_best)[1]
+shared_probes_Mod1[2,4] <- dim(probes_Mod1_24_df)[1]/dim(pbs_model4_best)[1]
+shared_probes_Mod1[2,5] <- dim(probes_Mod1_25_df)[1]/dim(pbs_model5_best)[1]
+shared_probes_Mod1[3,4] <- dim(probes_Mod1_34_df)[1]/
 shared_probes_Mod1[3,5] <- dim(probes_Mod1_35_df)[1]
 shared_probes_Mod1[4,5] <- dim(probes_Mod1_45_df)[1]
 
