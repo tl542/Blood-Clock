@@ -331,3 +331,121 @@ shared_probes_0.8_matrix_sym <- forceSymmetric(shared_probes_0.8_matrix)
 shared_probes_0.8_matrix_sym <- as.matrix(shared_probes_0.8_matrix_sym)
 df3 <- as.data.frame(shared_probes_0.8_matrix_sym)
 write.table(df3, "shared_probes_2x2_0.8.txt", row.names=T, col.names=T, quote=F)
+
+
+# All the probes from models across train/test splits with cor >= 0.7 on test data
+
+#1st Split
+models1_0.7 <- table1[table1$Correlation >= 0.7,]
+for (i in 1:nrow(models1_0.7)){
+rownames(models1_0.7)[i] <- paste("Model", rownames(models1_0.7)[i])
+}
+probes1_0.7 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.7),]
+
+#2nd Split
+models2_0.7 <- table2[table2$Correlation >= 0.7,]
+for (i in 1:nrow(models2_0.7)){
+rownames(models2_0.7)[i] <- paste("Model", rownames(models2_0.7)[i])
+}
+probes2_0.7 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.7),]
+
+#3th Split
+models3_0.7 <- table3[table3$Correlation >= 0.7,]
+for (i in 1:nrow(models3_0.7)){
+rownames(models3_0.7)[i] <- paste("Model", rownames(models3_0.7)[i])
+}
+probes3_0.7 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.7),]
+
+#4th Split
+models4_0.7 <- table4[table4$Correlation >= 0.7,]
+for (i in 1:nrow(models4_0.7)){
+rownames(models4_0.7)[i] <- paste("Model", rownames(models4_0.7)[i])
+}
+probes4_0.7 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.7),]
+
+#5th Split
+models5_0.7 <- table5[table5$Correlation >= 0.7,]
+for (i in 1:nrow(models5_0.7)){
+rownames(models5_0.7)[i] <- paste("Model", rownames(models5_0.7)[i])
+}
+probes5_0.7 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.7),]
+
+
+# Models with cor >= 0.7
+
+
+shared_probes_0.7_12 <- list(probes1_0.7["Selected_Probes"], probes2_0.7["Selected_Probes"])
+probes_0.7_12 <- shared_probes_0.7_12 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_12_df <- as.data.frame(probes_0.7_12)
+colnames(probes_0.7_12_df) <- "Shared_Probes"
+
+shared_probes_0.7_13 <- list(probes1_0.7["Selected_Probes"], probes3_0.7["Selected_Probes"])
+probes_0.7_13 <- shared_probes_0.7_13 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_13_df <- as.data.frame(probes_0.7_13)
+colnames(probes_0.7_13_df) <- "Shared_Probes"
+
+shared_probes_0.7_14 <- list(probes1_0.7["Selected_Probes"], probes4_0.7["Selected_Probes"])
+probes_0.7_14 <- shared_probes_0.7_14 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_14_df <- as.data.frame(probes_0.7_14)
+colnames(probes_0.7_14_df) <- "Shared_Probes"
+
+shared_probes_0.7_15 <- list(probes1_0.7["Selected_Probes"], probes5_0.7["Selected_Probes"])
+probes_0.7_15 <- shared_probes_0.7_15 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_15_df <- as.data.frame(probes_0.7_15)
+colnames(probes_0.7_15_df) <- "Shared_Probes"
+
+shared_probes_0.7_23 <- list(probes2_0.7["Selected_Probes"], probes3_0.7["Selected_Probes"])
+probes_0.7_23 <- shared_probes_0.7_23 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_23_df <- as.data.frame(probes_0.7_23)
+colnames(probes_0.7_23_df) <- "Shared_Probes"
+
+shared_probes_0.7_24 <- list(probes2_0.7["Selected_Probes"], probes4_0.7["Selected_Probes"])
+probes_0.7_24 <- shared_probes_0.7_24 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_24_df <- as.data.frame(probes_0.7_24)
+colnames(probes_0.7_24_df) <- "Shared_Probes"
+
+shared_probes_0.7_25 <- list(probes2_0.7["Selected_Probes"], probes5_0.7["Selected_Probes"])
+probes_0.7_25 <- shared_probes_0.7_25 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_25_df <- as.data.frame(probes_0.7_25)
+colnames(probes_0.7_25_df) <- "Shared_Probes"
+
+shared_probes_0.7_34 <- list(probes3_0.7["Selected_Probes"], probes4_0.7["Selected_Probes"])
+probes_0.7_34 <- shared_probes_0.7_34 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_34_df <- as.data.frame(probes_0.7_34)
+colnames(probes_0.7_34_df) <- "Shared_Probes"
+
+shared_probes_0.7_35 <- list(probes3_0.7["Selected_Probes"], probes5_0.7["Selected_Probes"])
+probes_0.7_35 <- shared_probes_0.7_35 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_35_df <- as.data.frame(probes_0.7_35)
+colnames(probes_0.7_35_df) <- "Shared_Probes"
+
+shared_probes_0.7_45 <- list(probes4_0.7["Selected_Probes"], probes5_0.7["Selected_Probes"])
+probes_0.7_45 <- shared_probes_0.7_45 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.7_45_df <- as.data.frame(probes_0.7_45)
+colnames(probes_0.7_45_df) <- "Shared_Probes"
+
+
+shared_probes_0.7 <- data.frame(matrix(0, ncol=5, nrow=5))
+rownames(shared_probes_0.7) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(shared_probes_0.7) <- c("T1", "T2", "T3", "T4", "T5")
+shared_probes_0.7[1,1] <- dim(probes1_0.7)[1]/dim(probes1_0.7)[1]
+shared_probes_0.7[2,2] <- dim(probes2_0.7)[1]/dim(probes2_0.7)[1]
+shared_probes_0.7[3,3] <- dim(probes3_0.7)[1]/dim(probes3_0.7)[1]
+shared_probes_0.7[4,4] <- dim(probes4_0.7)[1]/dim(probes4_0.7)[1]
+shared_probes_0.7[5,5] <- dim(probes5_0.7)[1]/dim(probes5_0.7)[1]
+shared_probes_0.7[1,2:5] <- c(dim(probes_0.7_12_df)[1]/dim(probes2_0.7)[1], dim(probes_0.7_13_df)[1]/dim(probes3_0.7)[1], dim(probes_0.7_14_df)[1]/dim(probes4_0.7)[1], 
+                              dim(probes_0.7_15_df)[1]/dim(probes5_0.7)[1])
+shared_probes_0.7[2,3] <- dim(probes_0.7_23_df)[1]/dim(probes2_0.7)[1]
+shared_probes_0.7[2,4] <- dim(probes_0.7_24_df)[1]/dim(probes4_0.7)[1]
+shared_probes_0.7[2,5] <- dim(probes_0.7_25_df)[1]/dim(probes5_0.7)[1]
+shared_probes_0.7[3,4] <- dim(probes_0.7_34_df)[1]/dim(probes3_0.7)[1]
+shared_probes_0.7[3,5] <- dim(probes_0.7_35_df)[1]/dim(probes5_0.7)[1]
+shared_probes_0.7[4,5] <- dim(probes_0.7_45_df)[1]/dim(probes5_0.7)[1]
+
+shared_probes_0.7_matrix <- as.matrix(shared_probes_0.7)
+shared_probes_0.7_matrix_sym <- forceSymmetric(shared_probes_0.7_matrix)
+shared_probes_0.7_matrix_sym <- as.matrix(shared_probes_0.7_matrix_sym)
+df4 <- as.data.frame(shared_probes_0.7_matrix_sym)
+write.table(df4, "shared_probes_2x2_0.7.txt", row.names=T, col.names=T, quote=F)
+
+
