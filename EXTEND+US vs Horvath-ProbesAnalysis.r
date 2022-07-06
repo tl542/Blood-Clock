@@ -111,7 +111,7 @@ probes_0.8_horvath_s5_df <- as.data.frame(probes_0.8_horvath_s5)
 colnames(probes_0.8_horvath_s5_df) <- "Shared_Probes"
 
 n_probes_summary <- data.frame(matrix(0, nrow=5, ncol=3))
-rownames(n_probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5")
+rownames(n_probes_summary) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(n_probes_summary) <- c("shared_mod1", "shared_0.9", "shared_0.8")
 n_probes_summary[1,] <- c(4, 47, 139)
 n_probes_summary[2,] <- c(3, 45, 145)
@@ -121,22 +121,22 @@ n_probes_summary[5,] <- c(7, 58, 146)
 
 
 prop_probes_summary <- data.frame(matrix(0, nrow=5, ncol=3))
-rownames(prop_probes_summary) <- c("Split1", "Split2", "Split3", "Split4", "Split5")
-colnames(prop_probes_summary) <- c("shared_mod1", "shared_0.9", "shared_0.8")
-prop_probes_summary[1,] <- c(dim(probes_Mod1_horvath_s1_df)[1]/(dim(pbs_model1_best)[1]+333), dim(probes_0.9_horvath_s1_df)[1]/(dim(probes1_0.9)[1]+333),
-                             dim(probes_0.8_horvath_s1_df)[1]/(dim(probes1_0.8)[1]+333))
+rownames(prop_probes_summary) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(prop_probes_summary) <- c("Overlap_Mod1_Horvath", "Overlap_0.9_Horvath", "Overlap_0.8_Horvath")
+prop_probes_summary[1,] <- c(dim(probes_Mod1_horvath_s1_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.8_horvath_s1_df)[1]/dim(horvath_probes)[1])
 
-prop_probes_summary[2,] <- c(dim(probes_Mod1_horvath_s2_df)[1]/(dim(pbs_model2_best)[1]+333), dim(probes_0.9_horvath_s2_df)[1]/(dim(probes2_0.9)[1]+333),
-                             dim(probes_0.8_horvath_s2_df)[1]/(dim(probes2_0.8)[1]+333))
+prop_probes_summary[2,] <- c(dim(probes_Mod1_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s2_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.8_horvath_s2_df)[1]/dim(horvath_probes)[1])
 
-prop_probes_summary[3,] <- c(dim(probes_Mod1_horvath_s3_df)[1]/(dim(pbs_model3_best)[1]+333), dim(probes_0.9_horvath_s3_df)[1]/(dim(probes3_0.9)[1]+333),
-                             dim(probes_0.8_horvath_s3_df)[1]/(dim(probes3_0.8)[1]+333))
+prop_probes_summary[3,] <- c(dim(probes_Mod1_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s3_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.8_horvath_s3_df)[1]/dim(horvath_probes)[1])
 
-prop_probes_summary[4,] <- c(dim(probes_Mod1_horvath_s4_df)[1]/(dim(pbs_model4_best)[1]+333), dim(probes_0.9_horvath_s4_df)[1]/(dim(probes4_0.9)[1]+333),
-                             dim(probes_0.8_horvath_s4_df)[1]/(dim(probes4_0.8)[1]+333))
+prop_probes_summary[4,] <- c(dim(probes_Mod1_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s4_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.8_horvath_s4_df)[1]/dim(horvath_probes)[1])
 
-prop_probes_summary[5,] <- c(dim(probes_Mod1_horvath_s5_df)[1]/(dim(pbs_model5_best)[1]+333), dim(probes_0.9_horvath_s5_df)[1]/(dim(probes5_0.9)[1]+333),
-                             dim(probes_0.8_horvath_s5_df)[1]/(dim(probes5_0.8)[1]+333))
+prop_probes_summary[5,] <- c(dim(probes_Mod1_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s5_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.8_horvath_s5_df)[1]/dim(horvath_probes)[1])
 
 write.table(prop_probes_summary, "shared_probes_horvath_summary(prop).txt", row.names=T, col.names=T, quote=F)
 
