@@ -164,9 +164,9 @@ shared_probes_Mod1[1,2:5] <- c(dim(probes_Mod1_12_df)[1]/dim(pbs_model1_best)[1]
 shared_probes_Mod1[2,3] <- dim(probes_Mod1_23_df)[1]/dim(pbs_model3_best)[1]
 shared_probes_Mod1[2,4] <- dim(probes_Mod1_24_df)[1]/dim(pbs_model4_best)[1]
 shared_probes_Mod1[2,5] <- dim(probes_Mod1_25_df)[1]/dim(pbs_model5_best)[1]
-shared_probes_Mod1[3,4] <- dim(probes_Mod1_34_df)[1]/
-shared_probes_Mod1[3,5] <- dim(probes_Mod1_35_df)[1]
-shared_probes_Mod1[4,5] <- dim(probes_Mod1_45_df)[1]
+shared_probes_Mod1[3,4] <- dim(probes_Mod1_34_df)[1]/dim(pbs_model4_best)[1]
+shared_probes_Mod1[3,5] <- dim(probes_Mod1_35_df)[1]/dim(pbs_model3_best)[1]
+shared_probes_Mod1[4,5] <- dim(probes_Mod1_45_df)[1]/dim(pbs_model4_best)[1]
 
 shared_probes_Mod1_matrix <- as.matrix(shared_probes_Mod1)
 library(Matrix)
@@ -235,18 +235,19 @@ colnames(probes_0.9_45_df) <- "Shared_Probes"
 shared_probes_0.9 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_0.9) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_0.9) <- c("T1", "T2", "T3", "T4", "T5")
-shared_probes_0.9[1,1] <- dim(probes1_0.9)[1]
-shared_probes_0.9[2,2] <- dim(probes2_0.9)[1]
-shared_probes_0.9[3,3] <- dim(probes3_0.9)[1]
-shared_probes_0.9[4,4] <- dim(probes4_0.9)[1]
-shared_probes_0.9[5,5] <- dim(probes5_0.9)[1]
-shared_probes_0.9[1,2:5] <- c(dim(probes_0.9_12_df)[1], dim(probes_0.9_13_df)[1], dim(probes_0.9_14_df)[1], dim(probes_0.9_15_df)[1])
-shared_probes_0.9[2,3] <- dim(probes_0.9_23_df)[1]
-shared_probes_0.9[2,4] <- dim(probes_0.9_24_df)[1]
-shared_probes_0.9[2,5] <- dim(probes_0.9_25_df)[1]
-shared_probes_0.9[3,4] <- dim(probes_0.9_34_df)[1]
-shared_probes_0.9[3,5] <- dim(probes_0.9_35_df)[1]
-shared_probes_0.9[4,5] <- dim(probes_0.9_45_df)[1]
+shared_probes_0.9[1,1] <- dim(probes1_0.9)[1]/dim(probes1_0.9)[1]
+shared_probes_0.9[2,2] <- dim(probes2_0.9)[1]/dim(probes2_0.9)[1]
+shared_probes_0.9[3,3] <- dim(probes3_0.9)[1]/dim(probes3_0.9)[1]
+shared_probes_0.9[4,4] <- dim(probes4_0.9)[1]/dim(probes4_0.9)[1]
+shared_probes_0.9[5,5] <- dim(probes5_0.9)[1]/dim(probes5_0.9)[1]
+shared_probes_0.9[1,2:5] <- c(dim(probes_0.9_12_df)[1]/dim(probes2_0.9)[1], dim(probes_0.9_13_df)[1]/dim(probes1_0.9)[1], dim(probes_0.9_14_df)[1]/dim(probes4_0.9)[1],
+                              dim(probes_0.9_15_df)[1]/dim(probes1_0.9)[1])
+shared_probes_0.9[2,3] <- dim(probes_0.9_23_df)[1]/dim(probes2_0.9)[1]
+shared_probes_0.9[2,4] <- dim(probes_0.9_24_df)[1]/dim(probes4_0.9)[1]
+shared_probes_0.9[2,5] <- dim(probes_0.9_25_df)[1]/dim(probes2_0.9)[1]
+shared_probes_0.9[3,4] <- dim(probes_0.9_34_df)[1]/dim(probes4_0.9)[1]
+shared_probes_0.9[3,5] <- dim(probes_0.9_35_df)[1]/dim(probes3_0.9)[1]
+shared_probes_0.9[4,5] <- dim(probes_0.9_45_df)[1]/dim(probes4_0.9)[1]
                        
 shared_probes_0.9_matrix <- as.matrix(shared_probes_0.9)
 shared_probes_0.9_matrix_sym <- forceSymmetric(shared_probes_0.9_matrix)
@@ -311,22 +312,22 @@ colnames(probes_0.8_45_df) <- "Shared_Probes"
 shared_probes_0.8 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_0.8) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_0.8) <- c("T1", "T2", "T3", "T4", "T5")
-shared_probes_0.8[1,1] <- dim(probes1_0.8)[1]
-shared_probes_0.8[2,2] <- dim(probes2_0.8)[1]
-shared_probes_0.8[3,3] <- dim(probes3_0.8)[1]
-shared_probes_0.8[4,4] <- dim(probes4_0.8)[1]
-shared_probes_0.8[5,5] <- dim(probes5_0.8)[1]
-shared_probes_0.8[1,2:5] <- c(dim(probes_0.8_12_df)[1], dim(probes_0.8_13_df)[1], dim(probes_0.8_14_df)[1], dim(probes_0.8_15_df)[1])
-shared_probes_0.8[2,3] <- dim(probes_0.8_23_df)[1]
-shared_probes_0.8[2,4] <- dim(probes_0.8_24_df)[1]
-shared_probes_0.8[2,5] <- dim(probes_0.8_25_df)[1]
-shared_probes_0.8[3,4] <- dim(probes_0.8_34_df)[1]
-shared_probes_0.8[3,5] <- dim(probes_0.8_35_df)[1]
-shared_probes_0.8[4,5] <- dim(probes_0.8_45_df)[1]
+shared_probes_0.8[1,1] <- dim(probes1_0.8)[1]/dim(probes1_0.8)[1]
+shared_probes_0.8[2,2] <- dim(probes2_0.8)[1]/dim(probes2_0.8)[1]
+shared_probes_0.8[3,3] <- dim(probes3_0.8)[1]/dim(probes3_0.8)[1]
+shared_probes_0.8[4,4] <- dim(probes4_0.8)[1]/dim(probes4_0.8)[1]
+shared_probes_0.8[5,5] <- dim(probes5_0.8)[1]/dim(probes5_0.8)[1]
+shared_probes_0.8[1,2:5] <- c(dim(probes_0.8_12_df)[1]/dim(probes1_0.8)[1], dim(probes_0.8_13_df)[1]/dim(probes1_0.8)[1], dim(probes_0.8_14_df)[1]/dim(probes4_0.8)[1], 
+                              dim(probes_0.8_15_df)[1]/dim(probes1_0.8)[1])
+shared_probes_0.8[2,3] <- dim(probes_0.8_23_df)[1]/dim(probes2_0.8)[1]
+shared_probes_0.8[2,4] <- dim(probes_0.8_24_df)[1]/dim(probes4_0.8)[1]
+shared_probes_0.8[2,5] <- dim(probes_0.8_25_df)[1]/dim(probes5_0.8)[1]
+shared_probes_0.8[3,4] <- dim(probes_0.8_34_df)[1]/dim(probes4_0.8)[1]
+shared_probes_0.8[3,5] <- dim(probes_0.8_35_df)[1]/dim(probes5_0.8)[1]
+shared_probes_0.8[4,5] <- dim(probes_0.8_45_df)[1]/dim(probes4_0.8)[1]
                        
 shared_probes_0.8_matrix <- as.matrix(shared_probes_0.8)
 shared_probes_0.8_matrix_sym <- forceSymmetric(shared_probes_0.8_matrix)
 shared_probes_0.8_matrix_sym <- as.matrix(shared_probes_0.8_matrix_sym)
 df3 <- as.data.frame(shared_probes_0.8_matrix_sym)
 write.table(df3, "shared_probes_2x2_0.8.txt", row.names=T, col.names=T, quote=F)
-
