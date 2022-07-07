@@ -564,9 +564,7 @@ shared_probes_0.6_matrix <- as.matrix(shared_probes_0.6)
 shared_probes_0.6_matrix_sym <- forceSymmetric(shared_probes_0.6_matrix)
 shared_probes_0.6_matrix_sym <- as.matrix(shared_probes_0.6_matrix_sym)
 df5 <- as.data.frame(shared_probes_0.6_matrix_sym)
-
-
-
+write.table(df5, "shared_probes_2x2_0.6.txt", row.names=T, col.names=T, quote=F)
 
 
 
@@ -634,7 +632,7 @@ for (row in 1:nrow(df5)){
         }
 }
 
-
+df_boxplot$Model_Criteria <- factor(df_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6")
 boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue", main="Proportion of probe overlap across pairwise training sets")
 dev.copy("boxplot_probes.pdf", pdf)
 dev.off()
