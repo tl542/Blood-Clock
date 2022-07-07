@@ -219,7 +219,7 @@ horvath_boxplot[21:25,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.6_H
 horvath_boxplot[21:25,"Model_Criteria"] <- "Models_0.6"
 
 
-horvath_boxplot$Model_Criteria <- factor(df_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6"))
+horvath_boxplot$Model_Criteria <- factor(horvath_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6"))
 boxplot(horvath_boxplot$Overlap_Proportion ~ horvath_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue", main="Proportion of Horvath clock probes overlapping with study probes")
 dev.copy("boxplot_horvath", pdf)
 dev.off()
