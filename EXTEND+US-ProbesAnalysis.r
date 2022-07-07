@@ -640,12 +640,47 @@ dev.off()
 
 
 
+metrics_df[1,] <- c(mean(df_boxplot$Overlap_Proportion[1:10]), median(df_boxplot$Overlap_Proportion[1:10]), quantile(df_boxplot$Overlap_Proportion[1:10])[2], 
+                    quantile(df_boxplot$Overlap_Proportion[1:10])[4], quantile(df_boxplot$Overlap_Proportion[1:10])[1], quantile(df_boxplot$Overlap_Proportion[1:10])[5])
+
+metrics_df[2,] <- c(mean(df_boxplot$Overlap_Proportion[11:20]), median(df_boxplot$Overlap_Proportion[11:20]), quantile(df_boxplot$Overlap_Proportion[11:20])[2], 
+                    quantile(df_boxplot$Overlap_Proportion[11:20])[4], quantile(df_boxplot$Overlap_Proportion[11:20])[1], quantile(df_boxplot$Overlap_Proportion[11:20])[5])
+
+metrics_df[3,] <- c(mean(df_boxplot$Overlap_Proportion[21:30]), median(df_boxplot$Overlap_Proportion[21:30]), quantile(df_boxplot$Overlap_Proportion[21:30])[2], 
+                    quantile(df_boxplot$Overlap_Proportion[21:30])[4], quantile(df_boxplot$Overlap_Proportion[21:30])[1], quantile(df_boxplot$Overlap_Proportion[21:30])[5])
+
+metrics_df[4,] <- c(mean(df_boxplot$Overlap_Proportion[31:40]), median(df_boxplot$Overlap_Proportion[31:40]), quantile(df_boxplot$Overlap_Proportion[31:40])[2], 
+                    quantile(df_boxplot$Overlap_Proportion[31:40])[4], quantile(df_boxplot$Overlap_Proportion[31:40])[1], quantile(df_boxplot$Overlap_Proportion[31:40])[5])
+
+metrics_df[5,] <- c(mean(df_boxplot$Overlap_Proportion[41:50]), median(df_boxplot$Overlap_Proportion[41:50]), quantile(df_boxplot$Overlap_Proportion[41:50])[2], 
+                    quantile(df_boxplot$Overlap_Proportion[41:50])[4], quantile(df_boxplot$Overlap_Proportion[41:50])[1], quantile(df_boxplot$Overlap_Proportion[41:50])[5])
 
 
 
+write.table(metrics_df, "metrics_pairwise_overlap.txt", row.names=T, col.names=T, quote=F)
 
 
+total_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/shared_probes_summary.txt")
+total_boxplot <- data.frame(matrix(0, nrow=25, ncol=2))
+colnames(total_boxplot) <- c("Total_Probes", "Model_Criteria")
 
+total_boxplot[1:5, "Total_Probes"] <- c(total_probes[1,1], total_probes[1,2], total_probes[1,3], total_probes[1,4], total_probes[1,5])
+total_boxplot[1:5, "Model_Criteria"] <- rep("Model 1", 5)
+total_boxplot[6:10, "Total_Probes"] <- c(total_probes[2,1], total_probes[2,2], total_probes[2,3], total_probes[2,4], total_probes[2,5])
+total_boxplot[6:10, "Model_Criteria"] <- rep("Models_0.9", 5)
+total_boxplot[11:15, "Total_Probes"] <- c(total_probes[3,1], total_probes[3,2], total_probes[3,3], total_probes[3,4], total_probes[3,5])
+total_boxplot[11:15, "Model_Criteria"] <- rep("Models_0.8", 5)
+total_boxplot[16:20, "Total_Probes"] <- c(dim(probes1_0.7)[1], dim(probes2_0.7)[1], dim(probes3_0.7)[1], dim(probes4_0.7)[1], dim(probes5_0.7)[1])
+total_boxplot[16:20, "Model_Criteria"] <- rep("Models_0.7", 5)
+total_boxplot[21:25, "Total_Probes"] <- c(dim(probes1_0.6)[1], dim(probes2_0.6)[1], dim(probes3_0.6)[1], dim(probes4_0.6)[1], dim(probes5_0.6)[1])
+total_boxplot[21:25, "Model_Criteria"] <- rep("Models_0.6", 5)
+
+
+total_boxplot$Model_Criteria <- factor(total_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6"))
+par(bg="aliceblue")
+boxplot(total_boxplot$Total_Probes ~ total_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Total number of probes", col="steelblue", main="Total number of probes in models across all training sets")
+dev.copy(pdf,"boxplot_total_probes.pdf")
+dev.off()
 
 
 
