@@ -220,5 +220,6 @@ horvath_boxplot[21:25,"Model_Criteria"] <- "Models_0.6"
 
 
 boxplot(horvath_boxplot$Overlap_Proportion ~ horvath_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue")
-
+dev.copy("boxplot_horvath", pdf)
+dev.off()
 
