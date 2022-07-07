@@ -635,6 +635,7 @@ for (row in 1:nrow(df5)){
 }
 
 
+boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue")
 
 
 
