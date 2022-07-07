@@ -581,7 +581,7 @@ for (row in 1:nrow(df1)){
                 if (col > row){
                         i = i + 1
                         df_boxplot[i,"Overlap_Proportion"] <- df1[row,col]
-                        df_boxplot[i,"Criteria"] <- "Model 1"
+                        df_boxplot[i,"Model_Criteria"] <- "Model 1"
                 }
         }
 }
@@ -593,7 +593,7 @@ for (row in 1:nrow(df2)){
                 if (col > row){
                         i = i + 1
                         df_boxplot[i,"Overlap_Proportion"] <- df2[row,col]
-                        df_boxplot[i,"Criteria"] <- "Models_0.9"
+                        df_boxplot[i,"Model_Criteria"] <- "Models_0.9"
                 }
         }
 }
@@ -605,7 +605,7 @@ for (row in 1:nrow(df3)){
                 if (col > row){
                         i = i + 1
                         df_boxplot[i,"Overlap_Proportion"] <- df3[row,col]
-                        df_boxplot[i,"Criteria"] <- "Models_0.8"
+                        df_boxplot[i,"Model_Criteria"] <- "Models_0.8"
                 }
         }
 }
@@ -617,7 +617,7 @@ for (row in 1:nrow(df4)){
                 if (col > row){
                         i = i + 1
                         df_boxplot[i,"Overlap_Proportion"] <- df4[row,col]
-                        df_boxplot[i,"Criteria"] <- "Models_0.7"
+                        df_boxplot[i,"Model_Criteria"] <- "Models_0.7"
                 }
         }
 }
@@ -629,13 +629,13 @@ for (row in 1:nrow(df5)){
                 if (col > row){
                         i = i + 1
                         df_boxplot[i,"Overlap_Proportion"] <- df5[row,col]
-                        df_boxplot[i,"Criteria"] <- "Models_0.6"
+                        df_boxplot[i,"Model_Criteria"] <- "Models_0.6"
                 }
         }
 }
 
 
-boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue")
+boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue")
 
 
 
