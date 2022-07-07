@@ -182,7 +182,7 @@ colnames(probes_0.6_horvath_s5_df) <- "Shared_Probes"
 
 prop_probes_summary <- data.frame(matrix(0, nrow=5, ncol=5))
 rownames(prop_probes_summary) <- c("T1", "T2", "T3", "T4", "T5")
-colnames(prop_probes_summary) <- c("Overlap_Mod1_Horvath", "Overlap_0.9_Horvath", "Overlap_0.8_Horvath", "Overlap_0.7_Horvath")
+colnames(prop_probes_summary) <- c("Overlap_Mod1_Horvath", "Overlap_0.9_Horvath", "Overlap_0.8_Horvath", "Overlap_0.7_Horvath", "Overlap_0.6_Horvath")
 prop_probes_summary[1,] <- c(dim(probes_Mod1_horvath_s1_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s1_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s1_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s1_df)[1]/dim(horvath_probes)[1], 
                              dim(probes_0.6_horvath_s1_df)[1]/dim(horvath_probes)[1])
@@ -204,5 +204,20 @@ prop_probes_summary[5,] <- c(dim(probes_Mod1_horvath_s5_df)[1]/dim(horvath_probe
                              dim(probes_0.6_horvath_s5_df)[1]/dim(horvath_probes)[1])
 
 write.table(prop_probes_summary, "shared_probes_horvath_summary(prop).txt", row.names=T, col.names=T, quote=F)
+
+horvath_boxplot <- data.frame(matrix(0, nrow=25, ncol=2))
+colnames(horvath_boxplot) <- c("Overlap_Proportion", "Model_Criteria")
+horvath_boxplot[1:5,"Overlap_Proportion"] <- prop_probes_summary$Overlap_Mod1_Horvath
+horvath_boxplot[1:5,"Model_Criteria"] <- "Model 1"
+horvath_boxplot[6:10,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.9_Horvath
+horvath_boxplot[6:10,"Model_Criteria"] <- "Models_0.9"
+horvath_boxplot[11:15,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.8_Horvath
+horvath_boxplot[11:15,"Model_Criteria"] <- "Models_0.8"
+horvath_boxplot[16:20,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.7_Horvath
+horvath_boxplot[16:20,"Model_Criteria"] <- "Models_0.7"
+horvath_boxplot[21:25,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.6_Horvath
+horvath_boxplot[21:25,"Model_Criteria"] <- "Models_0.6"
+
+
 
 
