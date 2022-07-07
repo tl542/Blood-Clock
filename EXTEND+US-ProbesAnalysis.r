@@ -46,12 +46,13 @@ probes4_0.9 <- probes_model4[1:11526,]
 probes5_0.9 <- probes_model5[1:14124,]
 
 
-# All the probes from models across train/test splits with cor >= 0.8 on test data
 table1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split1) df.txt")
 table2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split2) df.txt")
 table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split3) df.txt")
 table4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split4) df.txt")
 table5 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split5) df.txt")
+
+# All the probes from models across train/test splits with cor >= 0.8 on test data
 
 #1st Split
 models1_0.8 <- table1[table1$Correlation >= 0.8,]
@@ -449,9 +450,131 @@ df4 <- as.data.frame(shared_probes_0.7_matrix_sym)
 write.table(df4, "shared_probes_2x2_0.7.txt", row.names=T, col.names=T, quote=F)
 
 
-df_boxplot <- data.frame(matrix(0,nrow=40, ncol=2))
+# All the probes from models across train/test splits with cor >= 0.6 on test data
+
+
+#1st Split
+models1_0.6 <- table1[table1$Correlation >= 0.6,]
+for (i in 1:nrow(models1_0.6)){
+rownames(models1_0.6)[i] <- paste("Model", rownames(models1_0.6)[i])
+}
+probes1_0.6 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.6),]
+
+#2nd Split
+models2_0.6 <- table2[table2$Correlation >= 0.6,]
+for (i in 1:nrow(models2_0.6)){
+rownames(models2_0.6)[i] <- paste("Model", rownames(models2_0.6)[i])
+}
+probes2_0.6 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.6),]
+
+#3th Split
+models3_0.6 <- table3[table3$Correlation >= 0.6,]
+for (i in 1:nrow(models3_0.6)){
+rownames(models3_0.6)[i] <- paste("Model", rownames(models3_0.6)[i])
+}
+probes3_0.6 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.6),]
+
+#4th Split
+models4_0.6 <- table4[table4$Correlation >= 0.6,]
+for (i in 1:nrow(models4_0.6)){
+rownames(models4_0.6)[i] <- paste("Model", rownames(models4_0.6)[i])
+}
+probes4_0.6 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.6),]
+
+#5th Split
+models5_0.6 <- table5[table5$Correlation >= 0.6,]
+for (i in 1:nrow(models5_0.6)){
+rownames(models5_0.6)[i] <- paste("Model", rownames(models5_0.6)[i])
+}
+probes5_0.6 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.6),]
+
+
+# Models with cor >= 0.6
+
+
+shared_probes_0.6_12 <- list(probes1_0.6["Selected_Probes"], probes2_0.6["Selected_Probes"])
+probes_0.6_12 <- shared_probes_0.6_12 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_12_df <- as.data.frame(probes_0.6_12)
+colnames(probes_0.6_12_df) <- "Shared_Probes"
+
+shared_probes_0.6_13 <- list(probes1_0.6["Selected_Probes"], probes3_0.6["Selected_Probes"])
+probes_0.6_13 <- shared_probes_0.6_13 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_13_df <- as.data.frame(probes_0.6_13)
+colnames(probes_0.6_13_df) <- "Shared_Probes"
+
+shared_probes_0.6_14 <- list(probes1_0.6["Selected_Probes"], probes4_0.6["Selected_Probes"])
+probes_0.6_14 <- shared_probes_0.6_14 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_14_df <- as.data.frame(probes_0.6_14)
+colnames(probes_0.6_14_df) <- "Shared_Probes"
+
+shared_probes_0.6_15 <- list(probes1_0.6["Selected_Probes"], probes5_0.6["Selected_Probes"])
+probes_0.6_15 <- shared_probes_0.6_15 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_15_df <- as.data.frame(probes_0.6_15)
+colnames(probes_0.6_15_df) <- "Shared_Probes"
+
+shared_probes_0.6_23 <- list(probes2_0.6["Selected_Probes"], probes3_0.6["Selected_Probes"])
+probes_0.6_23 <- shared_probes_0.6_23 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_23_df <- as.data.frame(probes_0.6_23)
+colnames(probes_0.6_23_df) <- "Shared_Probes"
+
+shared_probes_0.6_24 <- list(probes2_0.6["Selected_Probes"], probes4_0.6["Selected_Probes"])
+probes_0.6_24 <- shared_probes_0.6_24 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_24_df <- as.data.frame(probes_0.6_24)
+colnames(probes_0.6_24_df) <- "Shared_Probes"
+
+shared_probes_0.6_25 <- list(probes2_0.6["Selected_Probes"], probes5_0.6["Selected_Probes"])
+probes_0.6_25 <- shared_probes_0.6_25 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_25_df <- as.data.frame(probes_0.6_25)
+colnames(probes_0.6_25_df) <- "Shared_Probes"
+
+shared_probes_0.6_34 <- list(probes3_0.6["Selected_Probes"], probes4_0.6["Selected_Probes"])
+probes_0.6_34 <- shared_probes_0.6_34 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_34_df <- as.data.frame(probes_0.6_34)
+colnames(probes_0.6_34_df) <- "Shared_Probes"
+
+shared_probes_0.6_35 <- list(probes3_0.6["Selected_Probes"], probes5_0.6["Selected_Probes"])
+probes_0.6_35 <- shared_probes_0.6_35 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_35_df <- as.data.frame(probes_0.6_35)
+colnames(probes_0.6_35_df) <- "Shared_Probes"
+
+shared_probes_0.6_45 <- list(probes4_0.6["Selected_Probes"], probes5_0.6["Selected_Probes"])
+probes_0.6_45 <- shared_probes_0.6_45 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.6_45_df <- as.data.frame(probes_0.6_45)
+colnames(probes_0.6_45_df) <- "Shared_Probes"
+
+
+shared_probes_0.6 <- data.frame(matrix(0, ncol=5, nrow=5))
+rownames(shared_probes_0.6) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(shared_probes_0.6) <- c("T1", "T2", "T3", "T4", "T5")
+shared_probes_0.6[1,1] <- dim(probes1_0.6)[1]/dim(probes1_0.6)[1]
+shared_probes_0.6[2,2] <- dim(probes2_0.6)[1]/dim(probes2_0.6)[1]
+shared_probes_0.6[3,3] <- dim(probes3_0.6)[1]/dim(probes3_0.6)[1]
+shared_probes_0.6[4,4] <- dim(probes4_0.6)[1]/dim(probes4_0.6)[1]
+shared_probes_0.6[5,5] <- dim(probes5_0.6)[1]/dim(probes5_0.6)[1]
+shared_probes_0.6[1,2:5] <- c(dim(probes_0.6_12_df)[1]/dim(probes1_0.6)[1], dim(probes_0.6_13_df)[1]/dim(probes3_0.6)[1], dim(probes_0.6_14_df)[1]/dim(probes4_0.6)[1], 
+                              dim(probes_0.6_15_df)[1]/dim(probes5_0.6)[1])
+shared_probes_0.6[2,3] <- dim(probes_0.6_23_df)[1]/dim(probes3_0.6)[1]
+shared_probes_0.6[2,4] <- dim(probes_0.6_24_df)[1]/dim(probes4_0.6)[1]
+shared_probes_0.6[2,5] <- dim(probes_0.6_25_df)[1]/dim(probes5_0.6)[1]
+shared_probes_0.6[3,4] <- dim(probes_0.6_34_df)[1]/dim(probes3_0.6)[1]
+shared_probes_0.6[3,5] <- dim(probes_0.6_35_df)[1]/dim(probes5_0.6)[1]
+shared_probes_0.6[4,5] <- dim(probes_0.6_45_df)[1]/dim(probes5_0.6)[1]
+
+shared_probes_0.6_matrix <- as.matrix(shared_probes_0.6)
+shared_probes_0.6_matrix_sym <- forceSymmetric(shared_probes_0.6_matrix)
+shared_probes_0.6_matrix_sym <- as.matrix(shared_probes_0.6_matrix_sym)
+df5 <- as.data.frame(shared_probes_0.6_matrix_sym)
+
+
+
+
+
+
+
+df_boxplot <- data.frame(matrix(0,nrow=50, ncol=2))
 colnames(df_boxplot) <- c("Overlap_Proportion", "Criteria")
                          
+# Model 1
 i = 0
 for (row in 1:nrow(df1)){
         for (col in 1:ncol(df1)){
@@ -463,17 +586,64 @@ for (row in 1:nrow(df1)){
         }
 }
 
-
+# cor >= 0.9
 i = 10
 for (row in 1:nrow(df2)){
         for (col in 1:ncol(df2)){
                 if (col > row){
                         i = i + 1
                         df_boxplot[i,"Overlap_Proportion"] <- df2[row,col]
+                        df_boxplot[i,"Criteria"] <- "Models_0.9"
+                }
+        }
+}
+
+# cor >= 0.8
+i = 20
+for (row in 1:nrow(df3)){
+        for (col in 1:ncol(df3)){
+                if (col > row){
+                        i = i + 1
+                        df_boxplot[i,"Overlap_Proportion"] <- df3[row,col]
                         df_boxplot[i,"Criteria"] <- "Models_0.8"
                 }
         }
 }
+
+# cor >= 0.7
+i = 30
+for (row in 1:nrow(df4)){
+        for (col in 1:ncol(df4)){
+                if (col > row){
+                        i = i + 1
+                        df_boxplot[i,"Overlap_Proportion"] <- df4[row,col]
+                        df_boxplot[i,"Criteria"] <- "Models_0.7"
+                }
+        }
+}
+
+# cor >= 0.6
+i = 40
+for (row in 1:nrow(df5)){
+        for (col in 1:ncol(df5)){
+                if (col > row){
+                        i = i + 1
+                        df_boxplot[i,"Overlap_Proportion"] <- df5[row,col]
+                        df_boxplot[i,"Criteria"] <- "Models_0.6"
+                }
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
