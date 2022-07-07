@@ -635,7 +635,7 @@ for (row in 1:nrow(df5)){
 }
 
 
-boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue")
+boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue", main="Proportion of probe overlap across pairwise training sets")
 dev.copy("boxplot_probes.pdf", pdf)
 dev.off()
 
