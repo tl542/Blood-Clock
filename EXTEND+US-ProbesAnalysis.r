@@ -449,3 +449,33 @@ df4 <- as.data.frame(shared_probes_0.7_matrix_sym)
 write.table(df4, "shared_probes_2x2_0.7.txt", row.names=T, col.names=T, quote=F)
 
 
+df_boxplot <- data.frame(matrix(0,nrow=40, ncol=2))
+colnames(df_boxplot) <- c("Overlap_Proportion", "Criteria")
+                         
+i = 0
+for (row in 1:nrow(df1)){
+        for (col in 1:ncol(df1)){
+                if (col > row){
+                        i = i + 1
+                        df_boxplot[i,"Overlap_Proportion"] <- df1[row,col]
+                        df_boxplot[i,"Criteria"] <- "Model 1"
+                }
+        }
+}
+
+
+i = 10
+for (row in 1:nrow(df2)){
+        for (col in 1:ncol(df2)){
+                if (col > row){
+                        i = i + 1
+                        df_boxplot[i,"Overlap_Proportion"] <- df2[row,col]
+                        df_boxplot[i,"Criteria"] <- "Models_0.8"
+                }
+        }
+}
+
+
+
+
+
