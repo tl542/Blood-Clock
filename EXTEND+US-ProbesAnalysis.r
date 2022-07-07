@@ -633,8 +633,9 @@ for (row in 1:nrow(df5)){
 }
 
 df_boxplot$Model_Criteria <- factor(df_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6"))
+par(bg="aliceblue")
 boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue", main="Proportion of probe overlap across pairwise training sets")
-dev.copy("boxplot_probes.pdf", pdf)
+dev.copy(pdf,"boxplot_probes.pdf")
 dev.off()
 
 
