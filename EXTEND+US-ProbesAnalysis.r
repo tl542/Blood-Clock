@@ -572,7 +572,7 @@ df5 <- as.data.frame(shared_probes_0.6_matrix_sym)
 
 
 df_boxplot <- data.frame(matrix(0,nrow=50, ncol=2))
-colnames(df_boxplot) <- c("Overlap_Proportion", "Criteria")
+colnames(df_boxplot) <- c("Overlap_Proportion", "Model_Criteria")
                          
 # Model 1
 i = 0
