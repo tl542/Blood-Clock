@@ -29,10 +29,11 @@ test <- new_df[-trainIndex,]
 dim(train)
 dim(test)
 
-# Age distribution on original set + on training data from original set: Table
+# Age distribution on original set + on training data from original set: Table + hist
 table(new_df$Age)
 table(train$Age)
-
+#hist(new_df$Age, xlab="Age")
+#hist(train$Age, xlab="Age")
 
 # Two-sample t-test on Training data from original set
 t.test(train$Age ~ train$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
@@ -54,9 +55,11 @@ test1 <- new_df1[-trainIndex,]
 dim(train1)
 dim(test1)
 
-# Age distribution on restricted set + training data from restricted set: Table
+# Age distribution on restricted set + training data from restricted set: Table + hist
 table(new_df1$Age)
 table(train1$Age)
+#hist(new_df1$Age, xlab="Age")
+#hist(train1$Age, xlab="Age")
 
 # Two-sample t-test on Training data from restricted set
 t.test(train1$Age ~ train1$Sex, mu=0, alt="two.sided", paired=FALSE, var.eq=FALSE)
