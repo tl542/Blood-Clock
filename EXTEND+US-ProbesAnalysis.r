@@ -38,7 +38,19 @@ probes_model5 <- probes_model5[,c(1,3)]
 head(probes_model5)
 
 
+# All the probes from Model 1 ("best" model) across train/test splits
+
+pbs_model1_best <- probes_model1[probes_model1$Probes_Model == "Model 1",]
+pbs_model2_best <- probes_model2[probes_model2$Probes_Model == "Model 1",]
+pbs_model3_best <- probes_model3[probes_model3$Probes_Model == "Model 1",]
+pbs_model4_best <- probes_model4[probes_model4$Probes_Model == "Model 1",]
+pbs_model5_best <- probes_model5[probes_model5$Probes_Model == "Model 1",]
+
+
+
+
 # All the probes from models across train/test splits with cor >= 0.9 on test data
+
 probes1_0.9 <- probes_model1[1:11946,]
 probes2_0.9 <- probes_model2[1:11883,]
 probes3_0.9 <- probes_model3[1:13917,]
@@ -51,6 +63,8 @@ table2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split2) df.tx
 table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split3) df.txt")
 table4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split4) df.txt")
 table5 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split5) df.txt")
+
+
 
 # All the probes from models across train/test splits with cor >= 0.8 on test data
 
@@ -91,15 +105,91 @@ probes5_0.8 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.
 
 
 
-# All the probes from Model 1 ("best" model) across train/test splits
-pbs_model1_best <- probes_model1[probes_model1$Probes_Model == "Model 1",]
-pbs_model2_best <- probes_model2[probes_model2$Probes_Model == "Model 1",]
-pbs_model3_best <- probes_model3[probes_model3$Probes_Model == "Model 1",]
-pbs_model4_best <- probes_model4[probes_model4$Probes_Model == "Model 1",]
-pbs_model5_best <- probes_model5[probes_model5$Probes_Model == "Model 1",]
+# All the probes from models across train/test splits with cor >= 0.7 on test data
+
+#1st Split
+models1_0.7 <- table1[table1$Correlation >= 0.7,]
+for (i in 1:nrow(models1_0.7)){
+rownames(models1_0.7)[i] <- paste("Model", rownames(models1_0.7)[i])
+}
+probes1_0.7 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.7),]
+
+#2nd Split
+models2_0.7 <- table2[table2$Correlation >= 0.7,]
+for (i in 1:nrow(models2_0.7)){
+rownames(models2_0.7)[i] <- paste("Model", rownames(models2_0.7)[i])
+}
+probes2_0.7 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.7),]
+
+#3th Split
+models3_0.7 <- table3[table3$Correlation >= 0.7,]
+for (i in 1:nrow(models3_0.7)){
+rownames(models3_0.7)[i] <- paste("Model", rownames(models3_0.7)[i])
+}
+probes3_0.7 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.7),]
+
+#4th Split
+models4_0.7 <- table4[table4$Correlation >= 0.7,]
+for (i in 1:nrow(models4_0.7)){
+rownames(models4_0.7)[i] <- paste("Model", rownames(models4_0.7)[i])
+}
+probes4_0.7 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.7),]
+
+#5th Split
+models5_0.7 <- table5[table5$Correlation >= 0.7,]
+for (i in 1:nrow(models5_0.7)){
+rownames(models5_0.7)[i] <- paste("Model", rownames(models5_0.7)[i])
+}
+probes5_0.7 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.7),]
 
 
-# Model 1
+
+
+
+# All the probes from models across train/test splits with cor >= 0.6 on test data
+
+#1st Split
+models1_0.6 <- table1[table1$Correlation >= 0.6,]
+for (i in 1:nrow(models1_0.6)){
+rownames(models1_0.6)[i] <- paste("Model", rownames(models1_0.6)[i])
+}
+probes1_0.6 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.6),]
+
+#2nd Split
+models2_0.6 <- table2[table2$Correlation >= 0.6,]
+for (i in 1:nrow(models2_0.6)){
+rownames(models2_0.6)[i] <- paste("Model", rownames(models2_0.6)[i])
+}
+probes2_0.6 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.6),]
+
+#3th Split
+models3_0.6 <- table3[table3$Correlation >= 0.6,]
+for (i in 1:nrow(models3_0.6)){
+rownames(models3_0.6)[i] <- paste("Model", rownames(models3_0.6)[i])
+}
+probes3_0.6 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.6),]
+
+#4th Split
+models4_0.6 <- table4[table4$Correlation >= 0.6,]
+for (i in 1:nrow(models4_0.6)){
+rownames(models4_0.6)[i] <- paste("Model", rownames(models4_0.6)[i])
+}
+probes4_0.6 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.6),]
+
+#5th Split
+models5_0.6 <- table5[table5$Correlation >= 0.6,]
+for (i in 1:nrow(models5_0.6)){
+rownames(models5_0.6)[i] <- paste("Model", rownames(models5_0.6)[i])
+}
+probes5_0.6 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.6),]
+
+
+
+
+
+
+
+# Shared probes across pairwise splits - Model 1
 
 shared_probes_Mod1_12 <- list(pbs_model1_best["Selected_Probes"], pbs_model2_best["Selected_Probes"])
 probes_Mod1_12 <- shared_probes_Mod1_12 %>% reduce(inner_join, by='Selected_Probes')
@@ -152,6 +242,9 @@ probes_Mod1_45_df <- as.data.frame(probes_Mod1_45)
 colnames(probes_Mod1_45_df) <- "Shared_Probes"
 
 
+
+# Store the whole in df
+
 shared_probes_Mod1 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_Mod1) <- c("T1", "T2", "T3", "T4", "T5")
@@ -178,7 +271,7 @@ write.table(df1, "shared_probes_2x2_Mod1.txt", row.names=T, col.names=T, quote=F
 
 
 
-# Models with cor >= 0.9
+# Shared probes across pairwise splits - Models with cor >= 0.9
 
 
 shared_probes_0.9_12 <- list(probes1_0.9["Selected_Probes"], probes2_0.9["Selected_Probes"])
@@ -232,6 +325,7 @@ probes_0.9_45_df <- as.data.frame(probes_0.9_45)
 colnames(probes_0.9_45_df) <- "Shared_Probes"
 
 
+# Store the whole in df
 
 shared_probes_0.9 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_0.9) <- c("T1", "T2", "T3", "T4", "T5")
@@ -257,7 +351,7 @@ df2 <- as.data.frame(shared_probes_0.9_matrix_sym)
 write.table(df2, "shared_probes_2x2_0.9.txt", row.names=T, col.names=T, quote=F)
                 
                         
-# Models with cor >= 0.8
+# Shared probes across pairwise splits - Models with cor >= 0.8
 
 
 shared_probes_0.8_12 <- list(probes1_0.8["Selected_Probes"], probes2_0.8["Selected_Probes"])
@@ -310,6 +404,8 @@ probes_0.8_45 <- shared_probes_0.8_45 %>% reduce(inner_join, by='Selected_Probes
 probes_0.8_45_df <- as.data.frame(probes_0.8_45)
 colnames(probes_0.8_45_df) <- "Shared_Probes"
 
+# Store the whole in df
+
 shared_probes_0.8 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_0.8) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_0.8) <- c("T1", "T2", "T3", "T4", "T5")
@@ -334,45 +430,10 @@ df3 <- as.data.frame(shared_probes_0.8_matrix_sym)
 write.table(df3, "shared_probes_2x2_0.8.txt", row.names=T, col.names=T, quote=F)
 
 
-# All the probes from models across train/test splits with cor >= 0.7 on test data
-
-#1st Split
-models1_0.7 <- table1[table1$Correlation >= 0.7,]
-for (i in 1:nrow(models1_0.7)){
-rownames(models1_0.7)[i] <- paste("Model", rownames(models1_0.7)[i])
-}
-probes1_0.7 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.7),]
-
-#2nd Split
-models2_0.7 <- table2[table2$Correlation >= 0.7,]
-for (i in 1:nrow(models2_0.7)){
-rownames(models2_0.7)[i] <- paste("Model", rownames(models2_0.7)[i])
-}
-probes2_0.7 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.7),]
-
-#3th Split
-models3_0.7 <- table3[table3$Correlation >= 0.7,]
-for (i in 1:nrow(models3_0.7)){
-rownames(models3_0.7)[i] <- paste("Model", rownames(models3_0.7)[i])
-}
-probes3_0.7 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.7),]
-
-#4th Split
-models4_0.7 <- table4[table4$Correlation >= 0.7,]
-for (i in 1:nrow(models4_0.7)){
-rownames(models4_0.7)[i] <- paste("Model", rownames(models4_0.7)[i])
-}
-probes4_0.7 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.7),]
-
-#5th Split
-models5_0.7 <- table5[table5$Correlation >= 0.7,]
-for (i in 1:nrow(models5_0.7)){
-rownames(models5_0.7)[i] <- paste("Model", rownames(models5_0.7)[i])
-}
-probes5_0.7 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.7),]
 
 
-# Models with cor >= 0.7
+
+# Shared probes across pairwise splits - Models with cor >= 0.7
 
 
 shared_probes_0.7_12 <- list(probes1_0.7["Selected_Probes"], probes2_0.7["Selected_Probes"])
@@ -426,6 +487,8 @@ probes_0.7_45_df <- as.data.frame(probes_0.7_45)
 colnames(probes_0.7_45_df) <- "Shared_Probes"
 
 
+# Store the whole in df
+
 shared_probes_0.7 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_0.7) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(shared_probes_0.7) <- c("T1", "T2", "T3", "T4", "T5")
@@ -450,46 +513,10 @@ df4 <- as.data.frame(shared_probes_0.7_matrix_sym)
 write.table(df4, "shared_probes_2x2_0.7.txt", row.names=T, col.names=T, quote=F)
 
 
-# All the probes from models across train/test splits with cor >= 0.6 on test data
 
 
-#1st Split
-models1_0.6 <- table1[table1$Correlation >= 0.6,]
-for (i in 1:nrow(models1_0.6)){
-rownames(models1_0.6)[i] <- paste("Model", rownames(models1_0.6)[i])
-}
-probes1_0.6 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.6),]
 
-#2nd Split
-models2_0.6 <- table2[table2$Correlation >= 0.6,]
-for (i in 1:nrow(models2_0.6)){
-rownames(models2_0.6)[i] <- paste("Model", rownames(models2_0.6)[i])
-}
-probes2_0.6 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.6),]
-
-#3th Split
-models3_0.6 <- table3[table3$Correlation >= 0.6,]
-for (i in 1:nrow(models3_0.6)){
-rownames(models3_0.6)[i] <- paste("Model", rownames(models3_0.6)[i])
-}
-probes3_0.6 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.6),]
-
-#4th Split
-models4_0.6 <- table4[table4$Correlation >= 0.6,]
-for (i in 1:nrow(models4_0.6)){
-rownames(models4_0.6)[i] <- paste("Model", rownames(models4_0.6)[i])
-}
-probes4_0.6 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.6),]
-
-#5th Split
-models5_0.6 <- table5[table5$Correlation >= 0.6,]
-for (i in 1:nrow(models5_0.6)){
-rownames(models5_0.6)[i] <- paste("Model", rownames(models5_0.6)[i])
-}
-probes5_0.6 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.6),]
-
-
-# Models with cor >= 0.6
+# Shared probes across pairwise splits - Models with cor >= 0.6
 
 
 shared_probes_0.6_12 <- list(probes1_0.6["Selected_Probes"], probes2_0.6["Selected_Probes"])
@@ -542,6 +569,7 @@ probes_0.6_45 <- shared_probes_0.6_45 %>% reduce(inner_join, by='Selected_Probes
 probes_0.6_45_df <- as.data.frame(probes_0.6_45)
 colnames(probes_0.6_45_df) <- "Shared_Probes"
 
+# Store the whole in df
 
 shared_probes_0.6 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_0.6) <- c("T1", "T2", "T3", "T4", "T5")
@@ -567,7 +595,7 @@ df5 <- as.data.frame(shared_probes_0.6_matrix_sym)
 write.table(df5, "shared_probes_2x2_0.6.txt", row.names=T, col.names=T, quote=F)
 
 
-
+# Boxplot - Pairwise split Overlap
 
 df_boxplot <- data.frame(matrix(0,nrow=50, ncol=2))
 colnames(df_boxplot) <- c("Overlap_Proportion", "Model_Criteria")
@@ -638,7 +666,7 @@ boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Model_Criteria, xlab="Model_C
 dev.copy(pdf,"boxplot_probes.pdf")
 dev.off()
 
-
+# Metrics for previous boxplot
 
 metrics_df[1,] <- c(mean(df_boxplot$Overlap_Proportion[1:10]), median(df_boxplot$Overlap_Proportion[1:10]), quantile(df_boxplot$Overlap_Proportion[1:10])[2], 
                     quantile(df_boxplot$Overlap_Proportion[1:10])[4], quantile(df_boxplot$Overlap_Proportion[1:10])[1], quantile(df_boxplot$Overlap_Proportion[1:10])[5])
@@ -659,6 +687,8 @@ metrics_df[5,] <- c(mean(df_boxplot$Overlap_Proportion[41:50]), median(df_boxplo
 
 write.table(metrics_df, "metrics_pairwise_overlap.txt", row.names=T, col.names=T, quote=F)
 
+
+# Boxplot for total number of probes.
 
 total_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/shared_probes_summary.txt")
 total_boxplot <- data.frame(matrix(0, nrow=25, ncol=2))
@@ -681,7 +711,5 @@ par(bg="aliceblue")
 boxplot(total_boxplot$Total_Probes ~ total_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Total number of probes", col="steelblue", main="Total number of probes in models across all training sets")
 dev.copy(pdf,"boxplot_total_probes.pdf")
 dev.off()
-
-
 
 
