@@ -18,10 +18,12 @@ colnames(new_df)[809499] <- "Sex"
 colnames(new_df)[809500] <- "Age"
 
 
-# Restrict the original dataset down to samples aged less than 70 (1009)
+# Restrict the original dataset down to samples aged less than 70
 new_df1 <- new_df[new_df$Age >= 40 & new_df$Age <= 70,]
 
 
+# Train/Test split on restricted EXTEND data (1009 samples)
+#Training set: 706 samples and Test set: 303
 set.seed(123)
 n <- nrow(new_df1)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
@@ -66,7 +68,7 @@ dim(test2)
 
 
 
-
+# New training set: 1009 samples
 new_train <- intersect(colnames(train1), colnames(train2))
 train1 <-train1[,new_train]
 train2 <-train2[,new_train]
@@ -77,12 +79,15 @@ ix <- which(colnames(test1) %in% colnames(train_all))
 test1 <- test1[,ix]
 
 
+# Estimate lambda parameter on training data using 10 folds CV.
 library(glmnet)
 alpha <- 0.5
 cv_fit_train <- cv.glmnet(as.matrix(train_all[,-ncol(train_all)]), train_all$Age, nfolds=10, alpha=alpha, family="gaussian")
 best_lambda <- cv_fit_train$lambda.min
 
 
+
+# While loop on the 5 splits.
 library(Metrics)
 l_probes <- list()
 l_probes_coef <- list()
