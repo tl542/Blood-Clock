@@ -13,19 +13,15 @@ pheno_df <- as.data.frame(pheno)
 
 
 # Combine DNAm df with phenotypic Sex variable
-new_df <- cbind(DNAm_df, pheno_df[,c("Sex","Age")])
-colnames(new_df)[809499] <- "Sex"
-colnames(new_df)[809500] <- "Age"
+new_df <- cbind(DNAm_df, pheno_df[,"Age"])
+colnames(new_df)[809499] <- "Age"
+
 
 
 # Restrict the original dataset down to samples aged less than 70
 new_df1 <- new_df[new_df$Age >= 40 & new_df$Age <= 70,]
-set.seed(123)
-n <- nrow(new_df1)
-trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
-train1 <- new_df1[trainIndex,]
-train1 <- train1[,-809499]
-dim(train1)
+
+
 
 
 
@@ -34,35 +30,27 @@ load("/mnt/data1/EPICQC/UnderstandingSociety/US_Betas_Pheno.rda")
 DNAm_us <- t(dat)
 DNAm_df_us <- as.data.frame(DNAm_us)
 pheno_df_us <- as.data.frame(pheno)
-new_df_us <- cbind(DNAm_df_us, pheno_df_us[,c("nsex","confage")])
-colnames(new_df_us)[857131] <- "Sex"
-colnames(new_df_us)[857132] <- "Age"
+new_df_us <- cbind(DNAm_df_us, pheno_df_us[,"confage"])
+colnames(new_df_us)[857131] <- "Age"
+new_df_us$Age <- as.integer(new_df_us$Age)
 new_df2_us <- new_df_us[new_df_us$Age >= 40 & new_df_us$Age <= 70,]
 
-set.seed(123)
-n <- nrow(new_df2_us)
-trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
-train2 <- new_df2_us[trainIndex,]
-train2 <- train2[,-857131]
-dim(train2)
 
 
-new_train <- intersect(colnames(train1), colnames(train2))
-train1 <-train1[,new_train]
-train2 <-train2[,new_train]
-train_all <- rbind(train1,train2)
-train_all$Age <- as.integer(train_all$Age)
-dim(train_all)
+
+new_df <- intersect(colnames(new_df1), colnames(new_df2_us))
+new_df1 <- new_df1[,new_df]
+new_df2_us <- new_df2_us[,new_df]
+df_all <- rbind(new_df1, new_df2_us)
+dim(df_all)
 
 # Train/Test split on the restricted EXTEND+US data (1762 samples)
 # Training size: 1233 and Test size: 529
 set.seed(123)
-n <- nrow(train_all)
+n <- nrow(df_all)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
-train <- train_all[trainIndex,]
-test <- train_all[-trainIndex,]
-train <- train[,-803377]
-test <- test[,-803377]
+train <- df_all[trainIndex,]
+test <- df_all[-trainIndex,]
 dim(train)
 dim(test)
 
