@@ -20,69 +20,58 @@ colnames(new_df)[809500] <- "Age"
 
 # Restrict the original dataset down to samples aged less than 70
 new_df1 <- new_df[new_df$Age >= 40 & new_df$Age <= 70,]
-
-
-# Train/Test split on restricted EXTEND data (1009 samples)
-#Training set: 706 samples and Test set: 303
 set.seed(123)
 n <- nrow(new_df1)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train1 <- new_df1[trainIndex,]
-test1 <- new_df1[-trainIndex,]
 train1 <- train1[,-809499]
-test1 <- test1[,-809499]
 dim(train1)
-dim(test1)
 
 
 
 
-
-
-setwd("/mnt/data1/EPICQC/UnderstandingSociety")
-load("US_Betas_Pheno.rda")
-
+load("/mnt/data1/EPICQC/UnderstandingSociety/US_Betas_Pheno.rda")
 DNAm_us <- t(dat)
 DNAm_df_us <- as.data.frame(DNAm_us)
 pheno_df_us <- as.data.frame(pheno)
-
 new_df_us <- cbind(DNAm_df_us, pheno_df_us[,c("nsex","confage")])
 colnames(new_df_us)[857131] <- "Sex"
 colnames(new_df_us)[857132] <- "Age"
-
-
 new_df2_us <- new_df_us[new_df_us$Age >= 40 & new_df_us$Age <= 70,]
 
-# Train/Test split on the restricted US data (753 samples)
-# Training size: 527 and Test size: 226
 set.seed(123)
 n <- nrow(new_df2_us)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train2 <- new_df2_us[trainIndex,]
-test2 <- new_df2_us[-trainIndex,]
 train2 <- train2[,-857131]
-test2 <- test2[,-857131]
 dim(train2)
-dim(test2)
 
 
-
-
-# New training set: 1009 samples
 new_train <- intersect(colnames(train1), colnames(train2))
 train1 <-train1[,new_train]
 train2 <-train2[,new_train]
 train_all <- rbind(train1,train2)
 train_all$Age <- as.integer(train_all$Age)
 dim(train_all)
-ix <- which(colnames(test1) %in% colnames(train_all))
-test1 <- test1[,ix]
+
+# Train/Test split on the restricted EXTEND+US data (1762 samples)
+# Training size: 1233 and Test size: 529
+set.seed(123)
+n <- nrow(train_all)
+trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
+train <- train_all[trainIndex,]
+test <- train_all[-trainIndex,]
+train <- train[,-803377]
+test <- test[,-803377]
+dim(train)
+dim(test)
+
 
 
 # Estimate lambda parameter on training data using 10 folds CV.
 library(glmnet)
 alpha <- 0.5
-cv_fit_train <- cv.glmnet(as.matrix(train_all[,-ncol(train_all)]), train_all$Age, nfolds=10, alpha=alpha, family="gaussian")
+cv_fit_train <- cv.glmnet(as.matrix(train[,-ncol(train)]), train$Age, nfolds=10, alpha=alpha, family="gaussian")
 best_lambda <- cv_fit_train$lambda.min
 
 
@@ -99,10 +88,10 @@ stop <- FALSE
 n <- 0
 while (corr >= 0.6){
     n <- n + 1 
-    fit_train <- glmnet(as.matrix(train_all[,-ncol(train_all)]), train_all$Age, alpha=0.5, nlambda=10)
-    pred_test <- predict(fit_train, as.matrix(test1[,-ncol(test1)]),s=best_lambda)
-    RMSE <- rmse(test1$Age, pred_test)
-    corr <- cor(test1$Age, pred_test)
+    fit_train <- glmnet(as.matrix(train[,-ncol(train)]), train$Age, alpha=0.5, nlambda=10)
+    pred_test <- predict(fit_train, as.matrix(test[,-ncol(test)]),s=best_lambda)
+    RMSE <- rmse(test$Age, pred_test)
+    corr <- cor(test$Age, pred_test)
     l_rmse <- c(l_rmse,RMSE)
     l_cor <- c(l_cor, corr)
     #plot(test1$Age, pred_test, xlab="Chronological Age (years)", ylab="Predicted Age (years)", main = paste("Model", n))
@@ -115,9 +104,9 @@ while (corr >= 0.6){
     coefs_nz_df <- as.data.frame(coefs_nz)
     l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
     l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[,"coefs_nz"]))
-    ix <- which(colnames(train_all) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
-    train_all <- train_all[,-ix]
-    test1 <- test1[,-ix]
+    ix <- which(colnames(train) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
+    train <- train[,-ix]
+    test <- test[,-ix]
     if (corr < 0.6){
         stop = TRUE
         break
