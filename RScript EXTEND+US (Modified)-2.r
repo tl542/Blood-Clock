@@ -13,8 +13,9 @@ pheno_df <- as.data.frame(pheno)
 
 
 # Combine DNAm df with phenotypic Sex variable
-new_df <- cbind(DNAm_df, pheno_df[,"Age"])
-colnames(new_df)[809499] <- "Age"
+new_df <- cbind(DNAm_df, pheno_df[,c("Sex","Age")])
+colnames(new_df)[809499] <- "Sex"
+colnames(new_df)[809500] <- "Age"
 
 
 
@@ -30,11 +31,11 @@ load("/mnt/data1/EPICQC/UnderstandingSociety/US_Betas_Pheno.rda")
 DNAm_us <- t(dat)
 DNAm_df_us <- as.data.frame(DNAm_us)
 pheno_df_us <- as.data.frame(pheno)
-new_df_us <- cbind(DNAm_df_us, pheno_df_us[,"confage"])
-colnames(new_df_us)[857131] <- "Age"
-new_df_us$Age <- as.integer(new_df_us$Age)
+new_df_us <- cbind(DNAm_df_us, pheno_df_us[,c("nsex","confage")])
+colnames(new_df_us)[857131] <- "Sex"
+colnames(new_df_us)[857132] <- "Age"
 new_df2_us <- new_df_us[new_df_us$Age >= 40 & new_df_us$Age <= 70,]
-
+new_df2_us$Age <- as.integer(new_df2_us$Age)
 
 
 
@@ -49,8 +50,8 @@ dim(df_all)
 set.seed(32)
 n <- nrow(df_all)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
-train <- df_all[trainIndex,]
-test <- df_all[-trainIndex,]
+train <- df_all[trainIndex,-803377]
+test <- df_all[-trainIndex,-803377]
 dim(train)
 dim(test)
 
@@ -167,6 +168,3 @@ colnames(l_probes_unlist_df) <- "Probes"
 
 df_final <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
 write.table(df_final, "probes_coef (Split 1).txt", row.names=T, col.names=T, quote=F)
-
-
-
