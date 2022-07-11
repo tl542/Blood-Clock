@@ -19,6 +19,7 @@ for (i in 1:22){
   rownames(probes_i) <- probes_i$Name
   ix <- which(colnames(df_all)[-803377] %in% rownames(probes_i))
   new_df <- cbind(df_all[,ix], df_all$Age)
+  names(new_df)[names(new_df) == "df_all$Age"] <- "Age"
   set.seed(i)
   n <- nrow(new_df)
   trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
