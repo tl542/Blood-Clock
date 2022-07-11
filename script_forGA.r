@@ -45,3 +45,4 @@ new_df2_us <- new_df2_us[,new_df]
 df_all <- rbind(new_df1, new_df2_us)
 dim(df_all)
 df_all <- df_all[,-803377]
+
