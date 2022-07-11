@@ -10,6 +10,7 @@ probes_i <- epicManifest[epicManifest$Chromosome_36 == i, c("Name","Chromosome_3
 df_final <- rbind(df_final, probes_i)
 }
 
+library(Metrics)
 l_rmse <- list()
 l_cor <- list()
 n_iter <- 0
