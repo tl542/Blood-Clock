@@ -12,9 +12,9 @@ df_final <- rbind(df_final, probes_i)
 
 l_rmse <- list()
 l_cor <- list()
-n <- 0
+n_iter <- 0
 for (i in 1:22){
-  n <- n + 1
+  n_iter <- n_iter + 1
   probes_i <- df_final[df_final$Chromosome_36 == i,]
   rownames(probes_i) <- probes_i$Name
   ix <- which(colnames(df_all)[-803377] %in% rownames(probes_i))
