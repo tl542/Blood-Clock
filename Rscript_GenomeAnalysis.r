@@ -39,5 +39,23 @@ for (i in 1:22){
  
 }
 
+l_cor_unlist <- unlist(l_cor)
+l_cor_df <- as.data.frame(l_cor_unlist)
+colnames(l_cor_df) <- "Correlation"
+
+l_rmse_unlist <- unlist(l_rmse)
+l_rmse_df <- as.data.frame(l_rmse_unlist)
+colnames(l_rmse_df) <- "RMSE"
+
+cor_rmse_df <-cbind(l_cor_df,l_rmse_df)
+for (i in 1:nrow(cor_rmse_df)){
+  rownames(cor_rmse_df)[i] <- paste("Model-Chr", i)
+}
+
+write.table(cor_rmse_df, "restricted_genome_analysis.txt", row.names=T, col.names=T, quote=F)
+
+
+
+
   
   
