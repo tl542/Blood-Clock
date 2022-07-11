@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 
-source("/mnt/data1/EXTEND/Methylation/QC/Theo/RScript_sourcing.r")
-rs("/mnt/data1/EXTEND/Methylation/QC/Theo/RScript_EXTEND+US.r", to=77)
+source("/mnt/data1/EXTEND/Methylation/QC/Theo/script_forGA.r")
 
 epicManifest<-read.csv("/mnt/data1/EPIC_reference/MethylationEPIC_v-1-0_B2.csv", skip = 7)
 
@@ -12,4 +11,8 @@ df_final <- rbind(df_final, probes_i)
 }
 
 probes_1 <- df_final[df_final$Chromosome_36 == 1,]
-probes_1 <- probes_1[1:2991,]
+for (i in 1:22){
+  probes_i <- df_final[df_final$Chromosome_36 == i,]
+  rownames(probes_i) <- probes_i$Name
+  ix <- which(colnames(df_all) %in% rownames(probes_i))
+  
