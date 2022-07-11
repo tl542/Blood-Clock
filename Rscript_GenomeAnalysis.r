@@ -10,9 +10,30 @@ probes_i <- epicManifest[epicManifest$Chromosome_36 == i, c("Name","Chromosome_3
 df_final <- rbind(df_final, probes_i)
 }
 
-probes_1 <- df_final[df_final$Chromosome_36 == 1,]
+l_rmse <- list()
+l_cor <- list()
 for (i in 1:22){
   probes_i <- df_final[df_final$Chromosome_36 == i,]
   rownames(probes_i) <- probes_i$Name
-  ix <- which(colnames(df_all) %in% rownames(probes_i))
+  ix <- which(colnames(df_all)[-803377] %in% rownames(probes_i))
+  new_df <- cbind(df_all[,ix], df_all$Age)
+  set.seed(i)
+  n <- nrow(new_df)
+  trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
+  train <- new_df[trainIndex,]
+  test <- new_df[-trainIndex,]
+  library(glmnet)
+  alpha <- 0.5
+  cv_fit_train <- cv.glmnet(as.matrix(train[,-ncol(train)]), train$Age, nfolds=10, alpha=alpha, family="gaussian")
+  best_lambda <- cv_fit_train$lambda.min
+  fit_train <- glmnet(as.matrix(train[,-ncol(train)]), train$Age, alpha=0.5, nlambda=10)
+  pred_test <- predict(fit_train, as.matrix(test[,-ncol(test)]), s=best_lambda)
+  RMSE <- rmse(test$Age, pred_test)
+  corr <- cor(test$Age, pred_test)
+  l_rmse <- c(l_rmse,RMSE)
+  l_cor <- c(l_cor, corr)
+ 
+}
+
+  
   
