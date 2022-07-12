@@ -47,22 +47,49 @@ pbs_model4_best <- probes_model4[probes_model4$Probes_Model == "Model 1",]
 pbs_model5_best <- probes_model5[probes_model5$Probes_Model == "Model 1",]
 
 
-
-
-# All the probes from models across train/test splits with cor >= 0.9 on test data
-
-probes1_0.9 <- probes_model1[1:11946,]
-probes2_0.9 <- probes_model2[1:11883,]
-probes3_0.9 <- probes_model3[1:13917,]
-probes4_0.9 <- probes_model4[1:11526,]
-probes5_0.9 <- probes_model5[1:14124,]
-
-
 table1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split1) df.txt")
 table2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split2) df.txt")
 table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split3) df.txt")
 table4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split4) df.txt")
 table5 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split5) df.txt")
+
+
+# All the probes from models across train/test splits with cor >= 0.9 on test data
+
+#1st Split
+models1_0.9 <- table1[table1$Correlation >= 0.9,]
+for (i in 1:nrow(models1_0.9)){
+rownames(models1_0.9)[i] <- paste("Model", rownames(models1_0.9)[i])
+}
+probes1_0.9 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.9),]
+
+#2nd Split
+models2_0.9 <- table2[table2$Correlation >= 0.9,]
+for (i in 1:nrow(models2_0.9)){
+rownames(models2_0.9)[i] <- paste("Model", rownames(models2_0.9)[i])
+}
+probes2_0.9 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.9),]
+
+#3th Split
+models3_0.9 <- table3[table3$Correlation >= 0.9,]
+for (i in 1:nrow(models3_0.9)){
+rownames(models3_0.9)[i] <- paste("Model", rownames(models3_0.9)[i])
+}
+probes3_0.9 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.9),]
+
+#4th Split
+models4_0.9 <- table4[table4$Correlation >= 0.9,]
+for (i in 1:nrow(models4_0.9)){
+rownames(models4_0.9)[i] <- paste("Model", rownames(models4_0.9)[i])
+}
+probes4_0.9 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.9),]
+
+#5th Split
+models5_0.9 <- table5[table5$Correlation >= 0.9,]
+for (i in 1:nrow(models5_0.9)){
+rownames(models5_0.9)[i] <- paste("Model", rownames(models5_0.9)[i])
+}
+probes5_0.9 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.9),]
 
 
 
