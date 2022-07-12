@@ -217,7 +217,7 @@ probes5_0.6 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.
 
 
 # Shared probes across pairwise splits - Model 1
-
+library(tidyverse)
 shared_probes_Mod1_12 <- list(pbs_model1_best["Selected_Probes"], pbs_model2_best["Selected_Probes"])
 probes_Mod1_12 <- shared_probes_Mod1_12 %>% reduce(inner_join, by='Selected_Probes')
 probes_Mod1_12_df <- as.data.frame(probes_Mod1_12)
