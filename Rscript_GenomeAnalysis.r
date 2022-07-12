@@ -11,6 +11,8 @@ df_final <- rbind(df_final, probes_i)
 }
 
 library(Metrics)
+l_probes <- list()
+l_probes_coef <- list()
 l_rmse <- list()
 l_cor <- list()
 n_iter <- 0
@@ -36,8 +38,15 @@ for (i in 1:22){
   corr <- cor(test$Age, pred_test)
   l_rmse <- c(l_rmse,RMSE)
   l_cor <- c(l_cor, corr)
+  coefs <- coef(fit_train, s=best_lambda)
+  coefs_nz <- coefs[which(coefs != 0),]
+  coefs_nz_df <- as.data.frame(coefs_nz)
+  l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
+  l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[,"coefs_nz"]))
  
 }
+
+
 
 l_cor_unlist <- unlist(l_cor)
 l_cor_df <- as.data.frame(l_cor_unlist)
@@ -47,12 +56,23 @@ l_rmse_unlist <- unlist(l_rmse)
 l_rmse_df <- as.data.frame(l_rmse_unlist)
 colnames(l_rmse_df) <- "RMSE"
 
-cor_rmse_df <-cbind(l_cor_df,l_rmse_df)
-for (i in 1:nrow(cor_rmse_df)){
-  rownames(cor_rmse_df)[i] <- paste("Model-Chr", i)
+cor_rmse_df <- cbind(l_cor_df,l_rmse_df)
+
+len_probes <- list()
+for (i in 1:length(l_probes)){
+    len_probes <- c(len_probes, length(l_probes[[i]]))
+}
+len_probes_unlist <- unlist(len_probes)
+len_probes_df <- as.data.frame(len_probes_unlist)
+colnames(len_probes_df) <- "nProbes"
+l_cor_rmse_nprobes_df <- cbind(cor_rmse_df, len_probes_df)
+
+
+for (i in 1:nrow(l_cor_rmse_nprobes_df)){
+  rownames(l_cor_rmse_nprobes_df)[i] <- paste("Model-Chr", i)
 }
 
-write.table(cor_rmse_df, "restricted_genome_analysis.txt", row.names=T, col.names=T, quote=F)
+write.table(l_cor_rmse_nprobes_df, "restricted_genome_analysis.txt", row.names=T, col.names=T, quote=F)
 
 
 
