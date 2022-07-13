@@ -107,7 +107,7 @@ while (corr >= 0.4){
 
 
 
-# Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.6 on test data)
+# Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.4 on test data)
 l_cor_unlist <- unlist(l_cor)
 l_cor_df <- as.data.frame(l_cor_unlist)
 colnames(l_cor_df) <- "Correlation"
@@ -128,7 +128,7 @@ write.table(l_cor_nprobes_df, "table (Split 2).txt", row.names=T, col.names=T, q
 
 
 # Plot (+Save) correlation against number of weighted probes
-pdf("Plot (Split 1).pdf")
+pdf("Plot (Split 2).pdf")
 plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation", main="Correlation vs (Cumulative) number of probes")
 dev.off()
 
