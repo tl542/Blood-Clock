@@ -132,7 +132,7 @@ plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="C
 dev.off()
 
 
-#Save RMSE for each of the models (with cor >= 0.6 on test data)
+#Save RMSE for each of the models (with cor >= 0.4 on test data)
 l_rmse_unlist <- unlist(l_rmse)
 l_rmse_df <- as.data.frame(l_rmse_unlist)
 colnames(l_rmse_df) <- "RMSE"
