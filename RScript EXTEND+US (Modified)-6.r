@@ -164,3 +164,5 @@ colnames(l_probes_unlist_df) <- "Probes"
 
 df_final <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
 write.table(df_final, "probes_coef (Split 6).txt", row.names=T, col.names=T, quote=F)
+
+
