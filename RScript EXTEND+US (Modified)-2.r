@@ -60,9 +60,9 @@ dim(test)
 # Estimate lambda parameter on training data using 10 folds CV.
 library(glmnet)
 alpha <- 0.5
-cv_fit_train <- cv.glmnet(as.matrix(train[,-ncol(train)]), train$Age, nfolds=10, alpha=alpha, family="gaussian")
-best_lambda <- cv_fit_train$lambda.min
-
+#cv_fit_train <- cv.glmnet(as.matrix(train[,-ncol(train)]), train$Age, nfolds=10, alpha=alpha, family="gaussian")
+#best_lambda <- cv_fit_train$lambda.min
+best_lambda <- 0.1309195
 
 
 # While loop on the 5 splits.
@@ -75,7 +75,7 @@ corr <-  1
 RMSE <- 0
 stop <- FALSE
 n <- 0
-while (corr >= 0.6){
+while (corr >= 0.4){
     n <- n + 1 
     fit_train <- glmnet(as.matrix(train[,-ncol(train)]), train$Age, alpha=0.5, nlambda=10)
     pred_test <- predict(fit_train, as.matrix(test[,-ncol(test)]),s=best_lambda)
@@ -96,7 +96,7 @@ while (corr >= 0.6){
     ix <- which(colnames(train) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
     train <- train[,-ix]
     test <- test[,-ix]
-    if (corr < 0.6){
+    if (corr < 0.4){
         stop = TRUE
         break
     }
@@ -122,7 +122,7 @@ l_cor_nprobes_df$Cum_nProbes <- cumsum(l_cor_nprobes_df$nProbes)
 for (i in 1:nrow(l_cor_nprobes_df)){
     rownames(l_cor_nprobes_df)[i] <- paste("Model", i)
 }
-write.table(l_cor_nprobes_df, "table (Split 1).txt", row.names=T, col.names=T, quote=F)
+write.table(l_cor_nprobes_df, "table (Split 2).txt", row.names=T, col.names=T, quote=F)
 
 
 
@@ -139,7 +139,7 @@ colnames(l_rmse_df) <- "RMSE"
 for (i in 1:nrow(l_rmse_df)){
     rownames(l_rmse_df)[i] <- paste("Model", i)
 }
-write.table(l_rmse_df, "RMSE (Split 1).txt", row.names=T, col.names=T, quote=F)
+write.table(l_rmse_df, "RMSE (Split 2).txt", row.names=T, col.names=T, quote=F)
 
 
 #Save all the probes selected by each model
@@ -151,17 +151,24 @@ for (i in 1:length(l_probes)){
     l_probes_i_df["Probes_Model"] <- paste("Model", i)
     probes_model <- rbind(probes_model, l_probes_i_df)
 }
-write.table(probes_model, "probes_model (Split 1).txt", row.names=T, col.names=T, quote=F)
+write.table(probes_model, "probes_model (Split 2).txt", row.names=T, col.names=T, quote=F)
 
 
 #Save all the probes with their respective beta coefficient
+df_final <- data.frame()
+for (i in 1:length(l_probes_coef)){
+    l_probes_coef_unlist <- unlist(l_probes_coef[[i]])
+    l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
+    colnames(l_probes_coef_unlist_df) <- "Coef"
+    l_probes_unlist <- unlist(l_probes[[i]])
+    l_probes_unlist_df <- as.data.frame(l_probes_unlist)
+    colnames(l_probes_unlist_df) <- "Selected Probes"
+    l_probes_unlist_df["Probes_Model"] <- paste("Model", i)
+    probes_coef_model <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
+    df_final <- rbind(df_final, probes_coef_model)
 
-l_probes_coef_unlist <- unlist(l_probes_coef)
-l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
-colnames(l_probes_coef_unlist_df) <- "Coef"
-l_probes_unlist <- unlist(l_probes)
-l_probes_unlist_df <- as.data.frame(l_probes_unlist)
-colnames(l_probes_unlist_df) <- "Probes"
+}
+df_final <- df_final[c("Selected Probes", "Coef", "Probes_Model")]
+write.table(df_final, "probes_coef (Split 2).txt", row.names=T, col.names=T, quote=F)
 
-df_final <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
-write.table(df_final, "probes_coef (Split 1).txt", row.names=T, col.names=T, quote=F)
+
