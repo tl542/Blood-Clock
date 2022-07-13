@@ -170,3 +170,4 @@ for (i in 1:length(l_probes_coef)){
 }
 df_final <- df_final[c("Selected Probes", "Coef", "Probes_Model")]
 write.table(df_final, "probes_coef (Split 4).txt", row.names=T, col.names=T, quote=F)
+
