@@ -63,6 +63,7 @@ alpha <- 0.5
 #cv_fit_train <- cv.glmnet(as.matrix(train[,-ncol(train)]), train$Age, nfolds=10, alpha=alpha, family="gaussian")
 #best_lambda <- cv_fit_train$lambda.min
 best_lambda <- 0.1320996
+print(best_lambda)
 
 
 # While loop on the 5 splits.
