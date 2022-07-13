@@ -13,14 +13,15 @@ probes_i <- epicManifest[epicManifest$CHR == i, c("Name","CHR")]
 df_final <- rbind(df_final, probes_i)
 }
 
-set.seed(84)
+set.seed(32)
 n <- nrow(df_all)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train <- df_all[trainIndex,]
 test <- df_all[-trainIndex,]
-best_lamdba <- 0.1355626
+best_lambda <- 0.1309195
 
 
+library(glmnet)
 library(Metrics)
 l_probes <- list()
 l_probes_coef <- list()
@@ -29,17 +30,17 @@ l_cor <- list()
 n_iter <- 0
 for (i in 1:22){
   n_iter <- n_iter + 1
-  probes_i <- df_final[df_final$Chromosome_36 == i,]
+  probes_i <- df_final[df_final$CHR == i,]
   rownames(probes_i) <- probes_i$Name
-  ix <- which(colnames(train)[-803377] %in% rownames(probes_i))
+  ix <- which(colnames(df_all)[-803377] %in% rownames(probes_i))
   new_train <- cbind(train[,ix], train$Age)
   new_test <- cbind(test[,ix], test$Age)
   names(new_train)[names(new_train) == "train$Age"] <- "Age"
   names(new_test)[names(new_test) == "test$Age"] <- "Age"
   fit_train <- glmnet(as.matrix(new_train[,-ncol(new_train)]), new_train$Age, alpha=0.5, nlambda=10)
   pred_test <- predict(fit_train, as.matrix(new_test[,-ncol(new_test)]), s=best_lambda)
-  RMSE <- rmse(test$Age, pred_test)
-  corr <- cor(test$Age, pred_test)
+  RMSE <- rmse(new_test$Age, pred_test)
+  corr <- cor(new_test$Age, pred_test)
   l_rmse <- c(l_rmse,RMSE)
   l_cor <- c(l_cor, corr)
   coefs <- coef(fit_train, s=best_lambda)
