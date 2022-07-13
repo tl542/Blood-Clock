@@ -77,18 +77,18 @@ for (i in 1:nrow(l_cor_rmse_nprobes_df)){
   rownames(l_cor_rmse_nprobes_df)[i] <- paste("Model-Chr", i)
 }
 
-write.table(l_cor_rmse_nprobes_df, "restricted_genome_analysis.txt", row.names=T, col.names=T, quote=F)
+write.table(l_cor_rmse_nprobes_df, "cor_rmse_nprobes_models_rgw.txt", row.names=T, col.names=T, quote=F)
 
 
-#probes_model <- data.frame()
-#for (i in 1:length(l_probes)){
-    #l_probes_i <- unlist(l_probes[[i]])
-    #l_probes_i_df <- as.data.frame(l_probes_i)
-    #colnames(l_probes_i_df) <- "Selected Probes"
-    #l_probes_i_df["Probes_Model"] <- paste("Model-Chr", i)
-    #probes_model <- rbind(probes_model, l_probes_i_df)
+probes_model <- data.frame()
+for (i in 1:length(l_probes)){
+  l_probes_i <- unlist(l_probes[[i]])
+  l_probes_i_df <- as.data.frame(l_probes_i)
+  colnames(l_probes_i_df) <- "Selected Probes"
+  l_probes_i_df["Probes_Model"] <- paste("Model-Chr", i)
+  probes_model <- rbind(probes_model, l_probes_i_df)
 }
-#write.table(probes_model, "probes_models_chr.txt", row.names=T, col.names=T, quote=F)
+write.table(probes_model, "probes_models_chr.txt", row.names=T, col.names=T, quote=F)
 
 
 #Save all the probes with their respective beta coefficient
@@ -105,17 +105,6 @@ for (i in 1:length(l_probes_coef)){
     df_final <- rbind(df_final, probes_coef_model)
 
 }
-
-
-
-#l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
-#colnames(l_probes_coef_unlist_df) <- "Coef"
-#l_probes_unlist <- unlist(l_probes)
-#l_probes_unlist_df <- as.data.frame(l_probes_unlist)
-
-#colnames(l_probes_unlist_df) <- "Probes"
-
-#df_final <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
-#write.table(df_final, "probes_coef (Split 1).txt", row.names=T, col.names=T, quote=F)
-  
+df_final <- df_final[c("Selected Probes", "Coef", "Probes_Model")]
+write.table(df_final, "probes+coefs_models_chr.txt", row.names=T, col.names=T, quote=F)
 
