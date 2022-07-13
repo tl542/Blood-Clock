@@ -106,7 +106,7 @@ while (corr >= 0.4){
 
 
 
-# Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.6 on test data)
+# Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.4 on test data)
 l_cor_unlist <- unlist(l_cor)
 l_cor_df <- as.data.frame(l_cor_unlist)
 colnames(l_cor_df) <- "Correlation"
