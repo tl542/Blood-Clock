@@ -155,10 +155,6 @@ write.table(probes_model, "probes_model (Split 1).txt", row.names=T, col.names=T
 
 
 #Save all the probes with their respective beta coefficient
-for (i in 1:length(l_probes_coef)){
-    l_probes_coef[[i]] <- l_probes_coef[[i]][-1]
-}
-
 l_probes_coef_unlist <- unlist(l_probes_coef)
 l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
 colnames(l_probes_coef_unlist_df) <- "Coef"
