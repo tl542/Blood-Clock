@@ -9,7 +9,7 @@ epicManifest<-read.csv("/mnt/data1/EPIC_reference/MethylationEPIC_v-1-0_B2.csv",
 
 df_final <- data.frame()
 for (i in seq(1,22)){
-probes_i <- epicManifest[epicManifest$Chromosome_36 == i, c("Name","Chromosome_36")]
+probes_i <- epicManifest[epicManifest$CHR == i, c("Name","CHR")]
 df_final <- rbind(df_final, probes_i)
 }
 
@@ -93,7 +93,6 @@ write.table(l_cor_rmse_nprobes_df, "restricted_genome_analysis.txt", row.names=T
 #Save all the probes with their respective beta coefficient
 df_final <- data.frame()
 for (i in 1:length(l_probes_coef)){
-    l_probes_coef[[i]] <- l_probes_coef[[i]][-1]
     l_probes_coef_unlist <- unlist(l_probes_coef[[i]])
     l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
     colnames(l_probes_coef_unlist_df) <- "Coef"
