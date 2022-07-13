@@ -47,7 +47,7 @@ dim(df_all)
 
 # Train/Test split on the restricted EXTEND+US data (1762 samples)
 # Training size: 1233 and Test size: 529
-set.seed(123)
+set.seed(84)
 n <- nrow(df_all)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train <- df_all[trainIndex,-803377]
@@ -92,7 +92,7 @@ while (corr >= 0.6){
     coefs_nz <- coefs[which(coefs != 0),]
     coefs_nz_df <- as.data.frame(coefs_nz)
     l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
-    l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[,"coefs_nz"]))
+    l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[-1,"coefs_nz"]))
     ix <- which(colnames(train) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
     train <- train[,-ix]
     test <- test[,-ix]
