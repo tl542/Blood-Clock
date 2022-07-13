@@ -47,7 +47,7 @@ dim(df_all)
 
 # Train/Test split on the restricted EXTEND+US data (1762 samples)
 # Training size: 1233 and Test size: 529
-set.seed(13)
+set.seed(9)
 n <- nrow(df_all)
 trainIndex <- sample(1:n, size=round(0.7*n), replace=FALSE)
 train <- df_all[trainIndex,-803377]
@@ -62,7 +62,7 @@ library(glmnet)
 alpha <- 0.5
 cv_fit_train <- cv.glmnet(as.matrix(train[,-ncol(train)]), train$Age, nfolds=10, alpha=alpha, family="gaussian")
 best_lambda <- cv_fit_train$lambda.min
-
+print(best_lambda)
 
 
 # While loop on the 5 splits.
@@ -75,7 +75,7 @@ corr <-  1
 RMSE <- 0
 stop <- FALSE
 n <- 0
-while (corr >= 0.6){
+while (corr >= 0.4){
     n <- n + 1 
     fit_train <- glmnet(as.matrix(train[,-ncol(train)]), train$Age, alpha=0.5, nlambda=10)
     pred_test <- predict(fit_train, as.matrix(test[,-ncol(test)]),s=best_lambda)
@@ -92,11 +92,11 @@ while (corr >= 0.6){
     coefs_nz <- coefs[which(coefs != 0),]
     coefs_nz_df <- as.data.frame(coefs_nz)
     l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
-    l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[,"coefs_nz"]))
+    l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[-1,"coefs_nz"]))
     ix <- which(colnames(train) %in% rownames(coefs_nz_df)[2:nrow(coefs_nz_df)])
     train <- train[,-ix]
     test <- test[,-ix]
-    if (corr < 0.6){
+    if (corr < 0.4){
         stop = TRUE
         break
     }
@@ -106,7 +106,7 @@ while (corr >= 0.6){
 
 
 
-# Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.6 on test data)
+# Save correlation + number of probes + cumulative number of probes for each of the models (with cor >= 0.4 on test data)
 l_cor_unlist <- unlist(l_cor)
 l_cor_df <- as.data.frame(l_cor_unlist)
 colnames(l_cor_df) <- "Correlation"
@@ -122,24 +122,24 @@ l_cor_nprobes_df$Cum_nProbes <- cumsum(l_cor_nprobes_df$nProbes)
 for (i in 1:nrow(l_cor_nprobes_df)){
     rownames(l_cor_nprobes_df)[i] <- paste("Model", i)
 }
-write.table(l_cor_nprobes_df, "table (Split 1).txt", row.names=T, col.names=T, quote=F)
+write.table(l_cor_nprobes_df, "table (Split 6).txt", row.names=T, col.names=T, quote=F)
 
 
 
 # Plot (+Save) correlation against number of weighted probes
-pdf("Plot (Split 1).pdf")
+pdf("Plot (Split 6).pdf")
 plot(l_cor_nprobes_df$Cum_nProbes, l_cor_nprobes_df$Correlation, pch=19, xlab="Cumulative number of Probes", ylab="Correlation", main="Correlation vs (Cumulative) number of probes")
 dev.off()
 
 
-#Save RMSE for each of the models (with cor >= 0.6 on test data)
+#Save RMSE for each of the models (with cor >= 0.4 on test data)
 l_rmse_unlist <- unlist(l_rmse)
 l_rmse_df <- as.data.frame(l_rmse_unlist)
 colnames(l_rmse_df) <- "RMSE"
 for (i in 1:nrow(l_rmse_df)){
     rownames(l_rmse_df)[i] <- paste("Model", i)
 }
-write.table(l_rmse_df, "RMSE (Split 1).txt", row.names=T, col.names=T, quote=F)
+write.table(l_rmse_df, "RMSE (Split 6).txt", row.names=T, col.names=T, quote=F)
 
 
 #Save all the probes selected by each model
@@ -151,14 +151,10 @@ for (i in 1:length(l_probes)){
     l_probes_i_df["Probes_Model"] <- paste("Model", i)
     probes_model <- rbind(probes_model, l_probes_i_df)
 }
-write.table(probes_model, "probes_model (Split 1).txt", row.names=T, col.names=T, quote=F)
+write.table(probes_model, "probes_model (Split 6).txt", row.names=T, col.names=T, quote=F)
 
 
 #Save all the probes with their respective beta coefficient
-for (i in 1:length(l_probes_coef)){
-    l_probes_coef[[i]] <- l_probes_coef[[i]][-1]
-}
-
 l_probes_coef_unlist <- unlist(l_probes_coef)
 l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
 colnames(l_probes_coef_unlist_df) <- "Coef"
@@ -167,4 +163,4 @@ l_probes_unlist_df <- as.data.frame(l_probes_unlist)
 colnames(l_probes_unlist_df) <- "Probes"
 
 df_final <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
-write.table(df_final, "probes_coef (Split 1).txt", row.names=T, col.names=T, quote=F)
+write.table(df_final, "probes_coef (Split 6).txt", row.names=T, col.names=T, quote=F)
