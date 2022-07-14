@@ -874,7 +874,7 @@ write.table(df7, "shared_probes_2x2_0.4.txt", row.names=T, col.names=T, quote=F)
 
 # Boxplot - Pairwise split Overlap
 
-df_boxplot <- data.frame(matrix(0,nrow=50, ncol=2))
+df_boxplot <- data.frame(matrix(0,nrow=70, ncol=2))
 colnames(df_boxplot) <- c("Overlap_Proportion", "Model_Criteria")
                          
 # Model 1
@@ -943,7 +943,7 @@ for (row in 1:nrow(df6)){
         for (col in 1:ncol(df6)){
                 if (col > row){
                         i = i + 1
-                        df_boxplot[i,"Overlap_Proportion"] <- df5[row,col]
+                        df_boxplot[i,"Overlap_Proportion"] <- df6[row,col]
                         df_boxplot[i,"Model_Criteria"] <- "Models_0.5"
                 }
         }
@@ -955,7 +955,7 @@ for (row in 1:nrow(df7)){
         for (col in 1:ncol(df7)){
                 if (col > row){
                         i = i + 1
-                        df_boxplot[i,"Overlap_Proportion"] <- df5[row,col]
+                        df_boxplot[i,"Overlap_Proportion"] <- df7[row,col]
                         df_boxplot[i,"Model_Criteria"] <- "Models_0.4"
                 }
         }
@@ -996,23 +996,28 @@ write.table(metrics_df, "metrics_pairwise_overlap.txt", row.names=T, col.names=T
 
 # Boxplot for total number of probes.
 
-total_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/shared_probes_summary.txt")
-total_boxplot <- data.frame(matrix(0, nrow=25, ncol=2))
+total_boxplot <- data.frame(matrix(0, nrow=35, ncol=2))
 colnames(total_boxplot) <- c("Total_Probes", "Model_Criteria")
 
-total_boxplot[1:5, "Total_Probes"] <- c(total_probes[1,1], total_probes[1,2], total_probes[1,3], total_probes[1,4], total_probes[1,5])
+total_boxplot[1:5, "Total_Probes"] <- c(dim(pbs_model1_best)[1], dim(pbs_model2_best)[1], dim(pbs_model3_best)[1], dim(pbs_model4_best)[1], dim(pbs_model5_best)[1])
 total_boxplot[1:5, "Model_Criteria"] <- rep("Model 1", 5)
-total_boxplot[6:10, "Total_Probes"] <- c(total_probes[2,1], total_probes[2,2], total_probes[2,3], total_probes[2,4], total_probes[2,5])
+total_boxplot[6:10, "Total_Probes"] <- c(dim(probes1_0.9)[1], dim(probes2_0.9)[1], dim(probes3_0.9)[1], dim(probes4_0.9)[1], dim(probes5_0.9)[1])
 total_boxplot[6:10, "Model_Criteria"] <- rep("Models_0.9", 5)
-total_boxplot[11:15, "Total_Probes"] <- c(total_probes[3,1], total_probes[3,2], total_probes[3,3], total_probes[3,4], total_probes[3,5])
+total_boxplot[11:15, "Total_Probes"] <- c(dim(probes1_0.8)[1], dim(probes2_0.8)[1], dim(probes3_0.8)[1], dim(probes4_0.8)[1], dim(probes5_0.8)[1])
 total_boxplot[11:15, "Model_Criteria"] <- rep("Models_0.8", 5)
 total_boxplot[16:20, "Total_Probes"] <- c(dim(probes1_0.7)[1], dim(probes2_0.7)[1], dim(probes3_0.7)[1], dim(probes4_0.7)[1], dim(probes5_0.7)[1])
 total_boxplot[16:20, "Model_Criteria"] <- rep("Models_0.7", 5)
 total_boxplot[21:25, "Total_Probes"] <- c(dim(probes1_0.6)[1], dim(probes2_0.6)[1], dim(probes3_0.6)[1], dim(probes4_0.6)[1], dim(probes5_0.6)[1])
 total_boxplot[21:25, "Model_Criteria"] <- rep("Models_0.6", 5)
+total_boxplot[26:30, "Total_Probes"] <- c(dim(probes1_0.5)[1], dim(probes2_0.5)[1], dim(probes3_0.5)[1], dim(probes4_0.5)[1], dim(probes5_0.5)[1])
+total_boxplot[26:30, "Model_Criteria"] <- rep("Models_0.5", 5)
+total_boxplot[31:35, "Total_Probes"] <- c(dim(probes1_0.4)[1], dim(probes2_0.4)[1], dim(probes3_0.4)[1], dim(probes4_0.4)[1], dim(probes4_0.5)[1])
+total_boxplot[31:35, "Model_Criteria"] <- rep("Models_0.4", 5)
 
 
-total_boxplot$Model_Criteria <- factor(total_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6"))
+
+
+total_boxplot$Model_Criteria <- factor(total_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6", "Models_0.5", "Models_0.4" ))
 par(bg="aliceblue")
 boxplot(total_boxplot$Total_Probes ~ total_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Total number of probes", col="steelblue", main="Total number of probes in models across all training sets")
 dev.copy(pdf,"boxplot_total_probes.pdf")
