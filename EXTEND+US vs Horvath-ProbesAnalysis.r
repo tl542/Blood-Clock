@@ -253,7 +253,7 @@ colnames(probes_0.4_horvath_s5_df) <- "Shared_Probes"
 
 # Store the whole in df 
 
-prop_probes_summary <- data.frame(matrix(0, nrow=5, ncol=5))
+prop_probes_summary <- data.frame(matrix(0, nrow=5, ncol=7))
 rownames(prop_probes_summary) <- c("T1", "T2", "T3", "T4", "T5")
 colnames(prop_probes_summary) <- c("Overlap_Mod1_Horvath", "Overlap_0.9_Horvath", "Overlap_0.8_Horvath", "Overlap_0.7_Horvath", "Overlap_0.6_Horvath", "Overlap_0.5_Horvath",
                                    "Overlap_0.4_Horvath")
