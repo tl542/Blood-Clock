@@ -211,6 +211,7 @@ rownames(models5_0.6)[i] <- paste("Model", rownames(models5_0.6)[i])
 probes5_0.6 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.6),]
 
 
+
 # All the probes from models across train/test splits with cor >= 0.5 on test data
 
 #1st Split
@@ -442,14 +443,14 @@ shared_probes_0.9[2,2] <- dim(probes2_0.9)[1]/dim(probes2_0.9)[1]
 shared_probes_0.9[3,3] <- dim(probes3_0.9)[1]/dim(probes3_0.9)[1]
 shared_probes_0.9[4,4] <- dim(probes4_0.9)[1]/dim(probes4_0.9)[1]
 shared_probes_0.9[5,5] <- dim(probes5_0.9)[1]/dim(probes5_0.9)[1]
-shared_probes_0.9[1,2:5] <- c(dim(probes_0.9_12_df)[1]/dim(probes2_0.9)[1], dim(probes_0.9_13_df)[1]/dim(probes1_0.9)[1], dim(probes_0.9_14_df)[1]/dim(probes4_0.9)[1],
-                              dim(probes_0.9_15_df)[1]/dim(probes1_0.9)[1])
-shared_probes_0.9[2,3] <- dim(probes_0.9_23_df)[1]/dim(probes2_0.9)[1]
-shared_probes_0.9[2,4] <- dim(probes_0.9_24_df)[1]/dim(probes4_0.9)[1]
-shared_probes_0.9[2,5] <- dim(probes_0.9_25_df)[1]/dim(probes2_0.9)[1]
-shared_probes_0.9[3,4] <- dim(probes_0.9_34_df)[1]/dim(probes4_0.9)[1]
-shared_probes_0.9[3,5] <- dim(probes_0.9_35_df)[1]/dim(probes3_0.9)[1]
-shared_probes_0.9[4,5] <- dim(probes_0.9_45_df)[1]/dim(probes4_0.9)[1]
+shared_probes_0.9[1,2:5] <- c(probes_0.9_12_df[1] / min(dim(probes1_0.9)[1],dim(probes2_0.9)[1]), probes_0.9_13_df[1] / min(dim(probes1_0.9)[1],dim(probes3_0.9)[1]), 
+probes_0.9_14_df[1] / min(dim(probes1_0.9)[1],dim(probes4_0.9)[1]), probes_0.9_15_df[1] / min(dim(probes1_0.9)[1], dim(probes5_0.9)[1]))
+shared_probes_0.9[2,3] <- dim(probes_0.9_23_df)[1] / min(dim(probes2_0.9)[1], dim(probes3_0.9)[1])
+shared_probes_0.9[2,4] <- dim(probes_0.9_24_df)[1] / min(dim(probes2_0.9)[1], dim(probes4_0.9)[1])
+shared_probes_0.9[2,5] <- dim(probes_0.9_25_df)[1] / min(dim(probes2_0.9)[1], dim(probes5_0.9)[1])
+shared_probes_0.9[3,4] <- dim(probes_0.9_34_df)[1] / min(dim(probes3_0.9)[1], dim(probes4_0.9)[1])
+shared_probes_0.9[3,5] <- dim(probes_0.9_35_df)[1] / min(dim(probes3_0.9)[1], dim(probes5_0.9)[1])
+shared_probes_0.9[4,5] <- dim(probes_0.9_45_df)[1] / min(dim(probes4_0.9)[1], dim(probes5_0.9)[1])
                        
 shared_probes_0.9_matrix <- as.matrix(shared_probes_0.9)
 shared_probes_0.9_matrix_sym <- forceSymmetric(shared_probes_0.9_matrix)
@@ -511,7 +512,11 @@ probes_0.8_45 <- shared_probes_0.8_45 %>% reduce(inner_join, by='Selected_Probes
 probes_0.8_45_df <- as.data.frame(probes_0.8_45)
 colnames(probes_0.8_45_df) <- "Shared_Probes"
 
+
+
+
 # Store the whole in df
+
 
 shared_probes_0.8 <- data.frame(matrix(0, ncol=5, nrow=5))
 rownames(shared_probes_0.8) <- c("T1", "T2", "T3", "T4", "T5")
@@ -521,14 +526,14 @@ shared_probes_0.8[2,2] <- dim(probes2_0.8)[1]/dim(probes2_0.8)[1]
 shared_probes_0.8[3,3] <- dim(probes3_0.8)[1]/dim(probes3_0.8)[1]
 shared_probes_0.8[4,4] <- dim(probes4_0.8)[1]/dim(probes4_0.8)[1]
 shared_probes_0.8[5,5] <- dim(probes5_0.8)[1]/dim(probes5_0.8)[1]
-shared_probes_0.8[1,2:5] <- c(dim(probes_0.8_12_df)[1]/dim(probes1_0.8)[1], dim(probes_0.8_13_df)[1]/dim(probes1_0.8)[1], dim(probes_0.8_14_df)[1]/dim(probes4_0.8)[1], 
-                              dim(probes_0.8_15_df)[1]/dim(probes1_0.8)[1])
-shared_probes_0.8[2,3] <- dim(probes_0.8_23_df)[1]/dim(probes2_0.8)[1]
-shared_probes_0.8[2,4] <- dim(probes_0.8_24_df)[1]/dim(probes4_0.8)[1]
-shared_probes_0.8[2,5] <- dim(probes_0.8_25_df)[1]/dim(probes5_0.8)[1]
-shared_probes_0.8[3,4] <- dim(probes_0.8_34_df)[1]/dim(probes4_0.8)[1]
-shared_probes_0.8[3,5] <- dim(probes_0.8_35_df)[1]/dim(probes5_0.8)[1]
-shared_probes_0.8[4,5] <- dim(probes_0.8_45_df)[1]/dim(probes4_0.8)[1]
+shared_probes_0.8[1,2:5] <- c(probes_0.8_12_df[1] / min(dim(probes1_0.8)[1],dim(probes2_0.8)[1]), probes_0.8_13_df[1] / min(dim(probes1_0.8)[1],dim(probes3_0.8)[1]), 
+probes_0.8_14_df[1] / min(dim(probes1_0.8)[1],dim(probes4_0.8)[1]), probes_0.8_15_df[1] / min(dim(probes1_0.8)[1], dim(probes5_0.8)[1]))
+shared_probes_0.8[2,3] <- dim(probes_0.8_23_df)[1] / min(dim(probes2_0.8)[1], dim(probes3_0.8)[1])
+shared_probes_0.8[2,4] <- dim(probes_0.8_24_df)[1] / min(dim(probes2_0.8)[1], dim(probes4_0.8)[1])
+shared_probes_0.8[2,5] <- dim(probes_0.8_25_df)[1] / min(dim(probes2_0.8)[1], dim(probes5_0.8)[1])
+shared_probes_0.8[3,4] <- dim(probes_0.8_34_df)[1] / min(dim(probes3_0.8)[1], dim(probes4_0.8)[1])
+shared_probes_0.8[3,5] <- dim(probes_0.8_35_df)[1] / min(dim(probes3_0.8)[1], dim(probes5_0.8)[1])
+shared_probes_0.8[4,5] <- dim(probes_0.8_45_df)[1] / min(dim(probes4_0.8)[1], dim(probes5_0.8)[1])
                        
 shared_probes_0.8_matrix <- as.matrix(shared_probes_0.8)
 shared_probes_0.8_matrix_sym <- forceSymmetric(shared_probes_0.8_matrix)
@@ -604,15 +609,15 @@ shared_probes_0.7[2,2] <- dim(probes2_0.7)[1]/dim(probes2_0.7)[1]
 shared_probes_0.7[3,3] <- dim(probes3_0.7)[1]/dim(probes3_0.7)[1]
 shared_probes_0.7[4,4] <- dim(probes4_0.7)[1]/dim(probes4_0.7)[1]
 shared_probes_0.7[5,5] <- dim(probes5_0.7)[1]/dim(probes5_0.7)[1]
-shared_probes_0.7[1,2:5] <- c(dim(probes_0.7_12_df)[1]/dim(probes2_0.7)[1], dim(probes_0.7_13_df)[1]/dim(probes3_0.7)[1], dim(probes_0.7_14_df)[1]/dim(probes4_0.7)[1], 
-                              dim(probes_0.7_15_df)[1]/dim(probes5_0.7)[1])
-shared_probes_0.7[2,3] <- dim(probes_0.7_23_df)[1]/dim(probes2_0.7)[1]
-shared_probes_0.7[2,4] <- dim(probes_0.7_24_df)[1]/dim(probes4_0.7)[1]
-shared_probes_0.7[2,5] <- dim(probes_0.7_25_df)[1]/dim(probes5_0.7)[1]
-shared_probes_0.7[3,4] <- dim(probes_0.7_34_df)[1]/dim(probes3_0.7)[1]
-shared_probes_0.7[3,5] <- dim(probes_0.7_35_df)[1]/dim(probes5_0.7)[1]
-shared_probes_0.7[4,5] <- dim(probes_0.7_45_df)[1]/dim(probes5_0.7)[1]
-
+shared_probes_0.7[1,2:5] <- c(probes_0.7_12_df[1] / min(dim(probes1_0.7)[1],dim(probes2_0.7)[1]), probes_0.7_13_df[1] / min(dim(probes1_0.7)[1],dim(probes3_0.7)[1]), 
+probes_0.7_14_df[1] / min(dim(probes1_0.7)[1],dim(probes4_0.7)[1]), probes_0.7_15_df[1] / min(dim(probes1_0.7)[1], dim(probes5_0.7)[1]))
+shared_probes_0.7[2,3] <- dim(probes_0.7_23_df)[1] / min(dim(probes2_0.7)[1], dim(probes3_0.7)[1])
+shared_probes_0.7[2,4] <- dim(probes_0.7_24_df)[1] / min(dim(probes2_0.7)[1], dim(probes4_0.7)[1])
+shared_probes_0.7[2,5] <- dim(probes_0.7_25_df)[1] / min(dim(probes2_0.7)[1], dim(probes5_0.7)[1])
+shared_probes_0.7[3,4] <- dim(probes_0.7_34_df)[1] / min(dim(probes3_0.7)[1], dim(probes4_0.7)[1])
+shared_probes_0.7[3,5] <- dim(probes_0.7_35_df)[1] / min(dim(probes3_0.7)[1], dim(probes5_0.7)[1])
+shared_probes_0.7[4,5] <- dim(probes_0.7_45_df)[1] / min(dim(probes4_0.7)[1], dim(probes5_0.7)[1])
+                       
 shared_probes_0.7_matrix <- as.matrix(shared_probes_0.7)
 shared_probes_0.7_matrix_sym <- forceSymmetric(shared_probes_0.7_matrix)
 shared_probes_0.7_matrix_sym <- as.matrix(shared_probes_0.7_matrix_sym)
@@ -686,20 +691,185 @@ shared_probes_0.6[2,2] <- dim(probes2_0.6)[1]/dim(probes2_0.6)[1]
 shared_probes_0.6[3,3] <- dim(probes3_0.6)[1]/dim(probes3_0.6)[1]
 shared_probes_0.6[4,4] <- dim(probes4_0.6)[1]/dim(probes4_0.6)[1]
 shared_probes_0.6[5,5] <- dim(probes5_0.6)[1]/dim(probes5_0.6)[1]
-shared_probes_0.6[1,2:5] <- c(dim(probes_0.6_12_df)[1]/dim(probes1_0.6)[1], dim(probes_0.6_13_df)[1]/dim(probes3_0.6)[1], dim(probes_0.6_14_df)[1]/dim(probes4_0.6)[1], 
-                              dim(probes_0.6_15_df)[1]/dim(probes5_0.6)[1])
-shared_probes_0.6[2,3] <- dim(probes_0.6_23_df)[1]/dim(probes3_0.6)[1]
-shared_probes_0.6[2,4] <- dim(probes_0.6_24_df)[1]/dim(probes4_0.6)[1]
-shared_probes_0.6[2,5] <- dim(probes_0.6_25_df)[1]/dim(probes5_0.6)[1]
-shared_probes_0.6[3,4] <- dim(probes_0.6_34_df)[1]/dim(probes3_0.6)[1]
-shared_probes_0.6[3,5] <- dim(probes_0.6_35_df)[1]/dim(probes5_0.6)[1]
-shared_probes_0.6[4,5] <- dim(probes_0.6_45_df)[1]/dim(probes5_0.6)[1]
-
+shared_probes_0.6[1,2:5] <- c(probes_0.6_12_df[1] / min(dim(probes1_0.6)[1],dim(probes2_0.6)[1]), probes_0.6_13_df[1] / min(dim(probes1_0.6)[1],dim(probes3_0.6)[1]), 
+probes_0.6_14_df[1] / min(dim(probes1_0.6)[1],dim(probes4_0.6)[1]), probes_0.6_15_df[1] / min(dim(probes1_0.6)[1], dim(probes5_0.6)[1]))
+shared_probes_0.6[2,3] <- dim(probes_0.6_23_df)[1] / min(dim(probes2_0.6)[1], dim(probes3_0.6)[1])
+shared_probes_0.6[2,4] <- dim(probes_0.6_24_df)[1] / min(dim(probes2_0.6)[1], dim(probes4_0.6)[1])
+shared_probes_0.6[2,5] <- dim(probes_0.6_25_df)[1] / min(dim(probes2_0.6)[1], dim(probes5_0.6)[1])
+shared_probes_0.6[3,4] <- dim(probes_0.6_34_df)[1] / min(dim(probes3_0.6)[1], dim(probes4_0.6)[1])
+shared_probes_0.6[3,5] <- dim(probes_0.6_35_df)[1] / min(dim(probes3_0.6)[1], dim(probes5_0.6)[1])
+shared_probes_0.6[4,5] <- dim(probes_0.6_45_df)[1] / min(dim(probes4_0.6)[1], dim(probes5_0.6)[1])
+                       
 shared_probes_0.6_matrix <- as.matrix(shared_probes_0.6)
 shared_probes_0.6_matrix_sym <- forceSymmetric(shared_probes_0.6_matrix)
 shared_probes_0.6_matrix_sym <- as.matrix(shared_probes_0.6_matrix_sym)
 df5 <- as.data.frame(shared_probes_0.6_matrix_sym)
-write.table(df5, "shared_probes_2x2_0.6.txt", row.names=T, col.names=T, quote=F)
+write.table(df5, "shared_probes_2x2_0.6.txt", row.names=T, col.names=T, quote=F))
+
+
+
+# Shared probes across pairwise splits - Models with cor >= 0.5
+
+
+shared_probes_0.5_12 <- list(probes1_0.5["Selected_Probes"], probes2_0.5["Selected_Probes"])
+probes_0.5_12 <- shared_probes_0.5_12 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_12_df <- as.data.frame(probes_0.5_12)
+colnames(probes_0.5_12_df) <- "Shared_Probes"
+
+shared_probes_0.5_13 <- list(probes1_0.5["Selected_Probes"], probes3_0.5["Selected_Probes"])
+probes_0.5_13 <- shared_probes_0.5_13 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_13_df <- as.data.frame(probes_0.5_13)
+colnames(probes_0.5_13_df) <- "Shared_Probes"
+
+shared_probes_0.5_14 <- list(probes1_0.5["Selected_Probes"], probes4_0.5["Selected_Probes"])
+probes_0.5_14 <- shared_probes_0.5_14 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_14_df <- as.data.frame(probes_0.5_14)
+colnames(probes_0.5_14_df) <- "Shared_Probes"
+
+shared_probes_0.5_15 <- list(probes1_0.5["Selected_Probes"], probes5_0.5["Selected_Probes"])
+probes_0.5_15 <- shared_probes_0.5_15 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_15_df <- as.data.frame(probes_0.5_15)
+colnames(probes_0.5_15_df) <- "Shared_Probes"
+
+shared_probes_0.5_23 <- list(probes2_0.5["Selected_Probes"], probes3_0.5["Selected_Probes"])
+probes_0.5_23 <- shared_probes_0.5_23 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_23_df <- as.data.frame(probes_0.5_23)
+colnames(probes_0.5_23_df) <- "Shared_Probes"
+
+shared_probes_0.5_24 <- list(probes2_0.5["Selected_Probes"], probes4_0.5["Selected_Probes"])
+probes_0.5_24 <- shared_probes_0.5_24 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_24_df <- as.data.frame(probes_0.5_24)
+colnames(probes_0.5_24_df) <- "Shared_Probes"
+
+shared_probes_0.5_25 <- list(probes2_0.5["Selected_Probes"], probes5_0.5["Selected_Probes"])
+probes_0.5_25 <- shared_probes_0.5_25 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_25_df <- as.data.frame(probes_0.5_25)
+colnames(probes_0.5_25_df) <- "Shared_Probes"
+
+shared_probes_0.5_34 <- list(probes3_0.5["Selected_Probes"], probes4_0.5["Selected_Probes"])
+probes_0.5_34 <- shared_probes_0.5_34 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_34_df <- as.data.frame(probes_0.5_34)
+colnames(probes_0.5_34_df) <- "Shared_Probes"
+
+shared_probes_0.5_35 <- list(probes3_0.5["Selected_Probes"], probes5_0.5["Selected_Probes"])
+probes_0.5_35 <- shared_probes_0.5_35 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_35_df <- as.data.frame(probes_0.5_35)
+colnames(probes_0.5_35_df) <- "Shared_Probes"
+
+shared_probes_0.5_45 <- list(probes4_0.5["Selected_Probes"], probes5_0.5["Selected_Probes"])
+probes_0.5_45 <- shared_probes_0.5_45 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_45_df <- as.data.frame(probes_0.5_45)
+colnames(probes_0.5_45_df) <- "Shared_Probes"
+
+# Store the whole in df
+
+shared_probes_0.5 <- data.frame(matrix(0, ncol=5, nrow=5))
+rownames(shared_probes_0.5) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(shared_probes_0.5) <- c("T1", "T2", "T3", "T4", "T5")
+shared_probes_0.5[1,1] <- dim(probes1_0.5)[1]/dim(probes1_0.5)[1]
+shared_probes_0.5[2,2] <- dim(probes2_0.5)[1]/dim(probes2_0.5)[1]
+shared_probes_0.5[3,3] <- dim(probes3_0.5)[1]/dim(probes3_0.5)[1]
+shared_probes_0.5[4,4] <- dim(probes4_0.5)[1]/dim(probes4_0.5)[1]
+shared_probes_0.5[5,5] <- dim(probes5_0.5)[1]/dim(probes5_0.5)[1]
+shared_probes_0.5[1,2:5] <- c(probes_0.5_12_df[1] / min(dim(probes1_0.5)[1],dim(probes2_0.5)[1]), probes_0.5_13_df[1] / min(dim(probes1_0.5)[1],dim(probes3_0.5)[1]), 
+probes_0.5_14_df[1] / min(dim(probes1_0.5)[1],dim(probes4_0.5)[1]), probes_0.5_15_df[1] / min(dim(probes1_0.5)[1], dim(probes5_0.5)[1]))
+shared_probes_0.5[2,3] <- dim(probes_0.5_23_df)[1] / min(dim(probes2_0.5)[1], dim(probes3_0.5)[1])
+shared_probes_0.5[2,4] <- dim(probes_0.5_24_df)[1] / min(dim(probes2_0.5)[1], dim(probes4_0.5)[1])
+shared_probes_0.5[2,5] <- dim(probes_0.5_25_df)[1] / min(dim(probes2_0.5)[1], dim(probes5_0.5)[1])
+shared_probes_0.5[3,4] <- dim(probes_0.5_34_df)[1] / min(dim(probes3_0.5)[1], dim(probes4_0.5)[1])
+shared_probes_0.5[3,5] <- dim(probes_0.5_35_df)[1] / min(dim(probes3_0.5)[1], dim(probes5_0.5)[1])
+shared_probes_0.5[4,5] <- dim(probes_0.5_45_df)[1] / min(dim(probes4_0.5)[1], dim(probes5_0.5)[1])
+                       
+shared_probes_0.5_matrix <- as.matrix(shared_probes_0.5)
+shared_probes_0.5_matrix_sym <- forceSymmetric(shared_probes_0.5_matrix)
+shared_probes_0.5_matrix_sym <- as.matrix(shared_probes_0.5_matrix_sym)
+df6 <- as.data.frame(shared_probes_0.5_matrix_sym)
+write.table(df6, "shared_probes_2x2_0.5.txt", row.names=T, col.names=T, quote=F))
+
+
+# Shared probes across pairwise splits - Models with cor >= 0.4
+
+
+shared_probes_0.4_12 <- list(probes1_0.4["Selected_Probes"], probes2_0.4["Selected_Probes"])
+probes_0.4_12 <- shared_probes_0.4_12 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_12_df <- as.data.frame(probes_0.4_12)
+colnames(probes_0.4_12_df) <- "Shared_Probes"
+
+shared_probes_0.4_13 <- list(probes1_0.4["Selected_Probes"], probes3_0.4["Selected_Probes"])
+probes_0.4_13 <- shared_probes_0.4_13 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_13_df <- as.data.frame(probes_0.4_13)
+colnames(probes_0.4_13_df) <- "Shared_Probes"
+
+shared_probes_0.4_14 <- list(probes1_0.4["Selected_Probes"], probes4_0.4["Selected_Probes"])
+probes_0.4_14 <- shared_probes_0.4_14 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_14_df <- as.data.frame(probes_0.4_14)
+colnames(probes_0.4_14_df) <- "Shared_Probes"
+
+shared_probes_0.4_15 <- list(probes1_0.4["Selected_Probes"], probes5_0.4["Selected_Probes"])
+probes_0.4_15 <- shared_probes_0.4_15 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_15_df <- as.data.frame(probes_0.4_15)
+colnames(probes_0.4_15_df) <- "Shared_Probes"
+
+shared_probes_0.4_23 <- list(probes2_0.4["Selected_Probes"], probes3_0.4["Selected_Probes"])
+probes_0.4_23 <- shared_probes_0.4_23 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_23_df <- as.data.frame(probes_0.4_23)
+colnames(probes_0.4_23_df) <- "Shared_Probes"
+
+shared_probes_0.4_24 <- list(probes2_0.4["Selected_Probes"], probes4_0.4["Selected_Probes"])
+probes_0.4_24 <- shared_probes_0.4_24 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_24_df <- as.data.frame(probes_0.4_24)
+colnames(probes_0.4_24_df) <- "Shared_Probes"
+
+shared_probes_0.4_25 <- list(probes2_0.4["Selected_Probes"], probes5_0.4["Selected_Probes"])
+probes_0.4_25 <- shared_probes_0.4_25 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_25_df <- as.data.frame(probes_0.4_25)
+colnames(probes_0.4_25_df) <- "Shared_Probes"
+
+shared_probes_0.4_34 <- list(probes3_0.4["Selected_Probes"], probes4_0.4["Selected_Probes"])
+probes_0.4_34 <- shared_probes_0.4_34 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_34_df <- as.data.frame(probes_0.4_34)
+colnames(probes_0.4_34_df) <- "Shared_Probes"
+
+shared_probes_0.4_35 <- list(probes3_0.4["Selected_Probes"], probes5_0.4["Selected_Probes"])
+probes_0.4_35 <- shared_probes_0.4_35 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_35_df <- as.data.frame(probes_0.4_35)
+colnames(probes_0.4_35_df) <- "Shared_Probes"
+
+shared_probes_0.4_45 <- list(probes4_0.4["Selected_Probes"], probes5_0.4["Selected_Probes"])
+probes_0.4_45 <- shared_probes_0.4_45 %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_45_df <- as.data.frame(probes_0.4_45)
+colnames(probes_0.4_45_df) <- "Shared_Probes"
+
+# Store the whole in df
+
+shared_probes_0.4 <- data.frame(matrix(0, ncol=5, nrow=5))
+rownames(shared_probes_0.4) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(shared_probes_0.4) <- c("T1", "T2", "T3", "T4", "T5")
+shared_probes_0.4[1,1] <- dim(probes1_0.4)[1]/dim(probes1_0.4)[1]
+shared_probes_0.4[2,2] <- dim(probes2_0.4)[1]/dim(probes2_0.4)[1]
+shared_probes_0.4[3,3] <- dim(probes3_0.4)[1]/dim(probes3_0.4)[1]
+shared_probes_0.4[4,4] <- dim(probes4_0.4)[1]/dim(probes4_0.4)[1]
+shared_probes_0.4[5,5] <- dim(probes5_0.4)[1]/dim(probes5_0.4)[1]
+shared_probes_0.4[1,2:5] <- c(probes_0.4_12_df[1] / min(dim(probes1_0.4)[1],dim(probes2_0.4)[1]), probes_0.4_13_df[1] / min(dim(probes1_0.4)[1],dim(probes3_0.4)[1]), 
+probes_0.4_14_df[1] / min(dim(probes1_0.4)[1],dim(probes4_0.4)[1]), probes_0.4_15_df[1] / min(dim(probes1_0.4)[1], dim(probes5_0.4)[1]))
+shared_probes_0.4[2,3] <- dim(probes_0.4_23_df)[1] / min(dim(probes2_0.4)[1], dim(probes3_0.4)[1])
+shared_probes_0.4[2,4] <- dim(probes_0.4_24_df)[1] / min(dim(probes2_0.4)[1], dim(probes4_0.4)[1])
+shared_probes_0.4[2,5] <- dim(probes_0.4_25_df)[1] / min(dim(probes2_0.4)[1], dim(probes5_0.4)[1])
+shared_probes_0.4[3,4] <- dim(probes_0.4_34_df)[1] / min(dim(probes3_0.4)[1], dim(probes4_0.4)[1])
+shared_probes_0.4[3,5] <- dim(probes_0.4_35_df)[1] / min(dim(probes3_0.4)[1], dim(probes5_0.4)[1])
+shared_probes_0.4[4,5] <- dim(probes_0.4_45_df)[1] / min(dim(probes4_0.4)[1], dim(probes5_0.4)[1])
+                       
+shared_probes_0.4_matrix <- as.matrix(shared_probes_0.4)
+shared_probes_0.4_matrix_sym <- forceSymmetric(shared_probes_0.4_matrix)
+shared_probes_0.4_matrix_sym <- as.matrix(shared_probes_0.4_matrix_sym)
+df7 <- as.data.frame(shared_probes_0.4_matrix_sym)
+write.table(df7, "shared_probes_2x2_0.4.txt", row.names=T, col.names=T, quote=F))
+
+
+
+
+
+
 
 
 # Boxplot - Pairwise split Overlap
@@ -767,7 +937,34 @@ for (row in 1:nrow(df5)){
         }
 }
 
-df_boxplot$Model_Criteria <- factor(df_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6"))
+# cor >= 0.5
+i = 50
+for (row in 1:nrow(df6)){
+        for (col in 1:ncol(df6)){
+                if (col > row){
+                        i = i + 1
+                        df_boxplot[i,"Overlap_Proportion"] <- df5[row,col]
+                        df_boxplot[i,"Model_Criteria"] <- "Models_0.5"
+                }
+        }
+}
+
+# cor >= 0.4
+i = 60
+for (row in 1:nrow(df7)){
+        for (col in 1:ncol(df7)){
+                if (col > row){
+                        i = i + 1
+                        df_boxplot[i,"Overlap_Proportion"] <- df5[row,col]
+                        df_boxplot[i,"Model_Criteria"] <- "Models_0.4"
+                }
+        }
+}
+
+
+
+
+df_boxplot$Model_Criteria <- factor(df_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6", "Models_0.5", "Models_0.4"))
 par(bg="aliceblue")
 boxplot(df_boxplot$Overlap_Proportion ~ df_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue", main="Proportion of probe overlap across pairwise training sets")
 dev.copy(pdf,"boxplot_probes.pdf")
@@ -790,6 +987,8 @@ metrics_df[4,] <- c(mean(df_boxplot$Overlap_Proportion[31:40]), median(df_boxplo
 metrics_df[5,] <- c(mean(df_boxplot$Overlap_Proportion[41:50]), median(df_boxplot$Overlap_Proportion[41:50]), quantile(df_boxplot$Overlap_Proportion[41:50])[2], 
                     quantile(df_boxplot$Overlap_Proportion[41:50])[4], quantile(df_boxplot$Overlap_Proportion[41:50])[1], quantile(df_boxplot$Overlap_Proportion[41:50])[5])
 
+metrics_df[6,] <- c(mean(df_boxplot$Overlap_Proportion[51:60]), median(df_boxplot$Overlap_Proportion[51:60]), quantile(df_boxplot$Overlap_Proportion[51:60])[2], 
+                    quantile(df_boxplot$Overlap_Proportion[51:60])[4], quantile(df_boxplot$Overlap_Proportion[51:60])[1], quantile(df_boxplot$Overlap_Proportion[51:60])[5])
 
 
 write.table(metrics_df, "metrics_pairwise_overlap.txt", row.names=T, col.names=T, quote=F)
