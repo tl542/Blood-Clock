@@ -182,30 +182,105 @@ probes_0.6_horvath_s5_df <- as.data.frame(probes_0.6_horvath_s5)
 colnames(probes_0.6_horvath_s5_df) <- "Shared_Probes"
 
 
+# Overlap between Horvath Clock and Models with cor >= 0.5 - Five Splits
+
+# Shared Probes between Models with cor >= 0.5 from Split 1 and Horvath clock
+shared_horvath_0.5_s1 <- list(probes1_0.5["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.5_horvath_s1 <- shared_horvath_0.5_s1  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_horvath_s1_df <- as.data.frame(probes_0.5_horvath_s1)
+colnames(probes_0.5_horvath_s1_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.5 from Split 2 and Horvath clock
+shared_horvath_0.5_s2 <- list(probes2_0.5["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.5_horvath_s2 <- shared_horvath_0.5_s2  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_horvath_s2_df <- as.data.frame(probes_0.5_horvath_s2)
+colnames(probes_0.5_horvath_s2_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.5 from Split 3 and Horvath clock
+shared_horvath_0.5_s3 <- list(probes3_0.5["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.5_horvath_s3 <- shared_horvath_0.5_s3  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_horvath_s3_df <- as.data.frame(probes_0.5_horvath_s3)
+colnames(probes_0.5_horvath_s3_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.5 from Split 4 and Horvath clock
+shared_horvath_0.5_s4 <- list(probes4_0.5["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.5_horvath_s4 <- shared_horvath_0.5_s4  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_horvath_s4_df <- as.data.frame(probes_0.5_horvath_s4)
+colnames(probes_0.5_horvath_s4_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.5 from Split 5 and Horvath clock
+shared_horvath_0.5_s5 <- list(probes5_0.5["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.5_horvath_s5 <- shared_horvath_0.5_s5  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.5_horvath_s5_df <- as.data.frame(probes_0.5_horvath_s5)
+colnames(probes_0.5_horvath_s5_df) <- "Shared_Probes"
+
+
+
+# Overlap between Horvath Clock and Models with cor >= 0.4 - Five Splits
+
+# Shared Probes between Models with cor >= 0.4 from Split 1 and Horvath clock
+shared_horvath_0.4_s1 <- list(probes1_0.4["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.4_horvath_s1 <- shared_horvath_0.4_s1  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_horvath_s1_df <- as.data.frame(probes_0.4_horvath_s1)
+colnames(probes_0.4_horvath_s1_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.4 from Split 2 and Horvath clock
+shared_horvath_0.4_s2 <- list(probes2_0.4["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.4_horvath_s2 <- shared_horvath_0.4_s2  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_horvath_s2_df <- as.data.frame(probes_0.4_horvath_s2)
+colnames(probes_0.4_horvath_s2_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.4 from Split 3 and Horvath clock
+shared_horvath_0.4_s3 <- list(probes3_0.4["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.4_horvath_s3 <- shared_horvath_0.4_s3  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_horvath_s3_df <- as.data.frame(probes_0.4_horvath_s3)
+colnames(probes_0.4_horvath_s3_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.4 from Split 4 and Horvath clock
+shared_horvath_0.4_s4 <- list(probes4_0.4["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.4_horvath_s4 <- shared_horvath_0.4_s4  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_horvath_s4_df <- as.data.frame(probes_0.4_horvath_s4)
+colnames(probes_0.4_horvath_s4_df) <- "Shared_Probes"
+
+# Shared Probes between Models with cor >= 0.4 from Split 5 and Horvath clock
+shared_horvath_0.4_s5 <- list(probes5_0.4["Selected_Probes"], horvath_probes["Selected_Probes"])
+probes_0.4_horvath_s5 <- shared_horvath_0.4_s5  %>% reduce(inner_join, by='Selected_Probes')
+probes_0.4_horvath_s5_df <- as.data.frame(probes_0.4_horvath_s5)
+colnames(probes_0.4_horvath_s5_df) <- "Shared_Probes"
+
+
+
+
 # Store the whole in df 
 
 prop_probes_summary <- data.frame(matrix(0, nrow=5, ncol=5))
 rownames(prop_probes_summary) <- c("T1", "T2", "T3", "T4", "T5")
-colnames(prop_probes_summary) <- c("Overlap_Mod1_Horvath", "Overlap_0.9_Horvath", "Overlap_0.8_Horvath", "Overlap_0.7_Horvath", "Overlap_0.6_Horvath")
+colnames(prop_probes_summary) <- c("Overlap_Mod1_Horvath", "Overlap_0.9_Horvath", "Overlap_0.8_Horvath", "Overlap_0.7_Horvath", "Overlap_0.6_Horvath", "Overlap_0.5_Horvath",
+                                   "Overlap_0.4_Horvath")
 prop_probes_summary[1,] <- c(dim(probes_Mod1_horvath_s1_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s1_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s1_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s1_df)[1]/dim(horvath_probes)[1], 
-                             dim(probes_0.6_horvath_s1_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s1_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1])
 
 prop_probes_summary[2,] <- c(dim(probes_Mod1_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s2_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s2_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s2_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 prop_probes_summary[3,] <- c(dim(probes_Mod1_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s3_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s3_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s3_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 prop_probes_summary[4,] <- c(dim(probes_Mod1_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s4_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s4_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s4_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 prop_probes_summary[5,] <- c(dim(probes_Mod1_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s5_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s5_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s5_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 write.table(prop_probes_summary, "shared_probes_horvath_summary(prop).txt", row.names=T, col.names=T, quote=F)
 
@@ -224,9 +299,14 @@ horvath_boxplot[16:20,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.7_H
 horvath_boxplot[16:20,"Model_Criteria"] <- "Models_0.7"
 horvath_boxplot[21:25,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.6_Horvath
 horvath_boxplot[21:25,"Model_Criteria"] <- "Models_0.6"
+horvath_boxplot[26:30,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.5_Horvath
+horvath_boxplot[26:30,"Model_Criteria"] <- "Models_0.5"
+horvath_boxplot[31:35,"Overlap_Proportion"] <- prop_probes_summary$Overlap_0.4_Horvath
+horvath_boxplot[31:35,"Model_Criteria"] <- "Models_0.4"
 
 
-horvath_boxplot$Model_Criteria <- factor(horvath_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6"))
+
+horvath_boxplot$Model_Criteria <- factor(horvath_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6", "Models_0.5", "Models_0.4"))
 par(bg="aliceblue")
 boxplot(horvath_boxplot$Overlap_Proportion ~ horvath_boxplot$Model_Criteria, xlab="Model_Criteria", ylab="Proportion of probe overlap", col="steelblue", main="Proportion of Horvath clock probes overlapping with study probes")
 dev.copy(pdf, "horvath_probes.pdf")
