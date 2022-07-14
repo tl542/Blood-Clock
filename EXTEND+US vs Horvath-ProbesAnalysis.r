@@ -287,7 +287,7 @@ write.table(prop_probes_summary, "shared_probes_horvath_summary(prop).txt", row.
 
 # Boxplot for Horvath/Current Study probe overlap
 
-horvath_boxplot <- data.frame(matrix(0, nrow=25, ncol=2))
+horvath_boxplot <- data.frame(matrix(0, nrow=35, ncol=2))
 colnames(horvath_boxplot) <- c("Overlap_Proportion", "Model_Criteria")
 horvath_boxplot[1:5,"Overlap_Proportion"] <- prop_probes_summary$Overlap_Mod1_Horvath
 horvath_boxplot[1:5,"Model_Criteria"] <- "Model 1"
