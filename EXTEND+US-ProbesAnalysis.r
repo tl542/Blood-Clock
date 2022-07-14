@@ -211,6 +211,86 @@ rownames(models5_0.6)[i] <- paste("Model", rownames(models5_0.6)[i])
 probes5_0.6 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.6),]
 
 
+# All the probes from models across train/test splits with cor >= 0.5 on test data
+
+#1st Split
+models1_0.5 <- table1[table1$Correlation >= 0.5,]
+for (i in 1:nrow(models1_0.5)){
+rownames(models1_0.5)[i] <- paste("Model", rownames(models1_0.5)[i])
+}
+probes1_0.5 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.5),]
+
+#2nd Split
+models2_0.5 <- table2[table2$Correlation >= 0.5,]
+for (i in 1:nrow(models2_0.5)){
+rownames(models2_0.5)[i] <- paste("Model", rownames(models2_0.5)[i])
+}
+probes2_0.5 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.5),]
+
+#3th Split
+models3_0.5 <- table3[table3$Correlation >= 0.5,]
+for (i in 1:nrow(models3_0.5)){
+rownames(models3_0.5)[i] <- paste("Model", rownames(models3_0.5)[i])
+}
+probes3_0.5 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.5),]
+
+#4th Split
+models4_0.5 <- table4[table4$Correlation >= 0.5,]
+for (i in 1:nrow(models4_0.5)){
+rownames(models4_0.5)[i] <- paste("Model", rownames(models4_0.5)[i])
+}
+probes4_0.5 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.5),]
+
+#5th Split
+models5_0.5 <- table5[table5$Correlation >= 0.5,]
+for (i in 1:nrow(models5_0.5)){
+rownames(models5_0.5)[i] <- paste("Model", rownames(models5_0.5)[i])
+}
+probes5_0.5 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.5),]
+
+
+# All the probes from models across train/test splits with cor >= 0.4 on test data
+
+#1st Split
+models1_0.4 <- table1[table1$Correlation >= 0.4,]
+for (i in 1:nrow(models1_0.4)){
+rownames(models1_0.4)[i] <- paste("Model", rownames(models1_0.4)[i])
+}
+probes1_0.4 <- probes_model1[probes_model1$Probes_Model %in% rownames(models1_0.4),]
+
+#2nd Split
+models2_0.4 <- table2[table2$Correlation >= 0.4,]
+for (i in 1:nrow(models2_0.4)){
+rownames(models2_0.4)[i] <- paste("Model", rownames(models2_0.4)[i])
+}
+probes2_0.4 <- probes_model2[probes_model2$Probes_Model %in% rownames(models2_0.4),]
+
+#3th Split
+models3_0.4 <- table3[table3$Correlation >= 0.4,]
+for (i in 1:nrow(models3_0.4)){
+rownames(models3_0.4)[i] <- paste("Model", rownames(models3_0.4)[i])
+}
+probes3_0.4 <- probes_model3[probes_model3$Probes_Model %in% rownames(models3_0.4),]
+
+#4th Split
+models4_0.4 <- table4[table4$Correlation >= 0.4,]
+for (i in 1:nrow(models4_0.4)){
+rownames(models4_0.4)[i] <- paste("Model", rownames(models4_0.4)[i])
+}
+probes4_0.4 <- probes_model4[probes_model4$Probes_Model %in% rownames(models4_0.4),]
+
+#5th Split
+models5_0.4 <- table5[table5$Correlation >= 0.4,]
+for (i in 1:nrow(models5_0.4)){
+rownames(models5_0.4)[i] <- paste("Model", rownames(models5_0.4)[i])
+}
+probes5_0.4 <- probes_model5[probes_model5$Probes_Model %in% rownames(models5_0.4),]
+
+
+
+
+
+
 
 
 
