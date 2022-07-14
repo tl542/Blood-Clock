@@ -116,5 +116,13 @@ rmse_cor_nprobes <- rmse_cor_nprobes[c("Correlation", "RMSE", "nProbes")]
 
 table_comparison <- rbind(cor_rmse_nprobes, rmse_cor_nprobes[1,])
 rownames(table_comparison)[23] <- "Model1-Split2"
+write.table(table_comparison, "table_comparison_rgwvsgw.txt", row.names=T, col.names=T, quote=F)
+
+table_comparison_1_12 <- table_comparison[1:12,]
+table_comparison_13_23 <- table_comparison[13:23,]
+write.table(table_comparison_1_12, "table_comparison_1_12.txt", row.names=T, col.names=T, quote=F)
+write.table(table_comparison_13_23, "table_comparison_13_23.txt", row.names=T, col.names=T, quote=F)
+
+
 
 
