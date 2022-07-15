@@ -341,6 +341,146 @@ probes_coef_split5 <- probes_coef_split5[,c(1,2,5)]
 colnames(probes_coef_split5)[1:2] <- c("Selected_Probes", "Coef")
 
 
+# Average magnitude of probe coefficients overlapping with Horvath clock probes
+
+library(data.table)
+
+# Split 1
+probes_Mod1_horvath_s1_df_copy <- copy(probes_Mod1_horvath_s1_df)
+colnames(probes_Mod1_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_Mod1_horvath_s1 <- merge(probes_Mod1_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.9_horvath_s1_df_copy <- copy(probes_0.9_horvath_s1_df)
+colnames(probes_0.9_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.9_horvath_s1 <- merge(probes_0.9_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.8_horvath_s1_df_copy <- copy(probes_0.8_horvath_s1_df)
+colnames(probes_0.8_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.8_horvath_s1 <- merge(probes_0.8_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.7_horvath_s1_df_copy <- copy(probes_0.7_horvath_s1_df)
+colnames(probes_0.7_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.7_horvath_s1 <- merge(probes_0.7_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.6_horvath_s1_df_copy <- copy(probes_0.6_horvath_s1_df)
+colnames(probes_0.6_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.6_horvath_s1 <- merge(probes_0.6_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.5_horvath_s1_df_copy <- copy(probes_0.5_horvath_s1_df)
+colnames(probes_0.5_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.5_horvath_s1 <- merge(probes_0.5_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.4_horvath_s1_df_copy <- copy(probes_0.4_horvath_s1_df)
+colnames(probes_0.4_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.4_horvath_s1 <- merge(probes_0.4_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+
+
+coefs_s1 <- data.frame(matrix(0, nrow=7, ncol=2))
+colnames(coefs_s1) <- c("Coefs", "Model_Criteria")
+coefs_s1$Coefs <- c(mean(coefs_shared_probes_Mod1_horvath_s1$Coef), mean(coefs_shared_probes_0.9_horvath_s1$Coef), mean(coefs_shared_probes_0.8_horvath_s1$Coef),
+                    mean(coefs_shared_probes_0.7_horvath_s1$Coef), mean(coefs_shared_probes_0.6_horvath_s1$Coef), mean(coefs_shared_probes_0.5_horvath_s1$Coef),
+                    mean(coefs_shared_probes_0.4_horvath_s1$Coef))
+
+threshold <- seq(1,0.4,by=-0.1)
+for (i in 2:nrow(coefs_s1)){
+  coefs_s1$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
+
+  
+
+
+                  
+                  
+
+
+
+probes_Mod1_horvath_s2_df_copy <- copy(probes_Mod1_horvath_s2_df)
+colnames(probes_Mod1_horvath_s2_df_copy) <- "Selected_Probes"
+coefs_shared_probes_Mod1_horvarh_s2 <- merge(probes_Mod1_horvath_s2_df_copy, probes_coef_split2, by="Selected_Probes")
+
+probes_Mod1_horvath_s3_df_copy <- copy(probes_Mod1_horvath_s3_df)
+colnames(probes_Mod1_horvath_s3_df_copy) <- "Selected_Probes"
+coefs_shared_probes_Mod1_horvarh_s3 <- merge(probes_Mod1_horvath_s3_df_copy, probes_coef_split3, by="Selected_Probes")
+
+probes_Mod1_horvath_s4_df_copy <- copy(probes_Mod1_horvath_s4_df)
+colnames(probes_Mod1_horvath_s4_df_copy) <- "Selected_Probes"
+coefs_shared_probes_Mod1_horvarh_s4 <- merge(probes_Mod1_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
+
+probes_Mod1_horvath_s5_df_copy <- copy(probes_Mod1_horvath_s5_df)
+colnames(probes_Mod1_horvath_s5_df_copy) <- "Selected_Probes"
+coefs_shared_probes_Mod1_horvarh_s5 <- merge(probes_Mod1_horvath_s5_df_copy, probes_coef_split5, by="Selected_Probes")
+
+
+                         
+           
+
+probes_i_horvath_s2_df_copy <- copy(probes_0.9_horvath_s2_df)
+colnames(probes_0.9_horvath_s2_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.9_horvarh_s2 <- merge(probes_0.9_horvath_s2_df_copy, probes_coef_split2, by="Selected_Probes")
+
+probes_0.9_horvath_s3_df_copy <- copy(probes_0.9_horvath_s3_df)
+colnames(probes_0.9_horvath_s3_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.9_horvarh_s3 <- merge(probes_0.9_horvath_s3_df_copy, probes_coef_split3, by="Selected_Probes")
+
+probes_0.9_horvath_s4_df_copy <- copy(probes_0.9_horvath_s4_df)
+colnames(probes_0.9_horvath_s4_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.9_horvarh_s4 <- merge(probes_0.9_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
+
+probes_0.9_horvath_s5_df_copy <- copy(probes_0.9_horvath_s5_df)
+colnames(probes_0.9_horvath_s5_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.9_horvarh_s5 <- merge(probes_0.9_horvath_s5_df_copy, probes_coef_split5, by="Selected_Probes")
+
+
+# 0.8
+probes_0.8_horvath_s1_df_copy <- copy(probes_0.8_horvath_s1_df)
+colnames(probes_0.8_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.8_horvarh_s1 <- merge(probes_0.8_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.8_horvath_s2_df_copy <- copy(probes_0.8_horvath_s2_df)
+colnames(probes_0.8_horvath_s2_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.8_horvarh_s2 <- merge(probes_0.8_horvath_s2_df_copy, probes_coef_split2, by="Selected_Probes")
+
+probes_0.8_horvath_s3_df_copy <- copy(probes_0.8_horvath_s3_df)
+colnames(probes_0.8_horvath_s3_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.8_horvarh_s3 <- merge(probes_0.8_horvath_s3_df_copy, probes_coef_split3, by="Selected_Probes")
+
+probes_0.8_horvath_s4_df_copy <- copy(probes_0.8_horvath_s4_df)
+colnames(probes_0.8_horvath_s4_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.8_horvarh_s4 <- merge(probes_0.8_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
+
+probes_0.8_horvath_s5_df_copy <- copy(probes_0.8_horvath_s5_df)
+colnames(probes_0.8_horvath_s5_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.8_horvarh_s5 <- merge(probes_0.8_horvath_s5_df_copy, probes_coef_split5, by="Selected_Probes")
+
+
+
+# 0.7
+probes_0.7_horvath_s1_df_copy <- copy(probes_0.7_horvath_s1_df)
+colnames(probes_0.7_horvath_s1_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.7_horvarh_s1 <- merge(probes_0.7_horvath_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+
+probes_0.7_horvath_s2_df_copy <- copy(probes_0.7_horvath_s2_df)
+colnames(probes_0.7_horvath_s2_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.7_horvarh_s2 <- merge(probes_0.7_horvath_s2_df_copy, probes_coef_split2, by="Selected_Probes")
+
+probes_0.7_horvath_s3_df_copy <- copy(probes_0.7_horvath_s3_df)
+colnames(probes_0.7_horvath_s3_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.7_horvarh_s3 <- merge(probes_0.7_horvath_s3_df_copy, probes_coef_split3, by="Selected_Probes")
+
+probes_0.7_horvath_s4_df_copy <- copy(probes_0.7_horvath_s4_df)
+colnames(probes_0.7_horvath_s4_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.7_horvarh_s4 <- merge(probes_0.7_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
+
+probes_0.7_horvath_s5_df_copy <- copy(probes_0.7_horvath_s5_df)
+colnames(probes_0.7_horvath_s5_df_copy) <- "Selected_Probes"
+coefs_shared_probes_0.7_horvarh_s5 <- merge(probes_0.7_horvath_s5_df_copy, probes_coef_split5, by="Selected_Probes")
+
+
+
+
+
+
+
 
 
 
