@@ -47,11 +47,11 @@ pbs_model4_best <- probes_model4[probes_model4$Probes_Model == "Model 1",]
 pbs_model5_best <- probes_model5[probes_model5$Probes_Model == "Model 1",]
 
 
-table1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split1) df.txt")
-table2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split2) df.txt")
-table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split3) df.txt")
-table4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split4) df.txt")
-table5 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split5) df.txt")
+table1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 1) df.txt")
+table2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 2) df.txt")
+table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 3) df.txt")
+table4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 4) df.txt")
+table5 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 5) df.txt")
 
 
 # All the probes from models across train/test splits with cor >= 0.9 on test data
