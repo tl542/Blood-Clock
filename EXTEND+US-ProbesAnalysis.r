@@ -972,8 +972,9 @@ dev.off()
 
 # Metrics for previous boxplot
 
-metrics_df <- data.frame(matrix(0, nrow=6, ncol=6))
-colnames(metrics_df) <- c("
+metrics_df <- data.frame(matrix(0, nrow=7, ncol=6))
+colnames(metrics_df) <- c("Mean", "Median", "Q1", "Q3", "Min", "Max")
+
 metrics_df[1,] <- c(mean(df_boxplot$Overlap_Proportion[1:10]), median(df_boxplot$Overlap_Proportion[1:10]), quantile(df_boxplot$Overlap_Proportion[1:10])[2], 
                     quantile(df_boxplot$Overlap_Proportion[1:10])[4], quantile(df_boxplot$Overlap_Proportion[1:10])[1], quantile(df_boxplot$Overlap_Proportion[1:10])[5])
 
@@ -994,6 +995,8 @@ metrics_df[6,] <- c(mean(df_boxplot$Overlap_Proportion[51:60]), median(df_boxplo
 
 metrics_df[7,] <- c(mean(df_boxplot$Overlap_Proportion[61:70]), median(df_boxplot$Overlap_Proportion[61:70]), quantile(df_boxplot$Overlap_Proportion[61:70])[2], 
                     quantile(df_boxplot$Overlap_Proportion[61:70])[4], quantile(df_boxplot$Overlap_Proportion[61:70])[1], quantile(df_boxplot$Overlap_Proportion[61:70])[5])
+
+rownames(metrics_df) <- c("Model1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6", "Models_0.5", "Models_0.4")
 
 
 write.table(metrics_df, "metrics_pairwise_overlap.txt", row.names=T, col.names=T, quote=F)
