@@ -784,7 +784,7 @@ shared_probes_0.5_matrix <- as.matrix(shared_probes_0.5)
 shared_probes_0.5_matrix_sym <- forceSymmetric(shared_probes_0.5_matrix)
 shared_probes_0.5_matrix_sym <- as.matrix(shared_probes_0.5_matrix_sym)
 df6 <- as.data.frame(shared_probes_0.5_matrix_sym)
-write.table(df6, "shared_probes_2x2_0.5.txt", row.names=T, col.names=T, quote=F))
+write.table(df6, "shared_probes_2x2_0.5.txt", row.names=T, col.names=T, quote=F)
 
 
 # Shared probes across pairwise splits - Models with cor >= 0.4
@@ -863,7 +863,7 @@ shared_probes_0.4_matrix <- as.matrix(shared_probes_0.4)
 shared_probes_0.4_matrix_sym <- forceSymmetric(shared_probes_0.4_matrix)
 shared_probes_0.4_matrix_sym <- as.matrix(shared_probes_0.4_matrix_sym)
 df7 <- as.data.frame(shared_probes_0.4_matrix_sym)
-write.table(df7, "shared_probes_2x2_0.4.txt", row.names=T, col.names=T, quote=F))
+write.table(df7, "shared_probes_2x2_0.4.txt", row.names=T, col.names=T, quote=F)
 
 
 
@@ -972,6 +972,8 @@ dev.off()
 
 # Metrics for previous boxplot
 
+metrics_df <- data.frame(matrix(0, nrow=6, ncol=6))
+colnames(metrics_df) <- c("
 metrics_df[1,] <- c(mean(df_boxplot$Overlap_Proportion[1:10]), median(df_boxplot$Overlap_Proportion[1:10]), quantile(df_boxplot$Overlap_Proportion[1:10])[2], 
                     quantile(df_boxplot$Overlap_Proportion[1:10])[4], quantile(df_boxplot$Overlap_Proportion[1:10])[1], quantile(df_boxplot$Overlap_Proportion[1:10])[5])
 
@@ -989,6 +991,9 @@ metrics_df[5,] <- c(mean(df_boxplot$Overlap_Proportion[41:50]), median(df_boxplo
 
 metrics_df[6,] <- c(mean(df_boxplot$Overlap_Proportion[51:60]), median(df_boxplot$Overlap_Proportion[51:60]), quantile(df_boxplot$Overlap_Proportion[51:60])[2], 
                     quantile(df_boxplot$Overlap_Proportion[51:60])[4], quantile(df_boxplot$Overlap_Proportion[51:60])[1], quantile(df_boxplot$Overlap_Proportion[51:60])[5])
+
+metrics_df[7,] <- c(mean(df_boxplot$Overlap_Proportion[61:70]), median(df_boxplot$Overlap_Proportion[61:70]), quantile(df_boxplot$Overlap_Proportion[61:70])[2], 
+                    quantile(df_boxplot$Overlap_Proportion[61:70])[4], quantile(df_boxplot$Overlap_Proportion[61:70])[1], quantile(df_boxplot$Overlap_Proportion[61:70])[5])
 
 
 write.table(metrics_df, "metrics_pairwise_overlap.txt", row.names=T, col.names=T, quote=F)
