@@ -443,8 +443,8 @@ shared_probes_0.9[2,2] <- dim(probes2_0.9)[1]/dim(probes2_0.9)[1]
 shared_probes_0.9[3,3] <- dim(probes3_0.9)[1]/dim(probes3_0.9)[1]
 shared_probes_0.9[4,4] <- dim(probes4_0.9)[1]/dim(probes4_0.9)[1]
 shared_probes_0.9[5,5] <- dim(probes5_0.9)[1]/dim(probes5_0.9)[1]
-shared_probes_0.9[1,2:5] <- c(probes_0.9_12_df[1] / min(dim(probes1_0.9)[1],dim(probes2_0.9)[1]), probes_0.9_13_df[1] / min(dim(probes1_0.9)[1],dim(probes3_0.9)[1]), 
-probes_0.9_14_df[1] / min(dim(probes1_0.9)[1],dim(probes4_0.9)[1]), probes_0.9_15_df[1] / min(dim(probes1_0.9)[1], dim(probes5_0.9)[1]))
+shared_probes_0.9[1,2:5] <- c(dim(probes_0.9_12_df)[1] / min(dim(probes1_0.9)[1],dim(probes2_0.9)[1]), dim(probes_0.9_13_df)[1] / min(dim(probes1_0.9)[1],dim(probes3_0.9)[1]), 
+dim(probes_0.9_14_df)[1] / min(dim(probes1_0.9)[1],dim(probes4_0.9)[1]), dim(probes_0.9_15_df)[1] / min(dim(probes1_0.9)[1], dim(probes5_0.9)[1]))
 shared_probes_0.9[2,3] <- dim(probes_0.9_23_df)[1] / min(dim(probes2_0.9)[1], dim(probes3_0.9)[1])
 shared_probes_0.9[2,4] <- dim(probes_0.9_24_df)[1] / min(dim(probes2_0.9)[1], dim(probes4_0.9)[1])
 shared_probes_0.9[2,5] <- dim(probes_0.9_25_df)[1] / min(dim(probes2_0.9)[1], dim(probes5_0.9)[1])
@@ -526,8 +526,8 @@ shared_probes_0.8[2,2] <- dim(probes2_0.8)[1]/dim(probes2_0.8)[1]
 shared_probes_0.8[3,3] <- dim(probes3_0.8)[1]/dim(probes3_0.8)[1]
 shared_probes_0.8[4,4] <- dim(probes4_0.8)[1]/dim(probes4_0.8)[1]
 shared_probes_0.8[5,5] <- dim(probes5_0.8)[1]/dim(probes5_0.8)[1]
-shared_probes_0.8[1,2:5] <- c(probes_0.8_12_df[1] / min(dim(probes1_0.8)[1],dim(probes2_0.8)[1]), probes_0.8_13_df[1] / min(dim(probes1_0.8)[1],dim(probes3_0.8)[1]), 
-probes_0.8_14_df[1] / min(dim(probes1_0.8)[1],dim(probes4_0.8)[1]), probes_0.8_15_df[1] / min(dim(probes1_0.8)[1], dim(probes5_0.8)[1]))
+shared_probes_0.8[1,2:5] <- c(dim(probes_0.8_12_df)[1] / min(dim(probes1_0.8)[1],dim(probes2_0.8)[1]), dim(probes_0.8_13_df)[1] / min(dim(probes1_0.8)[1],dim(probes3_0.8)[1]), 
+dim(probes_0.8_14_df)[1] / min(dim(probes1_0.8)[1],dim(probes4_0.8)[1]), dim(probes_0.8_15_df)[1] / min(dim(probes1_0.8)[1], dim(probes5_0.8)[1]))
 shared_probes_0.8[2,3] <- dim(probes_0.8_23_df)[1] / min(dim(probes2_0.8)[1], dim(probes3_0.8)[1])
 shared_probes_0.8[2,4] <- dim(probes_0.8_24_df)[1] / min(dim(probes2_0.8)[1], dim(probes4_0.8)[1])
 shared_probes_0.8[2,5] <- dim(probes_0.8_25_df)[1] / min(dim(probes2_0.8)[1], dim(probes5_0.8)[1])
@@ -609,15 +609,15 @@ shared_probes_0.7[2,2] <- dim(probes2_0.7)[1]/dim(probes2_0.7)[1]
 shared_probes_0.7[3,3] <- dim(probes3_0.7)[1]/dim(probes3_0.7)[1]
 shared_probes_0.7[4,4] <- dim(probes4_0.7)[1]/dim(probes4_0.7)[1]
 shared_probes_0.7[5,5] <- dim(probes5_0.7)[1]/dim(probes5_0.7)[1]
-shared_probes_0.7[1,2:5] <- c(probes_0.7_12_df[1] / min(dim(probes1_0.7)[1],dim(probes2_0.7)[1]), probes_0.7_13_df[1] / min(dim(probes1_0.7)[1],dim(probes3_0.7)[1]), 
-probes_0.7_14_df[1] / min(dim(probes1_0.7)[1],dim(probes4_0.7)[1]), probes_0.7_15_df[1] / min(dim(probes1_0.7)[1], dim(probes5_0.7)[1]))
+
 shared_probes_0.7[2,3] <- dim(probes_0.7_23_df)[1] / min(dim(probes2_0.7)[1], dim(probes3_0.7)[1])
 shared_probes_0.7[2,4] <- dim(probes_0.7_24_df)[1] / min(dim(probes2_0.7)[1], dim(probes4_0.7)[1])
 shared_probes_0.7[2,5] <- dim(probes_0.7_25_df)[1] / min(dim(probes2_0.7)[1], dim(probes5_0.7)[1])
 shared_probes_0.7[3,4] <- dim(probes_0.7_34_df)[1] / min(dim(probes3_0.7)[1], dim(probes4_0.7)[1])
 shared_probes_0.7[3,5] <- dim(probes_0.7_35_df)[1] / min(dim(probes3_0.7)[1], dim(probes5_0.7)[1])
 shared_probes_0.7[4,5] <- dim(probes_0.7_45_df)[1] / min(dim(probes4_0.7)[1], dim(probes5_0.7)[1])
-                       
+shared_probes_0.7[1,2:5] <- c(dim(probes_0.7_12_df)[1] / min(dim(probes1_0.7)[1],dim(probes2_0.7)[1]), dim(probes_0.7_13_df)[1] / min(dim(probes1_0.7)[1],dim(probes3_0.7)[1]), 
+dim(probes_0.7_14_df)[1] / min(dim(probes1_0.7)[1],dim(probes4_0.7)[1]), dim(probes_0.7_15_df)[1] / min(dim(probes1_0.7)[1], dim(probes5_0.7)[1]))                       
 shared_probes_0.7_matrix <- as.matrix(shared_probes_0.7)
 shared_probes_0.7_matrix_sym <- forceSymmetric(shared_probes_0.7_matrix)
 shared_probes_0.7_matrix_sym <- as.matrix(shared_probes_0.7_matrix_sym)
@@ -691,8 +691,8 @@ shared_probes_0.6[2,2] <- dim(probes2_0.6)[1]/dim(probes2_0.6)[1]
 shared_probes_0.6[3,3] <- dim(probes3_0.6)[1]/dim(probes3_0.6)[1]
 shared_probes_0.6[4,4] <- dim(probes4_0.6)[1]/dim(probes4_0.6)[1]
 shared_probes_0.6[5,5] <- dim(probes5_0.6)[1]/dim(probes5_0.6)[1]
-shared_probes_0.6[1,2:5] <- c(probes_0.6_12_df[1] / min(dim(probes1_0.6)[1],dim(probes2_0.6)[1]), probes_0.6_13_df[1] / min(dim(probes1_0.6)[1],dim(probes3_0.6)[1]), 
-probes_0.6_14_df[1] / min(dim(probes1_0.6)[1],dim(probes4_0.6)[1]), probes_0.6_15_df[1] / min(dim(probes1_0.6)[1], dim(probes5_0.6)[1]))
+shared_probes_0.6[1,2:5] <- c(dim(probes_0.6_12_df)[1] / min(dim(probes1_0.6)[1],dim(probes2_0.6)[1]), dim(probes_0.6_13_df)[1] / min(dim(probes1_0.6)[1],dim(probes3_0.6)[1]), 
+dim(probes_0.6_14_df)[1] / min(dim(probes1_0.6)[1],dim(probes4_0.6)[1]), dim(probes_0.6_15_df)[1] / min(dim(probes1_0.6)[1], dim(probes5_0.6)[1]))
 shared_probes_0.6[2,3] <- dim(probes_0.6_23_df)[1] / min(dim(probes2_0.6)[1], dim(probes3_0.6)[1])
 shared_probes_0.6[2,4] <- dim(probes_0.6_24_df)[1] / min(dim(probes2_0.6)[1], dim(probes4_0.6)[1])
 shared_probes_0.6[2,5] <- dim(probes_0.6_25_df)[1] / min(dim(probes2_0.6)[1], dim(probes5_0.6)[1])
@@ -771,8 +771,8 @@ shared_probes_0.5[2,2] <- dim(probes2_0.5)[1]/dim(probes2_0.5)[1]
 shared_probes_0.5[3,3] <- dim(probes3_0.5)[1]/dim(probes3_0.5)[1]
 shared_probes_0.5[4,4] <- dim(probes4_0.5)[1]/dim(probes4_0.5)[1]
 shared_probes_0.5[5,5] <- dim(probes5_0.5)[1]/dim(probes5_0.5)[1]
-shared_probes_0.5[1,2:5] <- c(probes_0.5_12_df[1] / min(dim(probes1_0.5)[1],dim(probes2_0.5)[1]), probes_0.5_13_df[1] / min(dim(probes1_0.5)[1],dim(probes3_0.5)[1]), 
-probes_0.5_14_df[1] / min(dim(probes1_0.5)[1],dim(probes4_0.5)[1]), probes_0.5_15_df[1] / min(dim(probes1_0.5)[1], dim(probes5_0.5)[1]))
+shared_probes_0.5[1,2:5] <- c(dim(probes_0.5_12_df)[1] / min(dim(probes1_0.5)[1],dim(probes2_0.5)[1]), dim(probes_0.5_13_df)[1] / min(dim(probes1_0.5)[1],dim(probes3_0.5)[1]), 
+dim(probes_0.5_14_df)[1] / min(dim(probes1_0.5)[1],dim(probes4_0.5)[1]), dim(probes_0.5_15_df)[1] / min(dim(probes1_0.5)[1], dim(probes5_0.5)[1]))
 shared_probes_0.5[2,3] <- dim(probes_0.5_23_df)[1] / min(dim(probes2_0.5)[1], dim(probes3_0.5)[1])
 shared_probes_0.5[2,4] <- dim(probes_0.5_24_df)[1] / min(dim(probes2_0.5)[1], dim(probes4_0.5)[1])
 shared_probes_0.5[2,5] <- dim(probes_0.5_25_df)[1] / min(dim(probes2_0.5)[1], dim(probes5_0.5)[1])
@@ -850,8 +850,8 @@ shared_probes_0.4[2,2] <- dim(probes2_0.4)[1]/dim(probes2_0.4)[1]
 shared_probes_0.4[3,3] <- dim(probes3_0.4)[1]/dim(probes3_0.4)[1]
 shared_probes_0.4[4,4] <- dim(probes4_0.4)[1]/dim(probes4_0.4)[1]
 shared_probes_0.4[5,5] <- dim(probes5_0.4)[1]/dim(probes5_0.4)[1]
-shared_probes_0.4[1,2:5] <- c(probes_0.4_12_df[1] / min(dim(probes1_0.4)[1],dim(probes2_0.4)[1]), probes_0.4_13_df[1] / min(dim(probes1_0.4)[1],dim(probes3_0.4)[1]), 
-probes_0.4_14_df[1] / min(dim(probes1_0.4)[1],dim(probes4_0.4)[1]), probes_0.4_15_df[1] / min(dim(probes1_0.4)[1], dim(probes5_0.4)[1]))
+shared_probes_0.4[1,2:5] <- c(dim(probes_0.4_12_df)[1] / min(dim(probes1_0.4)[1],dim(probes2_0.4)[1]), dim(probes_0.4_13_df)[1] / min(dim(probes1_0.4)[1],dim(probes3_0.4)[1]), 
+dim(probes_0.4_14_df)[1] / min(dim(probes1_0.4)[1],dim(probes4_0.4)[1]), dim(probes_0.4_15_df)[1] / min(dim(probes1_0.4)[1], dim(probes5_0.4)[1]))
 shared_probes_0.4[2,3] <- dim(probes_0.4_23_df)[1] / min(dim(probes2_0.4)[1], dim(probes3_0.4)[1])
 shared_probes_0.4[2,4] <- dim(probes_0.4_24_df)[1] / min(dim(probes2_0.4)[1], dim(probes4_0.4)[1])
 shared_probes_0.4[2,5] <- dim(probes_0.4_25_df)[1] / min(dim(probes2_0.4)[1], dim(probes5_0.4)[1])
