@@ -312,3 +312,40 @@ boxplot(horvath_boxplot$Overlap_Proportion ~ horvath_boxplot$Model_Criteria, xla
 dev.copy(pdf, "boxplot_horvath.pdf")
 dev.off()
 
+
+# Average magnitude of the coefs
+
+probes_coef_split1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/probes_coef (Split 1).txt", sep= " ")
+probes_coef_split1$Probes_model <- paste(probes_coef_split1$Coef, probes_coef_split1$Probes_Model)
+probes_coef_split1 <- probes_coef_split1[,c(1,2,5)]
+colnames(probes_coef_split1)[1:2] <- c("Selected_Probes", "Coef")
+
+probes_coef_split2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/probes_coef (Split 2).txt", sep= " ")
+probes_coef_split2$Probes_model <- paste(probes_coef_split2$Coef, probes_coef_split2$Probes_Model)
+probes_coef_split2 <- probes_coef_split2[,c(1,2,5)]
+colnames(probes_coef_split2)[1:2] <- c("Selected_Probes", "Coef")
+
+probes_coef_split3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/probes_coef (Split 3).txt", sep= " ")
+probes_coef_split3$Probes_model <- paste(probes_coef_split3$Coef, probes_coef_split3$Probes_Model)
+probes_coef_split3 <- probes_coef_split3[,c(1,2,5)]
+colnames(probes_coef_split3)[1:2] <- c("Selected_Probes", "Coef")
+
+probes_coef_split4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/probes_coef (Split 4).txt", sep= " ")
+probes_coef_split4$Probes_model <- paste(probes_coef_split4$Coef, probes_coef_split4$Probes_Model)
+probes_coef_split4 <- probes_coef_split4[,c(1,2,5)]
+colnames(probes_coef_split4)[1:2] <- c("Selected_Probes", "Coef")
+
+probes_coef_split5 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/probes_coef (Split 5).txt", sep= " ")
+probes_coef_split5$Probes_model <- paste(probes_coef_split5$Coef, probes_coef_split5$Probes_Model)
+probes_coef_split5 <- probes_coef_split5[,c(1,2,5)]
+colnames(probes_coef_split5)[1:2] <- c("Selected_Probes", "Coef")
+
+
+
+
+
+
+
+
+
+
