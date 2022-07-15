@@ -6,17 +6,16 @@ source("/mnt/data1/EXTEND/Methylation/QC/Theo/EXTEND+US-ProbesAnalysis.r")
 
 # Get the 353 Cpgs from Horvath Clock (with Illumina 450K and Illumina 27K)
 #horvath_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/CpGs Horvath Clock.txt")
-#colnames(horvath_probes) <- "Selected_Probes"
+colnames(horvath_probes) <- "Selected_Probes"
 
 # Get the 333 CpGs sites where methylation was measure by the EPIC array from our study
-#library(data.table)
-#copy_horvath <- copy(horvath_probes)
-#rownames(copy_horvath) <- copy_horvath$Selected_Probes
-#match <- which(colnames(train_all) %in% rownames(copy_horvath))
-#new_train_all <- train_all[,match]
-#horvath_probes <- data.frame(colnames(new_train_all))
-#colnames(horvath_probes) <- "Selected_Probes"
-horvath_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/Probes_Horvath_measured.txt")
+library(data.table)
+copy_horvath <- copy(horvath_probes)
+rownames(copy_horvath) <- copy_horvath$Selected_Probes
+match <- which(colnames(train_all) %in% rownames(copy_horvath))
+new_train_all <- train_all[,match]
+horvath_probes <- data.frame(colnames(new_train_all))
+colnames(horvath_probes) <- "Selected_Probes"
 
 
 # Overlap between Horvath Clock and Model 1 - Five splits
@@ -265,23 +264,23 @@ prop_probes_summary[1,] <- c(dim(probes_Mod1_horvath_s1_df)[1]/dim(horvath_probe
 
 prop_probes_summary[2,] <- c(dim(probes_Mod1_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s2_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s2_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s2_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.4_horvath_s2_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s2_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 prop_probes_summary[3,] <- c(dim(probes_Mod1_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s3_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s3_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s3_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.4_horvath_s3_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s3_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 prop_probes_summary[4,] <- c(dim(probes_Mod1_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s4_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s4_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s4_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.4_horvath_s4_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s4_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 prop_probes_summary[5,] <- c(dim(probes_Mod1_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.9_horvath_s5_df)[1]/dim(horvath_probes)[1],
                              dim(probes_0.8_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.7_horvath_s5_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.6_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s5_df)[1]/dim(horvath_probes)[1],
-                             dim(probes_0.4_horvath_s5_df)[1]/dim(horvath_probes)[1])
+                             dim(probes_0.6_horvath_s5_df)[1]/dim(horvath_probes)[1], dim(probes_0.5_horvath_s1_df)[1]/dim(horvath_probes)[1],
+                             dim(probes_0.4_horvath_s1_df)[1]/dim(horvath_probes)[1]))
 
 write.table(prop_probes_summary, "shared_probes_horvath_summary(prop).txt", row.names=T, col.names=T, quote=F)
 
