@@ -1023,6 +1023,7 @@ total_boxplot[31:35, "Total_Probes"] <- c(dim(probes1_0.4)[1], dim(probes2_0.4)[
 total_boxplot[31:35, "Model_Criteria"] <- rep("Models_0.4", 5)
 
 
+write.table(total_boxplot, "total_nprobes.txt", row.names=T, col.names=T, quote=F)
 
 
 total_boxplot$Model_Criteria <- factor(total_boxplot$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6", "Models_0.5", "Models_0.4" ))
