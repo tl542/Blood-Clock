@@ -657,7 +657,7 @@ write.table(coef_boxplot_df, "average_magnitude_coefs.txt", row.names=T, col.nam
   
 coef_boxplot_df$Model_Criteria <- factor(coef_boxplot_df$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6", "Models_0.5", "Models_0.4"))
 par(bg="aliceblue")
-boxplot(coef_boxplot_df$Average_Coefs ~ coef_boxplot_df$Model_Criteria, xlab="Model_Criteria", ylab="Average magnitdue of coefficients", col="steelblue",
+boxplot(coef_boxplot_df$Average_Coefs ~ coef_boxplot_df$Model_Criteria, xlab="Model_Criteria", ylab="Average magnitude of coefficients", col="steelblue",
         main="Average coef magnitude for study probes/Horvath overlap")
 dev.copy(pdf, "boxplot_coefs.pdf")
 dev.off()
