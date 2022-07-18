@@ -607,12 +607,12 @@ coef_boxplot_df[31:35,"Average_Coefs"] <- c(coefs_s1[7,"Average_Coefs"], coefs_s
                                   coefs_s5[7,"Average_Coefs"])
   
 coef_boxplot_df[31:35,"Model_Criteria"] <- "Models_0.4"
-write.table(coef_boxplot_df, "average_magnitude_coefs.txt", row.names=T, col.names=T, quote=F)
+write.table(coef_boxplot_df, "average_magnitude_coefs (Hannum).txt", row.names=T, col.names=T, quote=F)
 
   
 coef_boxplot_df$Model_Criteria <- factor(coef_boxplot_df$Model_Criteria, c("Model 1", "Models_0.9", "Models_0.8", "Models_0.7", "Models_0.6", "Models_0.5", "Models_0.4"))
 par(bg="aliceblue")
 boxplot(coef_boxplot_df$Average_Coefs ~ coef_boxplot_df$Model_Criteria, xlab="Model_Criteria", ylab="Average magnitude of coefficients", col="steelblue",
         main="Average coef magnitude for study probes/Hannum overlap")
-dev.copy(pdf, "boxplot_coefs.pdf")
+dev.copy(pdf, "boxplot_coefs (Hannum).pdf")
 dev.off()
