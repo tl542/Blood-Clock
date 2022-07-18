@@ -4,13 +4,13 @@ Hannum_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/Hannum Clock 
 colnames(Hannum_probes) <- "Selected_Probes"
 
 # Get the 333 CpGs sites where methylation was measure by the EPIC array from our study
-#library(data.table)
-#copy_Hannum <- copy(Hannum_probes)
-#rownames(copy_Hannum) <- copy_Hannum$Selected_Probes
-#match <- which(colnames(train_all) %in% rownames(copy_Hannum))
-#new_train_all <- train_all[,match]
-#Hannum_probes <- data.frame(colnames(new_train_all))
-#colnames(Hannum_probes) <- "Selected_Probes"
+library(data.table)
+copy_Hannum <- copy(Hannum_probes)
+rownames(copy_Hannum) <- copy_Hannum$Selected_Probes
+match <- which(colnames(df_all) %in% rownames(copy_Hannum))
+new_df_all <- df_all[,match]
+Hannum_probes <- data.frame(colnames(new_df_all))
+colnames(Hannum_probes) <- "Selected_Probes"
 
 
 # Overlap between Hannum Clock and Model 1 - Five splits
