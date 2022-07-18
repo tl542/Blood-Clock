@@ -114,7 +114,7 @@ rmse1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/RMSE (Split 1) df.txt
 rmse_cor_nprobes <- cbind(rmse1,table1)
 rmse_cor_nprobes <- rmse_cor_nprobes[c("Correlation", "RMSE", "nProbes")]
 
-table_comparison <- rbind(cor_rmse_nprobes, rmse_cor_nprobes[1,])
+table_comparison <- rbind(l_cor_rmse_nprobes_df, rmse_cor_nprobes[1,])
 rownames(table_comparison)[23] <- "Model1-Split1"
 write.table(table_comparison, "table_comparison_rgwvsgw (Split 1).txt", row.names=T, col.names=T, quote=F)
 
