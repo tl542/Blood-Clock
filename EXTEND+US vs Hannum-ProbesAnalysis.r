@@ -1,7 +1,7 @@
 
 
-hannum_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/Hannum Clock CpGs.txt")
-colnames(hannum_probes) <- "Selected_Probes"
+Hannum_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/Hannum Clock CpGs.txt")
+colnames(Hannum_probes) <- "Selected_Probes"
 
 # Get the 333 CpGs sites where methylation was measure by the EPIC array from our study
 #library(data.table)
