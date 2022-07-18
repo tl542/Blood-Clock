@@ -24,6 +24,7 @@ colnames(horvath_probes) <- "Selected_Probes"
 # Overlap between Horvath Clock and Model 1 - Five splits
 
 # Shared Probes between Model 1 from Split 1 and Horvath clock
+library(tidyverse)
 shared_horvath_mod1_s1 <- list(pbs_model1_best["Selected_Probes"], horvath_probes["Selected_Probes"]) 
 probes_Mod1_horvath_s1 <- shared_horvath_mod1_s1 %>% reduce(inner_join, by='Selected_Probes')
 probes_Mod1_horvath_s1_df <- as.data.frame(probes_Mod1_horvath_s1)
