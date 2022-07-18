@@ -102,7 +102,7 @@ for (i in 1:length(l_probes_coef)){
     colnames(l_probes_unlist_df) <- "Selected Probes"
     l_probes_unlist_df["Probes_Model"] <- paste("Model-Chr", i)
     probes_coef_model <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
-    df_final <- rbind(df_final, probes_coef_model)
+    final_df <- rbind(final_df, probes_coef_model)
 
 }
 final_df <- final_df[c("Selected Probes", "Coef", "Probes_Model")]
