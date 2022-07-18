@@ -109,13 +109,13 @@ df_final <- df_final[c("Selected Probes", "Coef", "Probes_Model")]
 write.table(df_final, "probes+coefs_models_chr (Split 3).txt", row.names=T, col.names=T, quote=F)
 
 
-table1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 3) df.txt")
-rmse1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/RMSE (Split 3) df.txt")
-rmse_cor_nprobes <- cbind(rmse1,table1)
+table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 3) df.txt")
+rmse3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/RMSE (Split 3) df.txt")
+rmse_cor_nprobes <- cbind(rmse3,table3)
 rmse_cor_nprobes <- rmse_cor_nprobes[c("Correlation", "RMSE", "nProbes")]
 
 table_comparison <- rbind(l_cor_rmse_nprobes_df, rmse_cor_nprobes[1,])
-rownames(table_comparison)[23] <- "Model1-Split1"
+rownames(table_comparison)[23] <- "Model1-Split3"
 write.table(table_comparison, "table_comparison_rgwvsgw (Split 3).txt", row.names=T, col.names=T, quote=F)
 
 table_comparison_1_12 <- table_comparison[1:12,]
