@@ -106,7 +106,7 @@ for (i in 1:length(l_probes_coef)){
 
 }
 final_df <- final_df[c("Selected Probes", "Coef", "Probes_Model")]
-write.table(final_df, "probes+coefs_models_chr.txt (Split 2)", row.names=T, col.names=T, quote=F)
+write.table(final_df, "probes+coefs_models_chr (Split 2).txt", row.names=T, col.names=T, quote=F)
 
 
 table2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 2) df.txt")
