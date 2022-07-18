@@ -390,7 +390,7 @@ coefs_s1$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
 for (i in 2:nrow(coefs_s1)){
   coefs_s1$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
-
+}
   
 # Split 2
 probes_Mod1_horvath_s2_df_copy <- copy(probes_Mod1_horvath_s2_df)
@@ -433,6 +433,7 @@ coefs_s2$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
 for (i in 2:nrow(coefs_s2)){
   coefs_s2$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
+}
   
 
 # Split 3
@@ -476,7 +477,7 @@ coefs_s3$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
 for (i in 2:nrow(coefs_s3)){
   coefs_s3$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
- 
+}
   
   
 # Split 4
@@ -520,6 +521,7 @@ coefs_s4$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
 for (i in 2:nrow(coefs_s4)){
   coefs_s4$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
+}
   
 
   
@@ -564,6 +566,7 @@ coefs_s4$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
 for (i in 2:nrow(coefs_s4)){
   coefs_s4$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
+}
   
   
   
@@ -608,7 +611,7 @@ coefs_s5$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
 for (i in 2:nrow(coefs_s5)){
   coefs_s5$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
-  
+}
 
 
   
