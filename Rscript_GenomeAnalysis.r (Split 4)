@@ -92,7 +92,7 @@ write.table(probes_model, "probes_models_chr (Split 4).txt", row.names=T, col.na
 
 
 #Save all the probes with their respective beta coefficient
-df_final <- data.frame()
+final_df <- data.frame()
 for (i in 1:length(l_probes_coef)){
     l_probes_coef_unlist <- unlist(l_probes_coef[[i]])
     l_probes_coef_unlist_df <- as.data.frame(l_probes_coef_unlist)
@@ -102,11 +102,11 @@ for (i in 1:length(l_probes_coef)){
     colnames(l_probes_unlist_df) <- "Selected Probes"
     l_probes_unlist_df["Probes_Model"] <- paste("Model-Chr", i)
     probes_coef_model <- cbind(l_probes_unlist_df, l_probes_coef_unlist_df)
-    df_final <- rbind(df_final, probes_coef_model)
+    final_df <- rbind(final_df, probes_coef_model)
 
 }
-df_final <- df_final[c("Selected Probes", "Coef", "Probes_Model")]
-write.table(df_final, "probes+coefs_models_chr (Split 4).txt", row.names=T, col.names=T, quote=F)
+final_df <- final_df[c("Selected Probes", "Coef", "Probes_Model")]
+write.table(final_df, "probes+coefs_models_chr (Split 4).txt", row.names=T, col.names=T, quote=F)
 
 
 table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 4) df.txt")
