@@ -109,8 +109,8 @@ final_df <- final_df[c("Selected Probes", "Coef", "Probes_Model")]
 write.table(final_df, "probes+coefs_models_chr (Split 4).txt", row.names=T, col.names=T, quote=F)
 
 
-table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 4) df.txt")
-rmse3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/RMSE (Split 4) df.txt")
+table4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table (Split 4) df.txt")
+rmse4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/RMSE (Split 4) df.txt")
 rmse_cor_nprobes <- cbind(rmse4,table4)
 rmse_cor_nprobes <- rmse_cor_nprobes[c("Correlation", "RMSE", "nProbes")]
 
