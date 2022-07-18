@@ -480,51 +480,7 @@ for (i in 2:nrow(coefs_s3)){
 }
   
   
-# Split 4
-probes_Mod1_horvath_s4_df_copy <- copy(probes_Mod1_horvath_s4_df)
-colnames(probes_Mod1_horvath_s4_df_copy) <- "Selected_Probes"
-coefs_shared_probes_Mod1_horvath_s4 <- merge(probes_Mod1_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
 
-probes_0.9_horvath_s4_df_copy <- copy(probes_0.9_horvath_s4_df)
-colnames(probes_0.9_horvath_s4_df_copy) <- "Selected_Probes"
-coefs_shared_probes_0.9_horvath_s4 <- merge(probes_0.9_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
-
-probes_0.8_horvath_s4_df_copy <- copy(probes_0.8_horvath_s4_df)
-colnames(probes_0.8_horvath_s4_df_copy) <- "Selected_Probes"
-coefs_shared_probes_0.8_horvath_s4 <- merge(probes_0.8_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
-
-probes_0.7_horvath_s4_df_copy <- copy(probes_0.7_horvath_s4_df)
-colnames(probes_0.7_horvath_s4_df_copy) <- "Selected_Probes"
-coefs_shared_probes_0.7_horvath_s4 <- merge(probes_0.7_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
-
-probes_0.6_horvath_s4_df_copy <- copy(probes_0.6_horvath_s4_df)
-colnames(probes_0.6_horvath_s4_df_copy) <- "Selected_Probes"
-coefs_shared_probes_0.6_horvath_s4 <- merge(probes_0.6_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
-
-probes_0.5_horvath_s4_df_copy <- copy(probes_0.5_horvath_s4_df)
-colnames(probes_0.5_horvath_s4_df_copy) <- "Selected_Probes"
-coefs_shared_probes_0.5_horvath_s4 <- merge(probes_0.5_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
-
-probes_0.4_horvath_s4_df_copy <- copy(probes_0.4_horvath_s4_df)
-colnames(probes_0.4_horvath_s4_df_copy) <- "Selected_Probes"
-coefs_shared_probes_0.4_horvath_s4 <- merge(probes_0.4_horvath_s4_df_copy, probes_coef_split4, by="Selected_Probes")
-
-
-
-coefs_s4 <- data.frame(matrix(0, nrow=7, ncol=2))
-colnames(coefs_s4) <- c("Average_Coefs", "Model_Criteria")
-coefs_s4$Average_Coefs <- c(mean(coefs_shared_probes_Mod1_horvath_s4$Coef), mean(coefs_shared_probes_0.9_horvath_s4$Coef), mean(coefs_shared_probes_0.8_horvath_s4$Coef),
-                    mean(coefs_shared_probes_0.7_horvath_s4$Coef), mean(coefs_shared_probes_0.6_horvath_s4$Coef), mean(coefs_shared_probes_0.5_horvath_s4$Coef),
-                    mean(coefs_shared_probes_0.4_horvath_s4$Coef))
-
-coefs_s4$Model_Criteria[1] <- "Model 1"
-threshold <- seq(1,0.4,by=-0.1)
-for (i in 2:nrow(coefs_s4)){
-  coefs_s4$Model_Criteria[i] <- paste("Models_",threshold[i],sep="")
-}
-  
-
-  
 # Split 4
 probes_Mod1_horvath_s4_df_copy <- copy(probes_Mod1_horvath_s4_df)
 colnames(probes_Mod1_horvath_s4_df_copy) <- "Selected_Probes"
