@@ -122,3 +122,4 @@ table_comparison_1_12 <- table_comparison[1:12,]
 table_comparison_13_23 <- table_comparison[13:23,]
 write.table(table_comparison_1_12, "table_comparison_1_12 (Split 1).txt", row.names=T, col.names=T, quote=F)
 write.table(table_comparison_13_23, "table_comparison_13_23.txt (Split 1)", row.names=T, col.names=T, quote=F)
+
