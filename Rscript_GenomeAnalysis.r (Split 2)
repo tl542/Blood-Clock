@@ -88,7 +88,7 @@ for (i in 1:length(l_probes)){
   l_probes_i_df["Probes_Model"] <- paste("Model-Chr", i)
   probes_model <- rbind(probes_model, l_probes_i_df)
 }
-write.table(probes_model, "probes_models_chr.txt (Split 2)", row.names=T, col.names=T, quote=F)
+write.table(probes_model, "probes_models_chr (Split 2).txt", row.names=T, col.names=T, quote=F)
 
 
 #Save all the probes with their respective beta coefficient
