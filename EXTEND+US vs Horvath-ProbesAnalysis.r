@@ -12,13 +12,13 @@ horvath_probes <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/Probes_Horva
 colnames(horvath_probes) <- "Selected_Probes"
 
 # Get the 333 CpGs sites where methylation was measure by the EPIC array from our study
-#library(data.table)
-#copy_horvath <- copy(horvath_probes)
-#rownames(copy_horvath) <- copy_horvath$Selected_Probes
-#match <- which(colnames(train_all) %in% rownames(copy_horvath))
-#new_train_all <- train_all[,match]
-#horvath_probes <- data.frame(colnames(new_train_all))
-#colnames(horvath_probes) <- "Selected_Probes"
+library(data.table)
+copy_horvath <- copy(horvath_probes)
+rownames(copy_horvath) <- copy_horvath$Selected_Probes
+match <- which(colnames(train_all) %in% rownames(copy_horvath))
+new_df_all <- df_all[,match]
+horvath_probes <- data.frame(colnames(new_df_all))
+colnames(horvath_probes) <- "Selected_Probes"
 
 
 # Overlap between Horvath Clock and Model 1 - Five splits
