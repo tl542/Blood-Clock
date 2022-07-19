@@ -123,3 +123,95 @@ table_comparison_13_23 <- table_comparison[13:23,]
 write.table(table_comparison_1_12, "table_comparison_1_12 (Split 1).txt", row.names=T, col.names=T, quote=F)
 write.table(table_comparison_13_23, "table_comparison_13_23.txt (Split 1)", row.names=T, col.names=T, quote=F)
 
+table1 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table_comparison_rgwvsgw (Split 1).txt")
+table2 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table_comparison_rgwvsgw (Split 2).txt")
+table3 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table_comparison_rgwvsgw (Split 3).txt")
+table4 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table_comparison_rgwvsgw (Split 4).txt")
+table5 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/table_comparison_rgwvsgw (Split 5).txt")
+
+table_per_chr <- data.frame(matrix(0, nrow=115, ncol=2))
+colnames(table_per_chr) <- c("Correlation", "Model_Chr")
+table_per_chr[1:5, "Correlation"] <- c(table1[1,"Correlation"], table2[1,"Correlation"], table3[1,"Correlation"], table4[1,"Correlation"], 
+                                       table5[1,"Correlation"])
+table_per_chr[6:10, "Correlation"] <- c(table1[2,"Correlation"], table2[2,"Correlation"], table3[2,"Correlation"], table4[2,"Correlation"], 
+                                       table5[2,"Correlation"])
+table_per_chr[11:15, "Correlation"] <- c(table1[3,"Correlation"], table2[3,"Correlation"], table3[3,"Correlation"], table4[3,"Correlation"], 
+                                       table5[3,"Correlation"])
+table_per_chr[16:20, "Correlation"] <- c(table1[4,"Correlation"], table2[4,"Correlation"], table3[4,"Correlation"], table4[4,"Correlation"], 
+                                       table5[4,"Correlation"])
+table_per_chr[21:25, "Correlation"] <- c(table1[5,"Correlation"], table2[5,"Correlation"], table3[5,"Correlation"], table4[5,"Correlation"], 
+                                         table5[5,"Correlation"])
+table_per_chr[26:30, "Correlation"] <- c(table1[6,"Correlation"], table2[6,"Correlation"], table3[6,"Correlation"], table4[6,"Correlation"], 
+                                       table5[6,"Correlation"])
+table_per_chr[31:35, "Correlation"] <- c(table1[7,"Correlation"], table2[7,"Correlation"], table3[7,"Correlation"], table4[7,"Correlation"], 
+                                       table5[7,"Correlation"])
+table_per_chr[36:40, "Correlation"] <- c(table1[8,"Correlation"], table2[8,"Correlation"], table3[8,"Correlation"], table4[8,"Correlation"], 
+                                       table5[8,"Correlation"])
+table_per_chr[41:45, "Correlation"] <- c(table1[9,"Correlation"], table2[9,"Correlation"], table3[9,"Correlation"], table4[9,"Correlation"], 
+                                       table5[9,"Correlation"])
+table_per_chr[46:50, "Correlation"] <- c(table1[10,"Correlation"], table2[10,"Correlation"], table3[10,"Correlation"], table4[10,"Correlation"], 
+                                       table5[10,"Correlation"])
+table_per_chr[51:55, "Correlation"] <- c(table1[11,"Correlation"], table2[11,"Correlation"], table3[11,"Correlation"], table4[11,"Correlation"], 
+                                       table5[11,"Correlation"])
+table_per_chr[56:60, "Correlation"] <- c(table1[12,"Correlation"], table2[12,"Correlation"], table3[12,"Correlation"], table4[12,"Correlation"], 
+                                       table5[12,"Correlation"])
+table_per_chr[61:65, "Correlation"] <- c(table1[13,"Correlation"], table2[13,"Correlation"], table3[13,"Correlation"], table4[13,"Correlation"], 
+                                       table5[13,"Correlation"])
+table_per_chr[66:70, "Correlation"] <- c(table1[14,"Correlation"], table2[14,"Correlation"], table3[14,"Correlation"], table4[14,"Correlation"], 
+                                       table5[14,"Correlation"])
+table_per_chr[71:75, "Correlation"] <- c(table1[15,"Correlation"], table2[15,"Correlation"], table3[15,"Correlation"], table4[15,"Correlation"], 
+                                       table5[15,"Correlation"])
+table_per_chr[76:80, "Correlation"] <- c(table1[16,"Correlation"], table2[16,"Correlation"], table3[16,"Correlation"], table4[16,"Correlation"], 
+                                       table5[16,"Correlation"])
+table_per_chr[81:85, "Correlation"] <- c(table1[17,"Correlation"], table2[17,"Correlation"], table3[17,"Correlation"], table4[17,"Correlation"], 
+                                       table5[17,"Correlation"])
+table_per_chr[86:90, "Correlation"] <- c(table1[18,"Correlation"], table2[18,"Correlation"], table3[18,"Correlation"], table4[18,"Correlation"], 
+                                       table5[18,"Correlation"])
+table_per_chr[91:95, "Correlation"] <- c(table1[19,"Correlation"], table2[19,"Correlation"], table3[19,"Correlation"], table4[19,"Correlation"], 
+                                       table5[19,"Correlation"])
+table_per_chr[96:100, "Correlation"] <- c(table1[20,"Correlation"], table2[20,"Correlation"], table3[20,"Correlation"], table4[20,"Correlation"], 
+                                       table5[20,"Correlation"])
+table_per_chr[101:105, "Correlation"] <- c(table1[21,"Correlation"], table2[21,"Correlation"], table3[21,"Correlation"], table4[21,"Correlation"], 
+                                       table5[21,"Correlation"])
+table_per_chr[106:110, "Correlation"] <- c(table1[22,"Correlation"], table2[22,"Correlation"], table3[22,"Correlation"], table4[22,"Correlation"], 
+                                       table5[22,"Correlation"])
+table_per_chr[111:115, "Correlation"] <- c(table1[23,"Correlation"], table2[23,"Correlation"], table3[23,"Correlation"], table4[23,"Correlation"], 
+                                       table5[23,"Correlation"])
+
+
+
+table_per_chr[1:5, "Model_Chr"] <- "Chr1"
+table_per_chr[6:10, "Model_Chr"] <- "Chr2"
+table_per_chr[11:15, "Model_Chr"] <- "Chr3"
+table_per_chr[16:20, "Model_Chr"] <- "Chr4"
+table_per_chr[21:25, "Model_Chr"] <- "Chr5"
+table_per_chr[26:30, "Model_Chr"] <- "Chr6"
+table_per_chr[31:35, "Model_Chr"] <- "Chr7"
+table_per_chr[36:40, "Model_Chr"] <- "Chr8"
+table_per_chr[41:45, "Model_Chr"] <- "Chr9"
+table_per_chr[46:50, "Model_Chr"] <- "Chr10"
+table_per_chr[51:55, "Model_Chr"] <- "Chr11"
+table_per_chr[56:60, "Model_Chr"] <- "Chr12"
+table_per_chr[61:65, "Model_Chr"] <- "Chr13"
+table_per_chr[66:70, "Model_Chr"] <- "Chr14"
+table_per_chr[71:75, "Model_Chr"] <- "Chr15"
+table_per_chr[76:80, "Model_Chr"] <- "Chr16"
+table_per_chr[81:85, "Model_Chr"] <- "Chr17"
+table_per_chr[86:90, "Model_Chr"] <- "Chr18"
+table_per_chr[91:95, "Model_Chr"] <- "Chr19"
+table_per_chr[96:100, "Model_Chr"] <- "Chr20"
+table_per_chr[101:105, "Model_Chr"] <- "Chr21"
+table_per_chr[106:110, "Model_Chr"] <- "Chr22"
+table_per_chr[111:115, "Model_Chr"] <- "GW"
+
+table_per_chr$Model_Chr <- factor(table_per_chr$Model_Chr, c("Chr1","Chr2","Chr3","Chr4","Chr5","Chr6","Chr7","Chr8","Chr9","Chr10","Chr11","Chr12","Chr13","Chr14",
+                                                             "Chr15","Chr16","Chr17","Chr18","Chr19","Chr20","Chr21", "Chr22", "GW"))
+par(bg="aliceblue")
+boxplot(table_per_chr$Correlation ~ table_per_chr$Model_Chr, xlab="Chromosomes + GW", ylab="Test set Correlation", col="steelblue",
+        main="Model Performance per Chromosome + GW")
+dev.copy(pdf, "boxplot_chrs.pdf")
+dev.off()
+
+
+
+
