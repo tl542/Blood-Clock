@@ -15,7 +15,7 @@ colnames(horvath_probes) <- "Selected_Probes"
 library(data.table)
 copy_horvath <- copy(horvath_probes)
 rownames(copy_horvath) <- copy_horvath$Selected_Probes
-match <- which(colnames(train_all) %in% rownames(copy_horvath))
+match <- which(colnames(df_all) %in% rownames(copy_horvath))
 new_df_all <- df_all[,match]
 horvath_probes <- data.frame(colnames(new_df_all))
 colnames(horvath_probes) <- "Selected_Probes"
