@@ -342,7 +342,6 @@ colnames(probes_coef_split5)[1:2] <- c("Selected_Probes", "Coef")
 library(data.table)
 
 # Split 1
-# Split 1
 probes_Mod1_Hannum_s1_df_copy <- copy(probes_Mod1_Hannum_s1_df)
 colnames(probes_Mod1_Hannum_s1_df_copy) <- "Selected_Probes"
 coefs_shared_probes_Mod1_Hannum_s1 <- merge(probes_Mod1_Hannum_s1_df_copy, probes_coef_split1, by="Selected_Probes")
