@@ -343,6 +343,7 @@ library(data.table)
 probes_Mod1_Lin_s1_df_copy <- copy(probes_Mod1_Lin_s1_df)
 colnames(probes_Mod1_Lin_s1_df_copy) <- "Selected_Probes"
 coefs_shared_probes_Mod1_Lin_s1 <- merge(probes_Mod1_Lin_s1_df_copy, probes_coef_split1, by="Selected_Probes")
+coefs_shared_probes_Mod1_Lin_s1$Coef <- abs(coefs_shared_probes_Mod1_Lin_s1$Coef)
 
 probes_0.9_Lin_s1_df_copy <- copy(probes_0.9_Lin_s1_df)
 colnames(probes_0.9_Lin_s1_df_copy) <- "Selected_Probes"
@@ -372,9 +373,9 @@ coefs_shared_probes_0.4_Lin_s1 <- merge(probes_0.4_Lin_s1_df_copy, probes_coef_s
 
 coefs_s1 <- data.frame(matrix(0, nrow=7, ncol=2))
 colnames(coefs_s1) <- c("Average_Coefs", "Model_Criteria")
-coefs_s1$Average_Coefs <- c(mean(coefs_shared_probes_Mod1_Lin_s1$Coef), mean(coefs_shared_probes_0.9_Lin_s1$Coef), mean(coefs_shared_probes_0.8_Lin_s1$Coef),
-                    mean(coefs_shared_probes_0.7_Lin_s1$Coef), mean(coefs_shared_probes_0.6_Lin_s1$Coef), mean(coefs_shared_probes_0.5_Lin_s1$Coef),
-                    mean(coefs_shared_probes_0.4_Lin_s1$Coef))
+coefs_s1$Average_Coefs <- c(mean(abs(coefs_shared_probes_Mod1_Lin_s1$Coef)), mean(abs(coefs_shared_probes_0.9_Lin_s1$Coef)), mean(abs(coefs_shared_probes_0.8_Lin_s1$Coef)),
+                    mean(abs(coefs_shared_probes_0.7_Lin_s1$Coef)), mean(abs(coefs_shared_probes_0.6_Lin_s1$Coef)), mean(abs(coefs_shared_probes_0.5_Lin_s1$Coef)),
+                    mean(abs(coefs_shared_probes_0.4_Lin_s1$Coef)))
 
 coefs_s1$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
@@ -415,9 +416,9 @@ coefs_shared_probes_0.4_Lin_s2 <- merge(probes_0.4_Lin_s2_df_copy, probes_coef_s
 
 coefs_s2 <- data.frame(matrix(0, nrow=7, ncol=2))
 colnames(coefs_s2) <- c("Average_Coefs", "Model_Criteria")
-coefs_s2$Average_Coefs <- c(mean(coefs_shared_probes_Mod1_Lin_s2$Coef), mean(coefs_shared_probes_0.9_Lin_s2$Coef), mean(coefs_shared_probes_0.8_Lin_s2$Coef),
-                    mean(coefs_shared_probes_0.7_Lin_s2$Coef), mean(coefs_shared_probes_0.6_Lin_s2$Coef), mean(coefs_shared_probes_0.5_Lin_s2$Coef),
-                    mean(coefs_shared_probes_0.4_Lin_s2$Coef))
+coefs_s2$Average_Coefs <- c(mean(abs(coefs_shared_probes_Mod1_Lin_s2$Coef)), mean(abs(coefs_shared_probes_0.9_Lin_s2$Coef)), mean(abs(coefs_shared_probes_0.8_Lin_s2$Coef)),
+                    mean(abs(coefs_shared_probes_0.7_Lin_s2$Coef)), mean(abs(coefs_shared_probes_0.6_Lin_s2$Coef)), mean(abs(coefs_shared_probes_0.5_Lin_s2$Coef)),
+                    mean(abs(coefs_shared_probes_0.4_Lin_s2$Coef)))
 
 coefs_s2$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
@@ -459,9 +460,9 @@ coefs_shared_probes_0.4_Lin_s3 <- merge(probes_0.4_Lin_s3_df_copy, probes_coef_s
 
 coefs_s3 <- data.frame(matrix(0, nrow=7, ncol=2))
 colnames(coefs_s3) <- c("Average_Coefs", "Model_Criteria")
-coefs_s3$Average_Coefs <- c(mean(coefs_shared_probes_Mod1_Lin_s3$Coef), mean(coefs_shared_probes_0.9_Lin_s3$Coef), mean(coefs_shared_probes_0.8_Lin_s3$Coef),
-                    mean(coefs_shared_probes_0.7_Lin_s3$Coef), mean(coefs_shared_probes_0.6_Lin_s3$Coef), mean(coefs_shared_probes_0.5_Lin_s3$Coef),
-                    mean(coefs_shared_probes_0.4_Lin_s3$Coef))
+coefs_s3$Average_Coefs <- c(mean(abs(coefs_shared_probes_Mod1_Lin_s3$Coef)), mean(abs(coefs_shared_probes_0.9_Lin_s3$Coef)), mean(abs(coefs_shared_probes_0.8_Lin_s3$Coef)),
+                    mean(abs(coefs_shared_probes_0.7_Lin_s3$Coef)), mean(abs(coefs_shared_probes_0.6_Lin_s3$Coef)), mean(abs(coefs_shared_probes_0.5_Lin_s3$Coef)),
+                    mean(abs(coefs_shared_probes_0.4_Lin_s3$Coef)))
 
 coefs_s3$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
@@ -504,9 +505,9 @@ coefs_shared_probes_0.4_Lin_s4 <- merge(probes_0.4_Lin_s4_df_copy, probes_coef_s
 
 coefs_s4 <- data.frame(matrix(0, nrow=7, ncol=2))
 colnames(coefs_s4) <- c("Average_Coefs", "Model_Criteria")
-coefs_s4$Average_Coefs <- c(mean(coefs_shared_probes_Mod1_Lin_s4$Coef), mean(coefs_shared_probes_0.9_Lin_s4$Coef), mean(coefs_shared_probes_0.8_Lin_s4$Coef),
-                    mean(coefs_shared_probes_0.7_Lin_s4$Coef), mean(coefs_shared_probes_0.6_Lin_s4$Coef), mean(coefs_shared_probes_0.5_Lin_s4$Coef),
-                    mean(coefs_shared_probes_0.4_Lin_s4$Coef))
+coefs_s4$Average_Coefs <- c(mean(abs(coefs_shared_probes_Mod1_Lin_s4$Coef)), mean(abs(coefs_shared_probes_0.9_Lin_s4$Coef)), mean(abs(coefs_shared_probes_0.8_Lin_s4$Coef)),
+                    mean(abs(coefs_shared_probes_0.7_Lin_s4$Coef)), mean(abs(coefs_shared_probes_0.6_Lin_s4$Coef)), mean(abs(coefs_shared_probes_0.5_Lin_s4$Coef)),
+                    mean(abs(coefs_shared_probes_0.4_Lin_s4$Coef)))
 
 coefs_s4$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
@@ -549,9 +550,9 @@ coefs_shared_probes_0.4_Lin_s5 <- merge(probes_0.4_Lin_s5_df_copy, probes_coef_s
 
 coefs_s5 <- data.frame(matrix(0, nrow=7, ncol=2))
 colnames(coefs_s5) <- c("Average_Coefs", "Model_Criteria")
-coefs_s5$Average_Coefs <- c(mean(coefs_shared_probes_Mod1_Lin_s5$Coef), mean(coefs_shared_probes_0.9_Lin_s5$Coef), mean(coefs_shared_probes_0.8_Lin_s5$Coef),
-                    mean(coefs_shared_probes_0.7_Lin_s5$Coef), mean(coefs_shared_probes_0.6_Lin_s5$Coef), mean(coefs_shared_probes_0.5_Lin_s5$Coef),
-                    mean(coefs_shared_probes_0.4_Lin_s5$Coef))
+coefs_s5$Average_Coefs <- c(mean(abs(coefs_shared_probes_Mod1_Lin_s5$Coef)), mean(abs(coefs_shared_probes_0.9_Lin_s5$Coef)), mean(abs(coefs_shared_probes_0.8_Lin_s5$Coef)),
+                    mean(abs(coefs_shared_probes_0.7_Lin_s5$Coef)), mean(abs(coefs_shared_probes_0.6_Lin_s5$Coef)), mean(abs(coefs_shared_probes_0.5_Lin_s5$Coef)),
+                    mean(abs(coefs_shared_probes_0.4_Lin_s5$Coef)))
 
 coefs_s5$Model_Criteria[1] <- "Model 1"
 threshold <- seq(1,0.4,by=-0.1)
@@ -614,5 +615,3 @@ boxplot(coef_boxplot_df$Average_Coefs ~ coef_boxplot_df$Model_Criteria, xlab="Mo
         main="Average coef magnitude for study probes/Lin overlap")
 dev.copy(pdf, "boxplot_coefs (Lin).pdf")
 dev.off()
-
-
