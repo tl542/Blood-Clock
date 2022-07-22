@@ -301,38 +301,38 @@ new_table_per_chr[22,"Average_Correlation"] <- mean(c(table1[22,"Correlation"], 
 
 average_performance_nprobes_chr <- cbind(new_table_per_chr, size_chr_df$nprobes_chr)
 colnames(average_performance_nprobes_chr) <- c("Average_Performance", "Number_Probes")
-par(bg="aliceblue")
+
+average_performance_nprobes_chr[1, "Chr"] <- "1"
+average_performance_nprobes_chr[2, "Chr"] <- "2"
+average_performance_nprobes_chr[3, "Chr"] <- "3"
+average_performance_nprobes_chr[4, "Chr"] <- "4"
+average_performance_nprobes_chr[5, "Chr"] <- "5"
+average_performance_nprobes_chr[6, "Chr"] <- "6"
+average_performance_nprobes_chr[7, "Chr"] <- "7"
+average_performance_nprobes_chr[8, "Chr"] <- "8"
+average_performance_nprobes_chr[9, "Chr"] <- "9"
+average_performance_nprobes_chr[10, "Chr"] <- "10"
+average_performance_nprobes_chr[11, "Chr"] <- "11"
+average_performance_nprobes_chr[12, "Chr"] <- "12"
+average_performance_nprobes_chr[13, "Chr"] <- "13"
+average_performance_nprobes_chr[14, "Chr"] <- "14"
+average_performance_nprobes_chr[15, "Chr"] <- "15"
+average_performance_nprobes_chr[16, "Chr"] <- "16"
+average_performance_nprobes_chr[17, "Chr"] <- "17"
+average_performance_nprobes_chr[18, "Chr"] <- "18"
+average_performance_nprobes_chr[19, "Chr"] <- "19"
+average_performance_nprobes_chr[20, "Chr"] <- "20"
+average_performance_nprobes_chr[21, "Chr"] <- "21"
+average_performance_nprobes_chr[22, "Chr"] <- "22"
+
+
 attach(average_performance_nprobes_chr)
-plot(Number_Probes, Average_Performance, pch=19, col="steelblue", xlab= Number of Probes per chromosome", ylab="Average performance per chromosome",
-main="Model Performance against number of CpGs per chromosome")
-
-
-average_performance_nprobes_chr[1, "Chr"] <- "C1"
-average_performance_nprobes_chr[2, "Chr"] <- "C2"
-average_performance_nprobes_chr[3, "Chr"] <- "C3"
-average_performance_nprobes_chr[4, "Chr"] <- "C4"
-average_performance_nprobes_chr[5, "Chr"] <- "C5"
-average_performance_nprobes_chr[6, "Chr"] <- "C6"
-average_performance_nprobes_chr[7, "Chr"] <- "C7"
-average_performance_nprobes_chr[8, "Chr"] <- "C8"
-average_performance_nprobes_chr[9, "Chr"] <- "C9"
-average_performance_nprobes_chr[10, "Chr"] <- "C10"
-average_performance_nprobes_chr[11, "Chr"] <- "C11"
-average_performance_nprobes_chr[12, "Chr"] <- "C12"
-average_performance_nprobes_chr[13, "Chr"] <- "C13"
-average_performance_nprobes_chr[14, "Chr"] <- "C14"
-average_performance_nprobes_chr[15, "Chr"] <- "C15"
-average_performance_nprobes_chr[16, "Chr"] <- "C16"
-average_performance_nprobes_chr[17, "Chr"] <- "C17"
-average_performance_nprobes_chr[18, "Chr"] <- "C18"
-average_performance_nprobes_chr[19, "Chr"] <- "C19"
-average_performance_nprobes_chr[20, "Chr"] <- "C20"
-average_performance_nprobes_chr[21, "Chr"] <- "C21"
-average_performance_nprobes_chr[22, "Chr"] <- "C22"
-
-                                                   
-
-
+par(bg="aliceblue")
+plot(Number_Probes, Average_Performance, pch=19, col="steelblue", xlab= "Number of Probes per chromosome", ylab="Average performance per chromosome", 
+main="Average model performance vs number of CpGs per chromosome")
+text(Number_Probes, Average_Performance, labels=Chr, adj=0.7, font=2, cex=0.8)
+dev.copy(pdf,"Performance_vs_nprobes_chr.pdf")
+dev.off()
   
                 
 
