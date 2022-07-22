@@ -281,6 +281,40 @@ prop_probes_summary[5,] <- c(dim(probes_Mod1_Hannum_s5_df)[1]/dim(Hannum_probes)
 write.table(prop_probes_summary, "shared_probes_Hannum_summary(prop).txt", row.names=T, col.names=T, quote=F)
 
 
+prop_probes_summary1 <- data.frame(matrix(0, nrow=5, ncol=7))
+rownames(prop_probes_summary1) <- c("T1", "T2", "T3", "T4", "T5")
+colnames(prop_probes_summary1) <- c("Overlap_Mod1_Hannum", "Overlap_0.9_Hannum", "Overlap_0.8_Hannum", "Overlap_0.7_Hannum", "Overlap_0.6_Hannum", "Overlap_0.5_Hannum",
+                                   "Overlap_0.4_Hannum")
+prop_probes_summary1[1,] <- c(dim(probes_Mod1_Hannum_s1_df)[1], dim(probes_0.9_Hannum_s1_df)[1],
+                             dim(probes_0.8_Hannum_s1_df)[1], dim(probes_0.7_Hannum_s1_df)[1], 
+                             dim(probes_0.6_Hannum_s1_df)[1], dim(probes_0.5_Hannum_s1_df)[1],
+                             dim(probes_0.4_Hannum_s1_df)[1])
+
+prop_probes_summary1[2,] <- c(dim(probes_Mod1_Hannum_s2_df)[1], dim(probes_0.9_Hannum_s2_df)[1],
+                             dim(probes_0.8_Hannum_s2_df)[1], dim(probes_0.7_Hannum_s2_df)[1],
+                             dim(probes_0.6_Hannum_s2_df)[1], dim(probes_0.5_Hannum_s2_df)[1],
+                             dim(probes_0.4_Hannum_s2_df)[1])
+
+prop_probes_summary1[3,] <- c(dim(probes_Mod1_Hannum_s3_df)[1], dim(probes_0.9_Hannum_s3_df)[1],
+                             dim(probes_0.8_Hannum_s3_df)[1], dim(probes_0.7_Hannum_s3_df)[1],
+                             dim(probes_0.6_Hannum_s3_df)[1], dim(probes_0.5_Hannum_s3_df)[1],
+                             dim(probes_0.4_Hannum_s3_df)[1])
+
+prop_probes_summary1[4,] <- c(dim(probes_Mod1_Hannum_s4_df)[1], dim(probes_0.9_Hannum_s4_df)[1],
+                             dim(probes_0.8_Hannum_s4_df)[1], dim(probes_0.7_Hannum_s4_df)[1],
+                             dim(probes_0.6_Hannum_s4_df)[1], dim(probes_0.5_Hannum_s4_df)[1],
+                             dim(probes_0.4_Hannum_s4_df)[1])
+
+prop_probes_summary1[5,] <- c(dim(probes_Mod1_Hannum_s5_df)[1], dim(probes_0.9_Hannum_s5_df)[1],
+                             dim(probes_0.8_Hannum_s5_df)[1], dim(probes_0.7_Hannum_s5_df)[1],
+                             dim(probes_0.6_Hannum_s5_df)[1], dim(probes_0.5_Hannum_s5_df)[1],
+                             dim(probes_0.4_Hannum_s5_df)[1])
+
+
+write.table(prop_probes_summary1, "shared_probes_Hannum_summary(n).txt", row.names=T, col.names=T, quote=F)
+
+
+
 # Boxplot for Hannum/Current Study probe overlap
 
 Hannum_boxplot <- data.frame(matrix(0, nrow=35, ncol=2))
