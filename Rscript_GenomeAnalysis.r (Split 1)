@@ -228,6 +228,111 @@ par(bg="aliceblue")
 plot(Chr, nprobes_chr,pch=19, col="red")
 
 
+new_table_per_chr <- data.frame(matrix(0, nrow=22, ncol=1))
+colnames(new_table_per_chr) <- "Average_Correlation"
+new_table_per_chr[1,"Average_Correlation"] <- mean(c(table1[1,"Correlation"], table2[1,"Correlation"], table3[1,"Correlation"], table4[1,"Correlation"],
+                                                     table5[1,"Correlation"]))
+
+new_table_per_chr[2,"Average_Correlation"] <- mean(c(table1[2,"Correlation"], table2[2,"Correlation"], table3[2,"Correlation"], table4[2,"Correlation"],
+                                                     table5[2,"Correlation"]))
+
+new_table_per_chr[3,"Average_Correlation"] <- mean(c(table1[3,"Correlation"], table2[3,"Correlation"], table3[3,"Correlation"], table4[3,"Correlation"],
+                                                     table5[3,"Correlation"]))
+
+new_table_per_chr[4,"Average_Correlation"] <- mean(c(table1[4,"Correlation"], table2[4,"Correlation"], table3[4,"Correlation"], table4[4,"Correlation"],
+                                                     table5[4,"Correlation"]))
+
+new_table_per_chr[5,"Average_Correlation"] <- mean(c(table1[5,"Correlation"], table2[5,"Correlation"], table3[5,"Correlation"], table4[5,"Correlation"],
+                                                     table5[5,"Correlation"]))
+
+new_table_per_chr[6,"Average_Correlation"] <- mean(c(table1[6,"Correlation"], table2[6,"Correlation"], table3[6,"Correlation"], table4[6,"Correlation"],
+                                                     table5[6,"Correlation"]))
+
+new_table_per_chr[7,"Average_Correlation"] <- mean(c(table1[7,"Correlation"], table2[7,"Correlation"], table3[7,"Correlation"], table4[7,"Correlation"],
+                                                     table5[7,"Correlation"]))
+
+new_table_per_chr[8,"Average_Correlation"] <- mean(c(table1[8,"Correlation"], table2[8,"Correlation"], table3[8,"Correlation"], table4[8,"Correlation"],
+                                                     table5[8,"Correlation"]))
+
+new_table_per_chr[9,"Average_Correlation"] <- mean(c(table1[9,"Correlation"], table2[9,"Correlation"], table3[9,"Correlation"], table4[9,"Correlation"],
+                                                     table5[9,"Correlation"]))
+
+new_table_per_chr[10,"Average_Correlation"] <- mean(c(table1[10,"Correlation"], table2[10,"Correlation"], table3[10,"Correlation"], table4[10,"Correlation"],
+                                                     table5[10,"Correlation"]))
+
+new_table_per_chr[11,"Average_Correlation"] <- mean(c(table1[11,"Correlation"], table2[11,"Correlation"], table3[11,"Correlation"], table4[11,"Correlation"],
+                                                     table5[11,"Correlation"]))
+
+new_table_per_chr[12,"Average_Correlation"] <- mean(c(table1[12,"Correlation"], table2[12,"Correlation"], table3[12,"Correlation"], table4[12,"Correlation"],
+                                                     table5[12,"Correlation"]))
+
+new_table_per_chr[13,"Average_Correlation"] <- mean(c(table1[13,"Correlation"], table2[13,"Correlation"], table3[13,"Correlation"], table4[13,"Correlation"],
+                                                     table5[13,"Correlation"]))
+
+new_table_per_chr[14,"Average_Correlation"] <- mean(c(table1[14,"Correlation"], table2[14,"Correlation"], table3[14,"Correlation"], table4[14,"Correlation"],
+                                                     table5[14,"Correlation"]))
+
+new_table_per_chr[15,"Average_Correlation"] <- mean(c(table1[15,"Correlation"], table2[15,"Correlation"], table3[15,"Correlation"], table4[15,"Correlation"],
+                                                     table5[15,"Correlation"]))
+
+new_table_per_chr[16,"Average_Correlation"] <- mean(c(table1[16,"Correlation"], table2[16,"Correlation"], table3[16,"Correlation"], table4[16,"Correlation"],
+                                                     table5[16,"Correlation"]))
+
+new_table_per_chr[17,"Average_Correlation"] <- mean(c(table1[17,"Correlation"], table2[17,"Correlation"], table3[17,"Correlation"], table4[17,"Correlation"],
+                                                     table5[17,"Correlation"]))
+
+new_table_per_chr[18,"Average_Correlation"] <- mean(c(table1[18,"Correlation"], table2[18,"Correlation"], table3[18,"Correlation"], table4[18,"Correlation"],
+                                                     table5[18,"Correlation"]))
+
+new_table_per_chr[19,"Average_Correlation"] <- mean(c(table1[19,"Correlation"], table2[19,"Correlation"], table3[19,"Correlation"], table4[19,"Correlation"],
+                                                     table5[19,"Correlation"]))
+
+new_table_per_chr[20,"Average_Correlation"] <- mean(c(table1[20,"Correlation"], table2[20,"Correlation"], table3[20,"Correlation"], table4[20,"Correlation"],
+                                                     table5[20,"Correlation"]))
+
+new_table_per_chr[21,"Average_Correlation"] <- mean(c(table1[21,"Correlation"], table2[21,"Correlation"], table3[21,"Correlation"], table4[21,"Correlation"],
+                                                     table5[21,"Correlation"]))
+
+new_table_per_chr[22,"Average_Correlation"] <- mean(c(table1[22,"Correlation"], table2[22,"Correlation"], table3[22,"Correlation"], table4[22,"Correlation"],
+                                                     table5[22,"Correlation"]))
+
+
+
+
+average_performance_nprobes_chr <- cbind(new_table_per_chr, size_chr_df$nprobes_chr)
+colnames(average_performance_nprobes_chr) <- c("Average_Performance", "Number_Probes")
+par(bg="aliceblue")
+attach(average_performance_nprobes_chr)
+plot(Number_Probes, Average_Performance, pch=19, col="steelblue", xlab= Number of Probes per chromosome", ylab="Average performance per chromosome",
+main="Model Performance against number of CpGs per chromosome")
+
+
+average_performance_nprobes_chr[1, "Chr"] <- "C1"
+average_performance_nprobes_chr[2, "Chr"] <- "C2"
+average_performance_nprobes_chr[3, "Chr"] <- "C3"
+average_performance_nprobes_chr[4, "Chr"] <- "C4"
+average_performance_nprobes_chr[5, "Chr"] <- "C5"
+average_performance_nprobes_chr[6, "Chr"] <- "C6"
+average_performance_nprobes_chr[7, "Chr"] <- "C7"
+average_performance_nprobes_chr[8, "Chr"] <- "C8"
+average_performance_nprobes_chr[9, "Chr"] <- "C9"
+average_performance_nprobes_chr[10, "Chr"] <- "C10"
+average_performance_nprobes_chr[11, "Chr"] <- "C11"
+average_performance_nprobes_chr[12, "Chr"] <- "C12"
+average_performance_nprobes_chr[13, "Chr"] <- "C13"
+average_performance_nprobes_chr[14, "Chr"] <- "C14"
+average_performance_nprobes_chr[15, "Chr"] <- "C15"
+average_performance_nprobes_chr[16, "Chr"] <- "C16"
+average_performance_nprobes_chr[17, "Chr"] <- "C17"
+average_performance_nprobes_chr[18, "Chr"] <- "C18"
+average_performance_nprobes_chr[19, "Chr"] <- "C19"
+average_performance_nprobes_chr[20, "Chr"] <- "C20"
+average_performance_nprobes_chr[21, "Chr"] <- "C21"
+average_performance_nprobes_chr[22, "Chr"] <- "C22"
+
+                                                   
+
+
   
                 
 
