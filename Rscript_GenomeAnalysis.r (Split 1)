@@ -213,5 +213,21 @@ dev.copy(pdf, "boxplot_chrs.pdf")
 dev.off()
 
 
+size_chr_df <- data.frame(matrix(0, nrow=22, ncol=2))
+colnames(size_chr_df) <- c("nprobes_chr", "Chr")                         
+for (i in seq(1,22)){
+  size_chr_df$nprobes_chr[i] <- nrow(df_final[df_final$CHR == i,])
+  size_chr_df$Chr[i] <- i
+}
 
+size_chr_df$Chr <- factor(size_chr_df$Chr, c("Chr1","Chr2","Chr3","Chr4","Chr5","Chr6","Chr7","Chr8","Chr9","Chr10","Chr11","Chr12",
+                                             "Chr13", "Chr14", "Chr15", "Chr16", "Chr17", "Chr18", "Chr19", "Chr20", "Chr21", "Chr22"))
+
+#attach(size_chr_df)
+par(bg="aliceblue")
+plot(Chr, nprobes_chr,pch=19, col="red")
+
+
+  
+                
 
