@@ -7,7 +7,7 @@ epicManifest<-read.csv("/mnt/data1/EPIC_reference/MethylationEPIC_v-1-0_B2.csv",
 
 df_final <- data.frame()
 for (i in seq(1,22)){
-probes_i <- epicManifest[epicManifest$CHR == i, c("Name","CHR")]
+probes_i <- epicManifest[epicManifest$CHR == i, c("Name","CHR","MAPINFO")]
 df_final <- rbind(df_final, probes_i)
 }
 
@@ -19,7 +19,7 @@ test <- df_all[-trainIndex,]
 best_lambda <- 0.1313309
 
 probes_3 <- df_final[df_final$CHR == 3,]
-bv3 <- probes_3[order(probes_2$MAPINFO),]
+bv3 <- probes_3[order(probes_3$MAPINFO),]
 rownames(bv3) <- NULL
 
 #df <- data.frame()
@@ -32,6 +32,7 @@ rownames(bv3) <- NULL
   #}
 #}
 
+l_p <- ()
 library(glmnet)
 library(metrics)
 l_probes <- list()
@@ -40,28 +41,31 @@ l_rmse <- list()
 l_cor <- list()
 df <- data.frame()
 v <- bv3$MAPINFO  
-for (i in v[1]:v[length(l)]){
+for (i in v[1][1]:v[length(v)][1]){
   for (j in i:i+500000){
-    bv3 <- bv3[j %in% v,]
-    rownames(bv3) <- bv3$Name
-    ix <- which(colnames(df_all)[-803377] %in% rownames(bv3))
-    new_train <- cbind(train[,ix], train$Age)
-    new_test <- cbind(test[,ix], test$Age)
-    names(new_train)[names(new_train) == "train$Age"] <- "Age"
-    names(new_test)[names(new_test) == "test$Age"] <- "Age"
-    fit_train <- glmnet(as.matrix(new_train[,-ncol(new_train)]), new_train$Age, alpha=0.5, nlambda=10)
-    pred_test <- predict(fit_train, as.matrix(new_test[,-ncol(new_test)]), s=best_lambda)
-    RMSE <- rmse(new_test$Age, pred_test)
-    corr <- cor(new_test$Age, pred_test)
-    l_rmse <- c(l_rmse,RMSE)
-    l_cor <- c(l_cor, corr)
-    coefs <- coef(fit_train, s=best_lambda)
-    coefs_nz <- coefs[which(coefs != 0),]
-    coefs_nz_df <- as.data.frame(coefs_nz)
-    l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
-    l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[-1,"coefs_nz"]))
-    
+    if (j %in% v){
+      l_p <- c(l_p,j)
+    }
   }
+  bv3 <- bv3[bv3$MAPINFO %in% l_p,]
+  rownames(bv3) <- bv3$Name
+  ix <- which(colnames(df_all)[-803377] %in% rownames(bv3))
+  new_train <- cbind(train[,ix], train$Age)
+  new_test <- cbind(test[,ix], test$Age)
+  names(new_train)[names(new_train) == "train$Age"] <- "Age"
+  names(new_test)[names(new_test) == "test$Age"] <- "Age"
+  fit_train <- glmnet(as.matrix(new_train[,-ncol(new_train)]), new_train$Age, alpha=0.5, nlambda=10)
+  pred_test <- predict(fit_train, as.matrix(new_test[,-ncol(new_test)]), s=best_lambda)
+  RMSE <- rmse(new_test$Age, pred_test)
+  corr <- cor(new_test$Age, pred_test)
+  l_rmse <- c(l_rmse,RMSE)
+  l_cor <- c(l_cor, corr)
+  coefs <- coef(fit_train, s=best_lambda)
+  coefs_nz <- coefs[which(coefs != 0),]
+  coefs_nz_df <- as.data.frame(coefs_nz)
+  l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
+  l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[-1,"coefs_nz"]))
+    
 }
 
 l_cor_unlist <- unlist(l_cor)
@@ -84,7 +88,20 @@ colnames(len_probes_df) <- "nProbes"
 l_cor_rmse_nprobes_df <- cbind(cor_rmse_df, len_probes_df)
 
 for (i in 1:nrow(l_cor_rmse_nprobes_df)){
-  rownames(l_cor_rmse_nprobes_df)[i] <- paste("Model_500KB", i, sep="")
+  rownames(l_cor_rmse_nprobes_df)[i] <- paste("Model_500KB_",i, sep="")
 }
+
+write.table(l_cor_rmse_nprobes_df, "cor_rmse_nprobes_models_window (Split 1).txt", row.names=T, col.names=T, quote=F)
+
+
+probes_model <- data.frame()
+for (i in 1:length(l_probes)){
+  l_probes_i <- unlist(l_probes[[i]])
+  l_probes_i_df <- as.data.frame(l_probes_i)
+  colnames(l_probes_i_df) <- "Selected Probes"
+  l_probes_i_df["Probes_Model"] <- paste("Model_500KB_",i, sep="")
+  probes_model <- rbind(probes_model, l_probes_i_df)
+}
+write.table(probes_model, "probes_models_window (Split 1).txt", row.names=T, col.names=T, quote=F)
 
 
