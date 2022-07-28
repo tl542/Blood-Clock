@@ -41,7 +41,7 @@ l_rmse <- list()
 l_cor <- list()
 df <- data.frame()
 v <- bv3$MAPINFO  
-for (i in v[1]:v[length(v)]){
+for (i in v){
   for (j in seq(i:i+500000)){
     if (j %in% v){
       l_p <- c(l_p,j)
