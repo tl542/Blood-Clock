@@ -334,19 +334,19 @@ text(Number_Probes, Average_Performance, labels=Chr, adj=0.7, font=2, cex=0.8)
 dev.copy(pdf,"Performance_vs_nprobes_chr.pdf")
 dev.off()
   
-
+vb <- data.frame()
 for (i in seq(1,22)){
   vb <- rbind(vb,nrow(df_final[df_final$CHR==i,]))
 }
 
 for (i in 1:nrow(vb)){
-  vb$Chr[i] <- paste("Chr",i,sep="")
+  vb$Chr[i] <- paste(i,sep="")
 }
+colnames(vb) <- c("N_CpGs","Chr")
 write.table(vb,"Number_CpGs_Chr.txt", row.names=T, col.names=T, quote=F)
 
 
 nprobes_chr_selected <- data.frame(matrix(0,nrow=22,ncol=3))
-colnames(nprobes_chr_selected) <- c("N_CpGs","N_CpGs_selecte", "Chr")
 colnames(nprobes_chr_selected) <- c("N_CpGs","N_CpGs_selected", "Chr")
 colnames(nprobes_chr_selected) <- c("N_CpGs","Average_number_CpGs_selected", "Chr")
 nprobes_chr_selected$N_CpGs <- vb$N_CpGs
@@ -418,7 +418,12 @@ nprobes_chr_selected[21,"Average_number_CpGs_selected"] <- mean(c(table1[21,"nPr
 nprobes_chr_selected[22,"Average_number_CpGs_selected"] <- mean(c(table1[22,"nProbes"], table2[22,"nProbes"], table3[22,"nProbes"], table4[22,"nProbes"],
                                                      table5[22,"nProbes"]))
 
-
+par(bg="aliceblue")
+plot(nprobes_chr_selected$N_CpGs, nprobes_chr_selected$Average_number_CpGs_selected, xlab="Number of Probes per chromosome", ylab="Average number of CpGs selected",
+     col="steelblue", pch=19, main="Average number of selected CpGs vs Number of CpGs per chr")
+text(nprobes_chr_selected$N_CpGs, nprobes_chr_selected$Average_number_CpGs_selected, labels=nprobes_chr_selected$Chr, adj=0.7, font=2, cex=0.8)
+dev.copy(pdf,"CpG_selected_vs_N_CpGs_chr.pdf")
+dev.off()
 
 
 
