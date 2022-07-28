@@ -426,7 +426,11 @@ dev.copy(pdf,"CpG_selected_vs_N_CpGs_chr.pdf")
 dev.off()
 
 
-
+mod1 <- lm(nprobes_chr_selected$Average_number_CpGs_selected ~ nprobes_chr_selected$N_CpGs)
+summary(mod1)
+#estimate 1.328e-03
+#p_value = 0.097 > 0.05
+#No significant relationship: Number of probes in chr does not predict the number of probes selected.
 
 
 
