@@ -33,7 +33,6 @@ rownames(bv3) <- NULL
 #}
 
 n_iter <- 0
-l_p <- list()
 library(glmnet)
 library(Metrics)
 l_probes <- list()
