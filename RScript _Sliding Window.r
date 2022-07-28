@@ -41,15 +41,15 @@ l_rmse <- list()
 l_cor <- list()
 df <- data.frame()
 v <- bv3$MAPINFO  
-for (i in v[1][1]:v[length(v)][1]){
+for (i in v[1]:v[length(v)]){
   for (j in i:i+500000){
     if (j %in% v){
       l_p <- c(l_p,j)
     }
   }
-  bv3 <- bv3[bv3$MAPINFO %in% l_p,]
-  rownames(bv3) <- bv3$Name
-  ix <- which(colnames(df_all)[-803377] %in% rownames(bv3))
+  bv <- bv3[bv3$MAPINFO %in% l_p,]
+  rownames(bv) <- bv$Name
+  ix <- which(colnames(df_all)[-803377] %in% rownames(bv))
   new_train <- cbind(train[,ix], train$Age)
   new_test <- cbind(test[,ix], test$Age)
   names(new_train)[names(new_train) == "train$Age"] <- "Age"
