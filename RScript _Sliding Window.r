@@ -43,14 +43,15 @@ l_cor <- list()
 df <- data.frame()
 v <- bv3$MAPINFO  
 for (i in v){
+  l_p <- list()
   for (j in seq(i:i+500000)){
     if (j %in% v){
       l_p <- c(l_p,j)
     }
   }
-  n_iter <- n_iter + 1
   bv <- bv3[bv3$MAPINFO %in% l_p,]
-  l_p <- list()
+  n_iter <- n_iter + 1
+  l_p <<- NULL
   rownames(bv) <- bv$Name
   ix <- which(colnames(df_all)[-803377] %in% rownames(bv))
   new_train <- cbind(train[,ix], train$Age)
