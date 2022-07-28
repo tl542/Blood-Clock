@@ -32,9 +32,9 @@ rownames(bv3) <- NULL
   #}
 #}
 
-l_p <- ()
+l_p <- list()
 library(glmnet)
-library(metrics)
+library(Metrics)
 l_probes <- list()
 l_probes_coef <- list()
 l_rmse <- list()
