@@ -334,5 +334,98 @@ text(Number_Probes, Average_Performance, labels=Chr, adj=0.7, font=2, cex=0.8)
 dev.copy(pdf,"Performance_vs_nprobes_chr.pdf")
 dev.off()
   
+
+for (i in seq(1,22)){
+  vb <- rbind(vb,nrow(df_final[df_final$CHR==i,]))
+}
+
+for (i in 1:nrow(vb)){
+  vb$Chr[i] <- paste("Chr",i,sep="")
+}
+write.table(vb,"Number_CpGs_Chr.txt", row.names=T, col.names=T, quote=F)
+
+
+nprobes_chr_selected <- data.frame(matrix(0,nrow=22,ncol=3))
+colnames(nprobes_chr_selected) <- c("N_CpGs","N_CpGs_selecte", "Chr")
+colnames(nprobes_chr_selected) <- c("N_CpGs","N_CpGs_selected", "Chr")
+colnames(nprobes_chr_selected) <- c("N_CpGs","Average_number_CpGs_selected", "Chr")
+nprobes_chr_selected$N_CpGs <- vb$N_CpGs
+nprobes_chr_selected$Chr <- vb$Chr
+
+nprobes_chr_selected[1,"Average_number_CpGs_selected"] <- mean(c(table1[1,"nProbes"], table2[1,"nProbes"], table3[1,"nProbes"], table4[1,"nProbes"],
+                                                     table5[1,"nProbes"]))
+
+nprobes_chr_selected[2,"Average_number_CpGs_selected"] <- mean(c(table1[2,"nProbes"], table2[2,"nProbes"], table3[2,"nProbes"], table4[2,"nProbes"],
+                                                     table5[2,"nProbes"]))
+
+nprobes_chr_selected[3,"Average_number_CpGs_selected"] <- mean(c(table1[3,"nProbes"], table2[3,"nProbes"], table3[3,"nProbes"], table4[3,"nProbes"],
+                                                     table5[3,"nProbes"]))
+
+nprobes_chr_selected[4,"Average_number_CpGs_selected"] <- mean(c(table1[4,"nProbes"], table2[4,"nProbes"], table3[4,"nProbes"], table4[4,"nProbes"],
+                                                     table5[4,"nProbes"]))
+
+nprobes_chr_selected[5,"Average_number_CpGs_selected"] <- mean(c(table1[5,"nProbes"], table2[5,"nProbes"], table3[5,"nProbes"], table4[5,"nProbes"],
+                                                     table5[5,"nProbes"]))
+
+nprobes_chr_selected[6,"Average_number_CpGs_selected"] <- mean(c(table1[6,"nProbes"], table2[6,"nProbes"], table3[6,"nProbes"], table4[6,"nProbes"],
+                                                     table5[6,"nProbes"]))
+
+nprobes_chr_selected[7,"Average_number_CpGs_selected"] <- mean(c(table1[7,"nProbes"], table2[7,"nProbes"], table3[7,"nProbes"], table4[7,"nProbes"],
+                                                     table5[7,"nProbes"]))
+
+nprobes_chr_selected[8,"Average_number_CpGs_selected"] <- mean(c(table1[8,"nProbes"], table2[8,"nProbes"], table3[8,"nProbes"], table4[8,"nProbes"],
+                                                     table5[8,"nProbes"]))
+
+nprobes_chr_selected[9,"Average_number_CpGs_selected"] <- mean(c(table1[9,"nProbes"], table2[9,"nProbes"], table3[9,"nProbes"], table4[9,"nProbes"],
+                                                     table5[9,"nProbes"]))
+
+nprobes_chr_selected[10,"Average_number_CpGs_selected"] <- mean(c(table1[10,"nProbes"], table2[10,"nProbes"], table3[10,"nProbes"], table4[10,"nProbes"],
+                                                     table5[10,"nProbes"]))
+
+nprobes_chr_selected[11,"Average_number_CpGs_selected"] <- mean(c(table1[11,"nProbes"], table2[11,"nProbes"], table3[11,"nProbes"], table4[11,"nProbes"],
+                                                     table5[11,"nProbes"]))
+
+nprobes_chr_selected[12,"Average_number_CpGs_selected"] <- mean(c(table1[12,"nProbes"], table2[12,"nProbes"], table3[12,"nProbes"], table4[12,"nProbes"],
+                                                     table5[12,"nProbes"]))
+
+nprobes_chr_selected[13,"Average_number_CpGs_selected"] <- mean(c(table1[13,"nProbes"], table2[13,"nProbes"], table3[13,"nProbes"], table4[13,"nProbes"],
+                                                     table5[13,"nProbes"]))
+
+nprobes_chr_selected[14,"Average_number_CpGs_selected"] <- mean(c(table1[14,"nProbes"], table2[14,"nProbes"], table3[14,"nProbes"], table4[14,"nProbes"],
+                                                     table5[14,"nProbes"]))
+
+nprobes_chr_selected[15,"Average_number_CpGs_selected"] <- mean(c(table1[15,"nProbes"], table2[15,"nProbes"], table3[15,"nProbes"], table4[15,"nProbes"],
+                                                     table5[15,"nProbes"]))
+
+nprobes_chr_selected[16,"Average_number_CpGs_selected"] <- mean(c(table1[16,"nProbes"], table2[16,"nProbes"], table3[16,"nProbes"], table4[16,"nProbes"],
+                                                     table5[16,"nProbes"]))
+
+nprobes_chr_selected[17,"Average_number_CpGs_selected"] <- mean(c(table1[17,"nProbes"], table2[17,"nProbes"], table3[17,"nProbes"], table4[17,"nProbes"],
+                                                     table5[17,"nProbes"]))
+
+nprobes_chr_selected[18,"Average_number_CpGs_selected"] <- mean(c(table1[18,"nProbes"], table2[18,"nProbes"], table3[18,"nProbes"], table4[18,"nProbes"],
+                                                     table5[18,"nProbes"]))
+
+nprobes_chr_selected[19,"Average_number_CpGs_selected"] <- mean(c(table1[19,"nProbes"], table2[19,"nProbes"], table3[19,"nProbes"], table4[19,"nProbes"],
+                                                     table5[19,"nProbes"]))
+
+nprobes_chr_selected[20,"Average_number_CpGs_selected"] <- mean(c(table1[20,"nProbes"], table2[20,"nProbes"], table3[20,"nProbes"], table4[20,"nProbes"],
+                                                     table5[20,"nProbes"]))
+
+nprobes_chr_selected[21,"Average_number_CpGs_selected"] <- mean(c(table1[21,"nProbes"], table2[21,"nProbes"], table3[21,"nProbes"], table4[21,"nProbes"],
+                                                     table5[21,"nProbes"]))
+
+nprobes_chr_selected[22,"Average_number_CpGs_selected"] <- mean(c(table1[22,"nProbes"], table2[22,"nProbes"], table3[22,"nProbes"], table4[22,"nProbes"],
+                                                     table5[22,"nProbes"]))
+
+
+
+
+
+
+
+
+
+
                 
 
