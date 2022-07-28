@@ -32,6 +32,7 @@ rownames(bv3) <- NULL
   #}
 #}
 
+n_iter <- 0
 l_p <- list()
 library(glmnet)
 library(Metrics)
@@ -47,7 +48,9 @@ for (i in v){
       l_p <- c(l_p,j)
     }
   }
+  n_iter <- n_iter + 1
   bv <- bv3[bv3$MAPINFO %in% l_p,]
+  l_p <- list()
   rownames(bv) <- bv$Name
   ix <- which(colnames(df_all)[-803377] %in% rownames(bv))
   new_train <- cbind(train[,ix], train$Age)
