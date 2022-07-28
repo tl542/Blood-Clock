@@ -418,6 +418,8 @@ nprobes_chr_selected[21,"Average_number_CpGs_selected"] <- mean(c(table1[21,"nPr
 nprobes_chr_selected[22,"Average_number_CpGs_selected"] <- mean(c(table1[22,"nProbes"], table2[22,"nProbes"], table3[22,"nProbes"], table4[22,"nProbes"],
                                                      table5[22,"nProbes"]))
 
+write.table(nprobes_chr_selected,"nprobes_selected_vs_total_nprobes_chr.txt",row.names=T,col.names=T,quote=F)
+
 par(bg="aliceblue")
 plot(nprobes_chr_selected$N_CpGs, nprobes_chr_selected$Average_number_CpGs_selected, xlab="Number of Probes per chromosome", ylab="Average number of CpGs selected",
      col="steelblue", pch=19, main="Average number of selected CpGs vs Number of CpGs per chr")
