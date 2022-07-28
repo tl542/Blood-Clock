@@ -25,7 +25,7 @@ rownames(bv3) <- NULL
 #df <- data.frame()
 #v <- bv3$MAPINFO  
 #for (i in v[1]:v[length(l)]){
-  #for (j in i:i+500000){
+  #for (j in seq(i:i+500000)){
     #if (j %in% v){
       #df <- rbind(df,bv3)
     #}
@@ -42,7 +42,7 @@ l_cor <- list()
 df <- data.frame()
 v <- bv3$MAPINFO  
 for (i in v[1]:v[length(v)]){
-  for (j in i:i+500000){
+  for (j in seq(i:i+500000)){
     if (j %in% v){
       l_p <- c(l_p,j)
     }
