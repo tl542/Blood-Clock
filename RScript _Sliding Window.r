@@ -22,15 +22,6 @@ probes_3 <- df_final[df_final$CHR == 3,]
 bv3 <- probes_3[order(probes_3$MAPINFO),]
 rownames(bv3) <- NULL
 
-#df <- data.frame()
-#v <- bv3$MAPINFO  
-#for (i in v[1]:v[length(l)]){
-  #for (j in seq(i:i+500000)){
-    #if (j %in% v){
-      #df <- rbind(df,bv3)
-    #}
-  #}
-#}
 
 n_iter <- 0
 library(glmnet)
