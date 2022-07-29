@@ -41,7 +41,6 @@ for (i in v){
   }
   n_iter <- n_iter + 1
   bv <- bv3[bv3$MAPINFO %in% l_p,]
-  l_p <<- NULL
   rownames(bv) <- bv$Name
   ix <- which(colnames(df_all)[-803377] %in% rownames(bv))
   new_train <- cbind(train[,ix], train$Age)
