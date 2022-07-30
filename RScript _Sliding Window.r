@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 source("/mnt/data1/EXTEND/Methylation/QC/Theo/script_forGA.r")
 
 epicManifest<-read.csv("/mnt/data1/EPIC_reference/MethylationEPIC_v-1-0_B2.csv", skip = 7)
