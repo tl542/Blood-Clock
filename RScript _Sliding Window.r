@@ -22,7 +22,7 @@ probes_3 <- df_final[df_final$CHR == 3,]
 bv3 <- probes_3[order(probes_3$MAPINFO),]
 rownames(bv3) <- NULL
 
-
+for (
 n_iter <- 0
 library(glmnet)
 library(Metrics)
@@ -30,7 +30,6 @@ l_probes <- list()
 l_probes_coef <- list()
 l_rmse <- list()
 l_cor <- list()
-df <- data.frame()
 v <- bv3$MAPINFO  
 for (i in v){
   n_iter <- n_iter + 1
