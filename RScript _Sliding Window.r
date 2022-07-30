@@ -35,7 +35,7 @@ v <- bv3$MAPINFO
 for (i in v){
   n_iter <- n_iter + 1
   l_p <- list()
-  l_p <- which(v < i+50000 & v >= i) 
+  l_p <- which(v < i+500000 & v >= i) 
   bv <- bv3[l_p,]
   rownames(bv) <- bv$Name
   ix <- which(colnames(df_all)[-803377] %in% rownames(bv))
