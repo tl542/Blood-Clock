@@ -18,9 +18,9 @@ train <- df_all[trainIndex,]
 test <- df_all[-trainIndex,]
 best_lambda <- 0.1313309
 
-probes_3 <- df_final[df_final$CHR == 3,]
-bv3 <- probes_3[order(probes_3$MAPINFO),]
-rownames(bv3) <- NULL
+#probes_3 <- df_final[df_final$CHR == 3,]
+#bv3 <- probes_3[order(probes_3$MAPINFO),]
+#rownames(bv3) <- NULL
 
 
 library(glmnet)
@@ -98,29 +98,50 @@ start_window_unlist_df <- as.data.frame(start_window_unlist)
 colnames(start_window_unlist_df) <- "Start_Window"
 
 nprobes_start_window_df <- cbind(nprobes_window_unlist_df, start_window_unlist_df)
-almost_final_df <- cbind(l_cor_rmse_nprobes_df, nprobes_start_window_df)
+final_df <- cbind(l_cor_rmse_nprobes_df, nprobes_start_window_df)
+
+write.table(final_df, "cor_rmse_nprobes_models_window (Split 1).txt", row.names=T, col.names=T, quote=F)
+
 
 l_chr_unlist <- unlist(l_chr)
 l_chr_unlist_df <- as.data.frame(l_chr_unlist)
 colnames(l_chr_unlist_df) <- "Chr"
 
-final_df <- c(almost_final_df, l_chr_unlist_df)
+nmodels_chr_unlist <- unlist(nmodels_chr)
+nmodels_chr_unlist_df <- as.data.frame(nmodels_chr_unlist)
+colnames(nmodels_chr_unlist_df) <- "nmodels_chr"
+nmodels_chr_unlist_df <- cbind(nmodels_chr_unlist_df, l_chr_unlist_df)
 
-for (i in 1:nrow(final_df)){
-  rownames(final_df)[i] <- paste("Model_500KB_",i, sep="")
-}
+write.table(nmodels_chr_unlist_df,"nmodels_chr (Split 1).txt", row.names=T, col.names=T, quote=F)
 
-write.table(final_df, "cor_rmse_nprobes_models_window (Split 1).txt", row.names=T, col.names=T, quote=F)
+#final_df$Chr <- 0
+#final_df$Chr[1:nmodels_chr_unlist_df$nmodels_chr[1]] <- "Chr1"
+#for (i in seq(1,22)){
+  #final_df$Chr[nmodels_chr_unlist_df$nmodels_chr[i]+1:nmodels_chr_unlist_df$nmodels_chr[i+1]]
+#final_df$Chr[nmodels_chr_unlist_df$nmodels_chr[2]+1:nmodels_chr_unlist_df$nmodels_chr[3]]
+#final_df$Chr[nmodels_chr_unlist_df$nmodels_chr[3]+1:nmodels_chr_unlist_df$nmodels_chr[4]]
+#final_df$Chr[nmodels_chr_unlist_df$nmodels_chr[4]+1:nmodels_chr_unlist_df$nmodels_chr[5]]
+#final_df$Chr[nmodels_chr_unlist_df$nmodels_chr[4]+1:nmodels_chr_unlist_df$nmodels_chr[5]]
+#final_df$Chr[nmodels_chr_unlist_df$nmodels_chr[5]+1:nmodels_chr_unlist_df$nmodels_chr[6]]
 
 
-probes_model <- data.frame()
-for (i in 1:length(l_probes)){
-  l_probes_i <- unlist(l_probes[[i]])
-  l_probes_i_df <- as.data.frame(l_probes_i)
-  colnames(l_probes_i_df) <- "Selected Probes"
-  l_probes_i_df["Probes_Model"] <- paste("Model_500KB_",i, sep="")
-  probes_model <- rbind(probes_model, l_probes_i_df)
-}
-write.table(probes_model, "probes_models_window (Split 1).txt", row.names=T, col.names=T, quote=F)
+
+
+#for (i in 1:nrow(final_df)){
+  #rownames(final_df)[i] <- paste("Model_500KB_",i, sep="")
+#}
+
+
+
+
+#probes_model <- data.frame()
+#for (i in 1:length(l_probes)){
+  #l_probes_i <- unlist(l_probes[[i]])
+  #l_probes_i_df <- as.data.frame(l_probes_i)
+  #colnames(l_probes_i_df) <- "Selected Probes"
+  #l_probes_i_df["Probes_Model"] <- paste("Model_500KB_",i, sep="")
+  #probes_model <- rbind(probes_model, l_probes_i_df)
+#}
+#write.table(probes_model, "probes_models_window (Split 1).txt", row.names=T, col.names=T, quote=F)
 
 
