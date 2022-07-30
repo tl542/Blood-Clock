@@ -18,9 +18,6 @@ train <- df_all[trainIndex,]
 test <- df_all[-trainIndex,]
 best_lambda <- 0.1313309
 
-#probes_3 <- df_final[df_final$CHR == 3,]
-#bv3 <- probes_3[order(probes_3$MAPINFO),]
-#rownames(bv3) <- NULL
 
 
 library(glmnet)
@@ -67,6 +64,7 @@ for (c in seq(1,22)){
   }
   nmodels_chr <- c(nmodels_chr, n_iter)
 }
+
 
 
 l_cor_unlist <- unlist(l_cor)
