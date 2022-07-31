@@ -48,10 +48,8 @@ for (c in seq(1,22)){
     probes_window <- probes_chr_ordered[l_p,]
     rownames(probes_window) <- probes_window$Name
     ix <- which(colnames(df_all)[-803377] %in% rownames(probes_window))
-    new_train <- cbind(train[,ix], train$Age)
-    new_test <- cbind(test[,ix], test$Age)
-    names(new_train)[names(new_train) == "train$Age"] <- "Age"
-    names(new_test)[names(new_test) == "test$Age"] <- "Age"
+    new_train <- train[,c(ix,ncol(train))]
+    new_test <- test[,c(ix,ncol(test))]
     fit_train <- glmnet(as.matrix(new_train[,-ncol(new_train)]), new_train$Age, alpha=0.5, nlambda=10)
     pred_test <- predict(fit_train, as.matrix(new_test[,-ncol(new_test)]), s=best_lambda)
     RMSE <- rmse(new_test$Age, pred_test)
