@@ -45,7 +45,7 @@ for (c in seq(1,22)){
     l_p <- which(v < i+500000 & v >= i) 
     start_window <- c(start_window, i)
     nprobes_window <- c(nprobes_window, length(l_p))
-    probes_window <- probes_chr_ordered [l_p,]
+    probes_window <- probes_chr_ordered[l_p,]
     rownames(probes_window) <- probes_window$Name
     ix <- which(colnames(df_all)[-803377] %in% rownames(probes_window))
     new_train <- cbind(train[,ix], train$Age)
