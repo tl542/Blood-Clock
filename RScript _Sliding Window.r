@@ -42,13 +42,13 @@ for (c in seq(1,22)){
   for (i in v){
     l_p <- list()
     l_p <- which(v < i+500000 & v >= i) 
-    start_window <- c(start_window, i)
-    nprobes_window <- c(nprobes_window, length(l_p))
     probes_window <- probes_chr_ordered[l_p,]
     rownames(probes_window) <- probes_window$Name
     ix <- which(colnames(df_all)[-803377] %in% rownames(probes_window))
     if (length(ix) >= 2){
       n_iter <- n_iter + 1
+      start_window <- c(start_window, i)
+      nprobes_window <- c(nprobes_window, length(ix))
       new_train <- train[,c(ix,ncol(train))]
       new_test <- test[,c(ix,ncol(test))]
       fit_train <- glmnet(as.matrix(new_train[,-ncol(new_train)]), new_train$Age, alpha=0.5, nlambda=10)
@@ -62,6 +62,7 @@ for (c in seq(1,22)){
       coefs_nz_df <- as.data.frame(coefs_nz)
       l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
       l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[-1,"coefs_nz"]))
+    }
   }
   nmodels_chr <- c(nmodels_chr, n_iter)
 }
@@ -90,7 +91,7 @@ l_cor_rmse_nprobes_df <- cbind(cor_rmse_df, len_probes_df)
 
 nprobes_window_unlist <- unlist(nprobes_window)
 nprobes_window_unlist_df <- as.data.frame(nprobes_window_unlist)
-colnames(nprobes_window_unlist_df) <- "nProbes_Window"
+colnames(nprobes_window_unlist_df) <- "nProbes_Window_Model"
 
 start_window_unlist <- unlist(start_window)
 start_window_unlist_df <- as.data.frame(start_window_unlist)
