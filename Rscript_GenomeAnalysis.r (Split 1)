@@ -220,12 +220,18 @@ for (i in seq(1,22)){
   size_chr_df$Chr[i] <- i
 }
 
-size_chr_df$Chr <- factor(size_chr_df$Chr, c("Chr1","Chr2","Chr3","Chr4","Chr5","Chr6","Chr7","Chr8","Chr9","Chr10","Chr11","Chr12",
-                                             "Chr13", "Chr14", "Chr15", "Chr16", "Chr17", "Chr18", "Chr19", "Chr20", "Chr21", "Chr22"))
+size_chr_df$Length_Chr <- c(248387328,242696752,201105948,193574945,182045439,172126628,160567428,146259331,150617247, 134758134,135127769, 133324548, 113566686, 
+                            101161492, 99753195, 96330374, 84276897, 80542538, 61707364, 66210255, 45090682, 51324926)
+size_chr_df <- size_chr_df[,c("nprobes_chr","Length_Chr", "Chr")]
 
+size_chr_df$Probes_Density <- size_chr_df$nprobes_chr / size_chr_df$Length_Chr
+
+
+#size_chr_df$Chr <- factor(size_chr_df$Chr, c("Chr1","Chr2","Chr3","Chr4","Chr5","Chr6","Chr7","Chr8","Chr9","Chr10","Chr11","Chr12",
+                                             "Chr13", "Chr14", "Chr15", "Chr16", "Chr17", "Chr18", "Chr19", "Chr20", "Chr21", "Chr22"))
 #attach(size_chr_df)
-par(bg="aliceblue")
-plot(Chr, nprobes_chr,pch=19, col="red")
+#par(bg="aliceblue")
+#plot(Chr, nprobes_chr,pch=19, col="red")
 
 
 new_table_per_chr <- data.frame(matrix(0, nrow=22, ncol=1))
@@ -300,7 +306,7 @@ new_table_per_chr[22,"Average_Correlation"] <- mean(c(table1[22,"Correlation"], 
 
 
 average_performance_nprobes_chr <- cbind(new_table_per_chr, size_chr_df$nprobes_chr)
-colnames(average_performance_nprobes_chr) <- c("Average_Performance", "Number_Probes")
+colnames(average_performance_nprobes_chr) <- c("Average_Performance", "Probes_Density")
 
 average_performance_nprobes_chr[1, "Chr"] <- "1"
 average_performance_nprobes_chr[2, "Chr"] <- "2"
@@ -328,11 +334,19 @@ average_performance_nprobes_chr[22, "Chr"] <- "22"
 
 attach(average_performance_nprobes_chr)
 par(bg="aliceblue")
-plot(Number_Probes, Average_Performance, pch=19, col="steelblue", xlab= "Number of Probes per chromosome", ylab="Average performance per chromosome", 
-main="Average model performance vs number of CpGs per chromosome")
-text(Number_Probes, Average_Performance, labels=Chr, adj=0.7, font=2, cex=0.8)
-dev.copy(pdf,"Performance_vs_nprobes_chr.pdf")
+plot(Probes_Density, Average_Performance, pch=19, col="steelblue", xlab= "Probes Density per chromosome", ylab="Average performance per chromosome", 
+main="Average model performance vs Probes Density per chromosome")
+text(Probes_Density, Average_Performance, labels=Chr, adj=0.7, font=2, cex=0.8)
+dev.copy(pdf,"Performance_vs_ProbesDensity_chr.pdf")
 dev.off()
+
+
+mod1 <- lm(average_performance_nprobes_chr$Average_Performance ~ average_performance_nprobes_chr$Probes_Density)
+summary(mod1)
+
+# p-value = 0.195
+# Estimate = 46.96767
+
   
 vb <- data.frame()
 for (i in seq(1,22)){
