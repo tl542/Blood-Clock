@@ -32,7 +32,7 @@ start_window <- list()
 nprobes_window <- list()
 l_chr <- list()
 nmodels_chr <- list()
-probes_chr <- df_final[df_final$CHR == c,]
+probes_chr <- df_final[df_final$CHR == 1,]
 probes_chr_ordered <- probes_chr[order(probes_chr$MAPINFO),]
 rownames(probes_chr_ordered) <- NULL
 n_iter <- 0
