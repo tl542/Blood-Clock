@@ -30,14 +30,12 @@ l_rmse <- list()
 l_cor <- list()
 start_window <- list()
 nprobes_window <- list()
-l_chr <- list()
-nmodels_chr <- list()
 probes_chr <- df_final[df_final$CHR == 1,]
 probes_chr_ordered <- probes_chr[order(probes_chr$MAPINFO),]
 rownames(probes_chr_ordered) <- NULL
 n_iter <- 0
 v <- probes_chr_ordered$MAPINFO 
-  for (i in v){
+for (i in v){
     l_p <- list()
     l_p <- which(v < i+500000 & v >= i) 
     probes_window <- probes_chr_ordered[l_p,]
@@ -59,11 +57,9 @@ v <- probes_chr_ordered$MAPINFO
       coefs_nz <- coefs[which(coefs != 0),]
       coefs_nz_df <- as.data.frame(coefs_nz)
       l_probes <- c(l_probes, list(rownames(coefs_nz_df)[2:nrow(coefs_nz_df)]))
-      l_probes_coef <- c(l_probes_coef, list(coefs_nz_df[-1,"coefs_nz"]))
     }
-  }
-  nmodels_chr <- c(nmodels_chr, n_iter)
 }
+
 
 
 
@@ -105,15 +101,5 @@ rownames(final_df)[i] <- "Chr1"
 write.table(final_df, "summaryChr1 (Split 1).txt", row.names=T, col.names=T, quote=F)
 
 
-l_chr_unlist <- unlist(l_chr)
-l_chr_unlist_df <- as.data.frame(l_chr_unlist)
-colnames(l_chr_unlist_df) <- "Chr"
-
-nmodels_chr_unlist <- unlist(nmodels_chr)
-nmodels_chr_unlist_df <- as.data.frame(nmodels_chr_unlist)
-colnames(nmodels_chr_unlist_df) <- "nmodels_chr"
-nmodels_chr_unlist_df <- cbind(nmodels_chr_unlist_df, l_chr_unlist_df)
-
-write.table(nmodels_chr_unlist_df,"nmodels_chr (Split 1).txt", row.names=T, col.names=T, quote=F)
 
 
