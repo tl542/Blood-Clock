@@ -95,7 +95,7 @@ nprobes_start_window_df <- cbind(nprobes_window_unlist_df, start_window_unlist_d
 final_df <- cbind(l_cor_rmse_nprobes_df, nprobes_start_window_df)
 
 for (i in 1:nrow(final_df)){
-rownames(final_df)[i] <- "Chr1"
+final_df$Chr[i] <- "Chr1"
 }
 
 write.table(final_df, "summaryChr1 (Split 1).txt", row.names=T, col.names=T, quote=F)
