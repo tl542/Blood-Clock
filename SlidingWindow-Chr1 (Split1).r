@@ -156,3 +156,11 @@ vioplot(df_final1$Correlation, ylab="Test Set Correlation", main="Model Performa
         colMed="green", border="white")
 dev.copy(pdf,"Performance_vs_500KB.pdf")
 dev.off()
+
+kl <- rbind(df_final1[df_final1$nProbes_Window_Model <= 400,], df_final1[df_final1$nProbes_Window_Model > 400 && df_final1$nProbes_Window_Model <= 800,], 
+            df_final1[df_final1$nProbes_Window_Model > 800 && df_final1$nProbes_Window_Model <= 1200,], 
+            df_final1[df_final1$nProbes_Window_Model > 1200 && df_final1$nProbes_Window_Model <= 1400,], 
+            df_final1[df_final1$nProbes_Window_Model >= 1400 && df_final1$nProbes_Window_Model < 1800,], 
+            df_final1[df_final1$nProbes_Window_Model >= 1800,])
+
+rownames(kl) <- NULL
