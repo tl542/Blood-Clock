@@ -178,10 +178,10 @@ for (i in 1:nrow(kl)){
     if (kl$nProbes_Window_Model[i] > 1200 && kl$nProbes_Window_Model[i] <= 1600){
         kl$grp[i] <- 4
     }
-    if (kl$nProbes_Window_Model[i] > 1600 && kl$nProbes_Window_Model[i] < 2000){
+    if (kl$nProbes_Window_Model[i] > 1600 && kl$nProbes_Window_Model[i] <= 2000){
         kl$grp[i] <- 5
     }
-    if (kl$nProbes_Window_Model[i] >= 2000){
+    if (kl$nProbes_Window_Model[i] > 2000){
         kl$grp[i] <- 6
     }
 }
