@@ -144,5 +144,7 @@ df19 <- rbind(df18,chr21)
 chr22 <- read.table("/mnt/data1/EXTEND/Methylation/QC/Theo/SW-Chrs/summaryChr22 (Split 1).txt")
 df20 <- rbind(df19,chr22)
 
+df_final <- df20[!duplicated(df20$Correlation),]
+rownames(df_final) <- NULL
+df_final1 <- df_final[!duplicated(df_final$RMSE),]
 
-              
