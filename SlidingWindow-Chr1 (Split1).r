@@ -147,4 +147,5 @@ df20 <- rbind(df19,chr22)
 df_final <- df20[!duplicated(df20$Correlation),]
 rownames(df_final) <- NULL
 df_final1 <- df_final[!duplicated(df_final$RMSE),]
+write.table(df_final1,"Sliding_Window_Table.txt", row.names=T, col.names=T,quote=F)
 
