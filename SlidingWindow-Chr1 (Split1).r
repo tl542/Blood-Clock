@@ -149,7 +149,9 @@ rownames(df_final) <- NULL
 df_final1 <- df_final[!duplicated(df_final$RMSE),]
 write.table(df_final1,"Sliding_Window_Table.txt", row.names=T, col.names=T,quote=F)
 
+library("vioplot")
 par(bg="aliceblue")
-boxplot(df_final1$Correlation, ylab="Test Set Correlation", main="Model Performance per 500 KB region", col="steelblue")
+vioplot(df_final1$Correlation, ylab="Test Set Correlation", main="Model Performance per 500 KB sub-region", col="steelblue", lineCol="white", rectCol="red", 
+        colMed="green", border="white")
 dev.copy(pdf,"Performance_vs_500KB.pdf")
 dev.off()
