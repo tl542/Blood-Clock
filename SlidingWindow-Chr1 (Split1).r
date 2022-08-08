@@ -159,8 +159,37 @@ dev.off()
 
 kl <- rbind(df_final1[df_final1$nProbes_Window_Model <= 400,], df_final1[df_final1$nProbes_Window_Model > 400 && df_final1$nProbes_Window_Model <= 800,], 
             df_final1[df_final1$nProbes_Window_Model > 800 && df_final1$nProbes_Window_Model <= 1200,], 
-            df_final1[df_final1$nProbes_Window_Model > 1200 && df_final1$nProbes_Window_Model <= 1400,], 
-            df_final1[df_final1$nProbes_Window_Model >= 1400 && df_final1$nProbes_Window_Model < 1800,], 
-            df_final1[df_final1$nProbes_Window_Model >= 1800,])
+            df_final1[df_final1$nProbes_Window_Model > 1200 && df_final1$nProbes_Window_Model <= 1600,], 
+            df_final1[df_final1$nProbes_Window_Model >= 1600 && df_final1$nProbes_Window_Model < 2000,], 
+            df_final1[df_final1$nProbes_Window_Model >= 2000,])
 
 rownames(kl) <- NULL
+
+for (i in 1:nrow(kl)){
+    if (kl$nProbes_Window_Model[i] <= 400){
+        kl$grp[i] <- 1
+    }
+    if (kl$nProbes_Window_Model[i] > 400 && kl$nProbes_Window_Model[i] <= 800){
+        kl$grp[i] <- 2
+    }
+    if (kl$nProbes_Window_Model[i] > 800 && kl$nProbes_Window_Model[i] <= 1200){
+        kl$grp[i] <- 3
+    }
+    if (kl$nProbes_Window_Model[i] > 1200 && kl$nProbes_Window_Model[i] <= 1600){
+        kl$grp[i] <- 4
+    }
+    if (kl$nProbes_Window_Model[i] > 1600 && kl$nProbes_Window_Model[i] <= 2000){
+        kl$grp[i] <- 5
+    }
+    if (kl$nProbes_Window_Model[i] >= 2000){
+        kl$grp[i] <- 6
+    }
+}
+   
+write.table(kl, "Splitted_Violons.txt", row.names=T, col.names=T, quote=F)
+
+    
+    
+
+
+
