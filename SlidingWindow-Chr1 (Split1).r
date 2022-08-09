@@ -195,3 +195,9 @@ for (i in 1:nrow(df_final1)){
 }
 
 write.table(df_final1, "Splitted_Violons(1).txt", row.names=T, col.names=T, quote=F)
+
+bn <- read.table("Splitted_Violons(1).txt", row.names=T, col.names=T, quote=F)
+nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlation", main="Model Performance per 500 KB sub-region", col="steelblue", lineCol="white", 
+        rectCol="red", xlab=c(2-124, 124-203, 203-332, 332-2237))
+
+
