@@ -157,6 +157,22 @@ vioplot(df_final1$Correlation, ylab="Test Set Correlation", main="Model Performa
 dev.copy(pdf,"Performance_vs_500KB.pdf")
 dev.off()
 
+for (i in 1:nrow(df_final1)){
+    if (df_final1$nprobes_Window_Model[i] < quantile(df_final1$nProbes_Window_Model)[2]){
+        df_final1$grp[i] <- 1
+    
+    if (df_final1$nprobes_Window_Model[i] >= quantile(df_final1$nProbes_Window_Model)[2] && 
+        df_final1$nprobes_Window_Model[i] < quantile(df_final1$nProbes_Window_Model)[3]){
+        df_final$grp[i] <- 2
+     
+    if (df_final1$nprobes_Window_Model[i] >= quantile(df_final1$nProbes_Window_Model)[3] && 
+        df_final1$nprobes_Window_Model[i] < quantile(df_final1$nProbes_Window_Model)[4]){
+        df_final$grp[i] <- 3
+    
+    if (df_final1$nprobes_Window_Model[i] >= quantile(df_final1$nProbes_Window_Model)[4]){
+        df_final$grp[i] <- 4
+    
+
 kl <- rbind(df_final1[df_final1$nProbes_Window_Model <= 400,], df_final1[df_final1$nProbes_Window_Model > 400 && df_final1$nProbes_Window_Model <= 800,], 
             df_final1[df_final1$nProbes_Window_Model > 800 && df_final1$nProbes_Window_Model <= 1200,], 
             df_final1[df_final1$nProbes_Window_Model > 1200 && df_final1$nProbes_Window_Model <= 1600,], 
@@ -166,7 +182,7 @@ kl <- rbind(df_final1[df_final1$nProbes_Window_Model <= 400,], df_final1[df_fina
 rownames(kl) <- NULL
 
 for (i in 1:nrow(kl)){
-    if (kl$nProbes_Window_Model[i] <= 400){
+    if (kl$nProbes_Window_Model[i] >=  400){
         kl$grp[i] <- 1
     }
     if (kl$nProbes_Window_Model[i] > 400 && kl$nProbes_Window_Model[i] <= 800){
