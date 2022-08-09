@@ -200,4 +200,8 @@ bn <- read.table("Splitted_Violons(1).txt", row.names=T, col.names=T, quote=F)
 nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlation", main="Model Performance per 500 KB sub-region", col="steelblue", lineCol="white", 
         rectCol="red", xlab=c(2-124, 124-203, 203-332, 332-2237))
 
+plot(0:1,0:1,type="n",xlim=c(0.5,3.5))
+nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlation", main="Model Performance per 500 KB sub-region", col="steelblue", lineCol="white", 
+        rectCol="red")
+axis(side=2, at=1:4,labels=c("2 - 124", "124 - 203", "203 - 332", "332 - 2237"))
 
