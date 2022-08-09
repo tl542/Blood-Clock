@@ -189,7 +189,7 @@ for (i in 1:nrow(df_final1)){
         df_final1$nProbes_Window_Model[i] < 263){
         df_final1$grp_1[i] <- 3
     }
-    if (df_final1$nProbes_Window_Model[i] > 263){
+    if (df_final1$nProbes_Window_Model[i] >= 263){
         df_final1$grp_1[i] <- 4
     }
 }
