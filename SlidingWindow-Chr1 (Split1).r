@@ -178,20 +178,20 @@ for (i in 1:nrow(df_final1)){
 # Quantiles - Nprobes Selected
 
 for (i in 1:nrow(df_final1)){
-    if (df_final1$nProbes_Window_Model[i] < 105){
+    if (df_final1$nProbes_selected[i] < 105){
         df_final1$grp_1[i] <- 1
     }
-    if (df_final1$nProbes_Window_Model[i] >= 105 && 
-        df_final1$nProbes_Window_Model[i] < 169){
+    if (df_final1$nProbes_selected[i] >= 105 && 
+        df_final1$nProbes_selected[i] < 169){
         df_final1$grp_1[i] <- 2
     }
-    if (df_final1$nProbes_Window_Model[i] >= 169 && 
-        df_final1$nProbes_Window_Model[i] < 263){
+    if (df_final1$nProbes_selected[i] >= 169 && 
+        df_final1$nProbes_selected[i] < 263){
         df_final1$grp_1[i] <- 3
     }
-    if (df_final1$nProbes_Window_Model[i] >= 263){
+    if (df_final1$nProbes_selected[i] >= 263){
         df_final1$grp_1[i] <- 4
     }
 }
 
-
+write.table(df_final1, "Splitted_Violons(1).txt", row.names=T, col.names=T, quote=F)
