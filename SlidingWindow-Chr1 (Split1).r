@@ -157,6 +157,7 @@ vioplot(df_final1$Correlation, ylab="Test Set Correlation", main="Model Performa
 dev.copy(pdf,"Performance_vs_500KB.pdf")
 dev.off()
 
+# Quantiles - Nprobes Window
 for (i in 1:nrow(df_final1)){
     if (df_final1$nProbes_Window_Model[i] < 124){
         df_final1$grp[i] <- 1
@@ -174,39 +175,23 @@ for (i in 1:nrow(df_final1)){
     }
 }
 
-kl <- rbind(df_final1[df_final1$nProbes_Window_Model <= 400,], df_final1[df_final1$nProbes_Window_Model > 400 && df_final1$nProbes_Window_Model <= 800,], 
-            df_final1[df_final1$nProbes_Window_Model > 800 && df_final1$nProbes_Window_Model <= 1200,], 
-            df_final1[df_final1$nProbes_Window_Model > 1200 && df_final1$nProbes_Window_Model <= 1600,], 
-            df_final1[df_final1$nProbes_Window_Model >= 1600 && df_final1$nProbes_Window_Model < 2000,], 
-            df_final1[df_final1$nProbes_Window_Model >= 2000,])
+# Quantiles - Nprobes Selected
 
-rownames(kl) <- NULL
-
-for (i in 1:nrow(kl)){
-    if (kl$nProbes_Window_Model[i] >=  400){
-        kl$grp[i] <- 1
+for (i in 1:nrow(df_final1)){
+    if (df_final1$nProbes_Window_Model[i] < 105){
+        df_final1$grp_1[i] <- 1
     }
-    if (kl$nProbes_Window_Model[i] > 400 && kl$nProbes_Window_Model[i] <= 800){
-        kl$grp[i] <- 2
+    if (df_final1$nProbes_Window_Model[i] >= 105 && 
+        df_final1$nProbes_Window_Model[i] < 169){
+        df_final1$grp_1[i] <- 2
     }
-    if (kl$nProbes_Window_Model[i] > 800 && kl$nProbes_Window_Model[i] <= 1200){
-        kl$grp[i] <- 3
+    if (df_final1$nProbes_Window_Model[i] >= 169 && 
+        df_final1$nProbes_Window_Model[i] < 263){
+        df_final1$grp_1[i] <- 3
     }
-    if (kl$nProbes_Window_Model[i] > 1200 && kl$nProbes_Window_Model[i] <= 1600){
-        kl$grp[i] <- 4
-    }
-    if (kl$nProbes_Window_Model[i] > 1600 && kl$nProbes_Window_Model[i] <= 2000){
-        kl$grp[i] <- 5
-    }
-    if (kl$nProbes_Window_Model[i] > 2000){
-        kl$grp[i] <- 6
+    if (df_final1$nProbes_Window_Model[i] > 263){
+        df_final1$grp_1[i] <- 4
     }
 }
-   
-write.table(kl, "Splitted_Violons.txt", row.names=T, col.names=T, quote=F)
-
-    
-    
-
 
 
