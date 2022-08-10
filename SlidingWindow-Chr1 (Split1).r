@@ -203,5 +203,5 @@ nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlati
 plot(0:1,0:1,type="n",xlim=c(0.5,3.5))
 nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlation", main="Model Performance per 500 KB sub-region", col="steelblue", lineCol="white", 
         rectCol="red")
-axis(side=2, at=1:4,labels=c("2 - 124", "124 - 203", "203 - 332", "332 - 2237"))
+axis(side=1, at=1:4,labels=c("124", "203", "332", "2237"))
 
