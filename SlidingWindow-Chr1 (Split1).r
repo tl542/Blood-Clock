@@ -200,8 +200,16 @@ bn <- read.table("Splitted_Violons(1).txt", row.names=T, col.names=T, quote=F)
 nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlation", main="Model Performance per 500 KB sub-region", col="steelblue", lineCol="white", 
         rectCol="red", xlab=c(2-124, 124-203, 203-332, 332-2237))
 
-plot(0:1,0:1,type="n",xlim=c(0.5,3.5))
-nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlation", main="Model Performance per 500 KB sub-region", col="steelblue", lineCol="white", 
-        rectCol="red")
-axis(side=1, at=1:4,labels=c("124", "203", "332", "2237"))
 
+nprobes_window_plot <- vioplot(bg$Correlation ~ bg$grp, ylab="Test set correlation", main="Model Performance splitted by number of probes in the window", col="steelblue", lineCol="white", 
+        rectCol="red", xaxt="n", xlab="")
+axis(side=1, at=1:4,labels=c("124", "203", "332", "2237"))
+dev.copy(pdf,"500 KB per nprobes in the window.pdf")
+dev.off()
+
+selected_probes_window_plot <- vioplot(bg$Correlation ~ bg$grp_1, ylab="Test set correlation", main="Model Performance splitted by number of selected probes", col="steelblue", lineCol="white", 
+        rectCol="red", xaxt="n", xlab="")
+
+axis(side=1, at=1:4,labels=c("105", "169", "263", "889"))
+dev.copy(pdf,"500 KB per nprobes selected.pdf")
+dev.off()
